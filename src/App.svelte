@@ -42,11 +42,9 @@
 		const currentDir = grid.getDir();
 		let newDir;
 		if (direction === "down" || direction === "up") {
-			// grid.setDir("down");
 			newDir = "down";
 		}
 		if (direction === "left" || direction === "right") {
-			// grid.setDir("across");
 			newDir = "across";
 		}
 		if (newDir !== currentDir) {
@@ -58,8 +56,8 @@
 
 	function handleLetter(event) {
 		const letter = event.detail;
-		let {row, col} = grid.getCurrentPos();
-		sample_grid[row][col] = letter;
+		let {x, y} = grid.getCurrentPos();
+		sample_grid[y][x] = letter;
 		if (grid.getDir() === "across") {
 			grid.moveRight();
 		} else {
@@ -68,8 +66,8 @@
 	}
 
 	function handleBackspace(event) {
-		let {row, col} = grid.getCurrentPos();
-		sample_grid[row][col] = "";
+		let {x, y} = grid.getCurrentPos();
+		sample_grid[y][x] = "";
 		grid.moveLeft();
 	}
 
@@ -82,9 +80,8 @@
 		<div class="jxword-header">
 			<Menu />
 		</div>
-		<div class="jxword-svg-container">
-			<Grid size={size} grid={sample_grid} bind:this={grid} />
-		</div>
+		<Grid size={size} grid={sample_grid} bind:this={grid} />
+		
 		<Keyboard on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} />
 	</div>
 </main>
@@ -101,12 +98,5 @@
 		main {
 			max-width: 1024px;
 		}
-	}
-
-	.jxword-svg-container {
-        width: 50%; 
-        height: 100%;
-        touch-action: none;
-        user-select: none;
 	}
 </style>
