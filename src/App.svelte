@@ -39,14 +39,32 @@
 
 	function handleMove(event) {
 		const direction = event.detail;
-		grid.handleMove(direction);
+		const currentDir = grid.getDir();
+		let newDir;
+		if (direction === "down" || direction === "up") {
+			// grid.setDir("down");
+			newDir = "down";
+		}
+		if (direction === "left" || direction === "right") {
+			// grid.setDir("across");
+			newDir = "across";
+		}
+		if (newDir !== currentDir) {
+			grid.setDir(newDir);
+		} else {
+			grid.handleMove(direction);
+		}
 	}
 
 	function handleLetter(event) {
 		const letter = event.detail;
 		let {row, col} = grid.getCurrentPos();
 		sample_grid[row][col] = letter;
-		grid.moveRight();
+		if (grid.getDir() === "across") {
+			grid.moveRight();
+		} else {
+			grid.moveDown();
+		}
 	}
 
 	function handleBackspace(event) {

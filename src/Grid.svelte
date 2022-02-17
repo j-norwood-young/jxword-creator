@@ -2,7 +2,10 @@
 export let size = 10;
 
 let active = [];
+let number_grid = [];
+let marked_word_grid = [];
 export let grid = [];
+export let direction = "across"; // across or down
 export let totalWidth = 500;
 export let totalHeight = 500;
 export let outerBorderWidth = 1.5;
@@ -20,6 +23,7 @@ let debug = false;
 let restoreState = false;
 
 let fontSize;
+let numFontSize;
 let cellWidth;
 let cellHeight;
 let viewbox_width;
@@ -32,73 +36,165 @@ $: {
     cellWidth = totalWidth / size;
     cellHeight = totalHeight / size;
     fontSize = cellWidth * fontRatio;
-    // grid = [];
+    numFontSize = cellWidth * numRatio;
     for (let i = 0; i < size; i++) {
         // grid[i] = [];
+        number_grid[i] = [];
+        // marked_word_grid[i] = [];
         for (let j = 0; j < size; j++) {
             if (!grid[i]) {
                 grid[i] = [];
             }
             grid[i][j] = grid[i][j] || " ";
+            number_grid[i][j] = null;
+            // marked_word_grid[i][j] = false;
+        }
+    }
+    drawNumbers();
+    drawMarkedWordGrid();
+}
+
+export function selectCell(e) {
+    current_row = e.srcElement.getAttribute("data-row");
+    current_col = e.srcElement.getAttribute("data-col");
+    drawMarkedWordGrid();
+}
+
+function isStartOfAcross(col, row) {
+    if (grid[col][row] === "#") return false;
+    return ((col === 0) || (grid[col - 1][row] == "#"));
+}
+
+function isStartOfDown(col, row) {
+    if (grid[col][row] === "#") return false;
+    return ((row === 0) || (grid[col][row - 1] == "#"));
+}
+
+function drawNumbers() {
+    // A cell gets a number if it has a block or edge above or to the left of it, and a blank letter to the bottom or right of it respectively
+    // Populate a number grid while we're at it
+    let num = 1;
+    for (let col = 0; col < size; col++) {
+        for (let row = 0; row < size; row++) {
+            let drawNum = isStartOfAcross(col, row) || isStartOfDown(col, row);
+            if (drawNum) {
+                drawNumber(col, row, num++);
+            }
         }
     }
 }
 
-function selectCell(e) {
-    console.log(e.srcElement);
-    current_row = e.srcElement.getAttribute("data-row");
-    current_col = e.srcElement.getAttribute("data-col");
+function drawNumber(col, row, num) {
+    number_grid[col][row] = num;
+}
+
+function drawMarkedWordGrid() {
+    marked_word_grid = Array(size).fill(false).map(() => Array(size).fill(false));
+    if (direction === "across") {
+        for (let col = current_col; col < size; col++) {
+            if (grid[current_row][col] === "#") {
+                break;
+            }
+            marked_word_grid[current_row][col] = true;
+        }
+        for (let col = current_col; col >= 0; col--) {
+            if (grid[current_row][col] === "#") {
+                break;
+            }
+            marked_word_grid[current_row][col] = true;
+        }
+    } else { // down
+        for (let row = current_row; row < size; row++) {
+            if (grid[row][current_col] === "#") {
+                break;
+            }
+            marked_word_grid[row][current_col] = true;
+        }
+        for (let row = current_row; row >= 0; row--) {
+            if (grid[row][current_col] === "#") {
+                break;
+            }
+            marked_word_grid[row][current_col] = true;
+        }
+    }
 }
 
 export function moveUp() {
     if (current_row > 0) {
         current_row--;
     }
+    drawMarkedWordGrid();
 }
 
 export function moveDown() {
     if (current_row < size - 1) {
         current_row++;
     }
+    drawMarkedWordGrid();
 }
 
 export function moveLeft() {
     if (current_col > 0) {
         current_col--;
     }
+    drawMarkedWordGrid();
 }
 
 export function moveRight() {
     if (current_col < size - 1) {
         current_col++;
     }
+    drawMarkedWordGrid();
 }
 
 export function moveStartOfRow() {
     current_col = 0;
+    drawMarkedWordGrid();
 }
 
 export function moveEndOfRow() {
     current_col = size - 1;
+    drawMarkedWordGrid();
 }
 
-export function handleMove(direction) {
-    console.log(direction);
-    if (direction === "up") {
+export function handleMove(dir) {
+    if (dir === "up") {
         moveUp();
     }
-    if (direction === "down") {
+    if (dir === "down") {
         moveDown();
     }
-    if (direction === "left") {
+    if (dir === "left") {
         moveLeft();
     }
-    if (direction === "right") {
+    if (dir === "right") {
         moveRight();
     }
-    if (direction === "backsapce") {
+    if (dir === "backsapce") {
         backspace();
     }
+}
+
+export function changeDir() {
+    if (direction === "across") {
+        direction = "down";
+    } else {
+        direction = "across";
+    }
+    drawMarkedWordGrid();
+}
+
+export function setDir(dir) {
+    if (dir === "across") {
+        direction = "across";
+    } else {
+        direction = "down";
+    }
+    drawMarkedWordGrid();
+}
+
+export function getDir() {
+    return direction;
 }
 
 export function getCurrentPos() {
@@ -115,12 +211,15 @@ export function getCurrentPos() {
         <g class="cell-group">
             {#each grid as row_data, row}
                 {#each row_data as letter, col}
-                    <g id="jxword-cell-{col}-{row}" class="jxword-cell" style="z-index: 20" class:active="{(current_row === row && current_col === col)}" on:click="{() => {current_row = row; current_col = col; console.log(current_col, current_row) }}">
+                    <g id="jxword-cell-{col}-{row}" class="jxword-cell" style="z-index: 20" class:selected="{(current_row === row && current_col === col)}" class:active="{(marked_word_grid[row][col])}" on:click="{() => {current_row = row; current_col = col; drawMarkedWordGrid(); }}">
                         {#if letter=="#"}
                             <rect class="jxword-cell-rect" role="cell" tabindex="-1" aria-label="" x="{(cellWidth * col) + margin}" y="{(cellHeight * row) + margin}" width="{cellWidth}" height="{cellHeight}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" fill="{fillColour}" data-col="{col}" data-row="{row }" contenteditable="true"></rect>
                         {:else}
                             <rect class="jxword-cell-rect" role="cell" tabindex="-1" aria-label="" x="{(cellWidth * col) + margin}" y="{(cellHeight * row) + margin}" width="{cellWidth}" height="{cellHeight}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" fill="{backgroundColour}" data-col="{col}" data-row="{row }" contenteditable="true"></rect>
                             <text id="jxword-letter-{col}-{row}" x="{ ((cellWidth * col) + margin) + (cellWidth / 2) }" y="{ ((cellHeight * row) + margin) + cellHeight - (cellHeight * 0.1) }" text-anchor="middle" font-size="{ fontSize }" width="{ cellWidth }">{ letter }</text>
+                        {/if}
+                        {#if (number_grid[row][col] != null)}
+                            <text x="{(cellWidth * col) + margin + 2}" y="{(cellHeight * row) + margin + numFontSize}" text-anchor="left" font-size="{ numFontSize }">{ (number_grid[row][col]) }</text>
                         {/if}
                     </g>
                 {/each}
@@ -142,9 +241,14 @@ export function getCurrentPos() {
         }
         .active {
             rect.jxword-cell-rect {
+                fill: #9ce0fb;
+            }
+        }
+        .selected {
+            rect.jxword-cell-rect {
                 fill: #f7f457;
             }
-            
         }
+        
     }
 </style>
