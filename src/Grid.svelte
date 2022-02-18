@@ -67,29 +67,28 @@ $: {
         number_grid.pop();
     }
     for (let y = 0; y < size; y++) {
-        // if (!grid[y]) {
-        //     grid[y] = Array(size).map(() => " ");
-        // }
-        // if (grid[y].length - 1 < size) {
-        //     for (let x = 0; x < size; x++) {
-        //         grid[y][x] = grid[y][x] || " ";
-        //     }
-        // }
         if (!number_grid[y]) {
             number_grid[y] = Array(size);
         }
         for (let x = 0; x < size; x++) {
             grid[y][x] = grid[y][x] || " ";
+            if (grid[y][x] === "#") continue;
             let answer_down = getWord(x, y, "down");
             let answer_across = getWord(x, y, "across");
-            if (isStartOfAcross(x, y) && x < size - 1 && answer_across.length > 1) {
+            let found = false;
+            if (isStartOfAcross(x, y) && answer_across.length > 1) {
                 questions_across.push(getQuestion(num, x, y, "across", ""));
-                number_grid[y][x] = num++;
-            } else if (isStartOfDown(x, y) && y < size - 1 && answer_down.length > 1) {
+                found = true;
+            } 
+            if (isStartOfDown(x, y) && answer_down.length > 1) {
+                // console.log(answer_down);
                 questions_down.push(getQuestion(num, x, y, "down", ""));
-                number_grid[y][x] = num++;
-            } else {
+                found = true;
+            } 
+            if (!found) {
                 number_grid[y][x] = null;
+            } else {
+                number_grid[y][x] = num++;
             }
         }
     }
@@ -109,11 +108,17 @@ export function selectCell(e) {
 
 function isStartOfAcross(x, y) {
     if (grid[y][x] === "#") return false;
+    if (x >= size) return false;
+    let word = getWord(x, y, "down");
+    if (word.length <= 1) return false;
     return ((x === 0) || (grid[y][x - 1] == "#"));
 }
 
 function isStartOfDown(x, y) {
     if (grid[y][x] === "#") return false;
+    if (y >= size) return false;
+    let word = getWord(x, y, "down");
+    if (word.length <= 1) return false;
     return ((y === 0) || (grid[y - 1][x] == "#"));
 }
 
@@ -122,7 +127,7 @@ function getQuestion(num, x, y, direction, question) {
     if (direction === "across") {
         for (let i = 0; i < $questionsAcross.length; i++) {
             if ($questionsAcross[i].answer === answer && $questionsAcross[i].direction === direction) {
-                return { ...$questionsAcross[i], answer };
+                return { ...$questionsAcross[i], answer, num };
             }
             if ($questionsAcross[i].num === num && $questionsAcross[i].direction === direction) {
                 return { ...$questionsAcross[i], answer };
@@ -132,7 +137,7 @@ function getQuestion(num, x, y, direction, question) {
     } else {
         for (let i = 0; i < $questionsDown.length; i++) {
             if ($questionsDown[i].answer === answer && $questionsDown[i].direction === direction) {
-                return { ...$questionsDown[i], answer };
+                return { ...$questionsDown[i], answer, num };
             }
             if ($questionsDown[i].num === num && $questionsDown[i].direction === direction) {
                 return $questionsDown[i] = { ...$questionsDown[i], answer };

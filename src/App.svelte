@@ -124,7 +124,11 @@
 	function handleBackspace(event) {
 		let {x, y} = grid.getCurrentPos();
 		sample_grid[y][x] = "";
-		grid.moveLeft();
+		if (grid.getDir() === "across") {
+			grid.moveLeft();
+		} else {
+			grid.moveUp();
+		}
 	}
 
 	function handleStateChange() {
