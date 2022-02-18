@@ -1,3 +1,5 @@
+const format_date = (date) => new Date(date).toISOString().slice(0, 10);
+
 export function XDEncode(obj) {
     let str = "";
     if (obj.title) {
@@ -10,7 +12,7 @@ export function XDEncode(obj) {
         str += `Editor: ${obj.editor}\n`;
     }
     if (obj.date) {
-        str += `Date: ${new Date(obj.date).getFullYear()}-${new Date(obj.date).getMonth()}-${new Date(obj.date).getDay()}\n`;
+        str += `Date: ${format_date(obj.date)}\n`;
     }
     str += `\n\n`;
     for (let y = 0; y < obj.grid.length; y++) {
