@@ -1,40 +1,11 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
-    document.onkeydown = function (e) {
-        const keycode = e.keyCode;
-        if (e.metaKey) return;
-        if ((keycode > 64 && keycode < 91)) {
-            dispatch("letter", e.key.toUpperCase());
-        } else if (keycode === 51) { // #
-            dispatch("letter", "#");
-        } else if (keycode === 8) { // Backspace
-            e.preventDefault();
-            dispatch("backspace");
-        } else if (keycode == 32) { // Space
-            e.preventDefault();
-            dispatch("move", "next");
-        } else if ((keycode === 9) || (keycode === 13)) { // Tab or Enter
-            e.preventDefault();
-            if (e.shiftKey) {
-                dispatch("move", "prev-word");
-            } else {
-                dispatch("move", "next-word");
-            }
-        } else if (keycode === 37) {
-            e.preventDefault();
-            dispatch("move", "left");
-        } else if (keycode === 38) {
-            e.preventDefault();
-            dispatch("move", "up");
-        } else if (keycode === 39) {
-            e.preventDefault();
-            dispatch("move", "right");
-        } else if (keycode === 40) {
-            e.preventDefault();
-            dispatch("move", "down");
-        }
-    }
+    import { isEditingQuestion } from "./stores.js";
+    let is_editing_question = false;
+    isEditingQuestion.subscribe(value => {
+        is_editing_question = value;
+    });
+
+    
 </script>
 
 <main>
