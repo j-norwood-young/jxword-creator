@@ -1,5 +1,4 @@
 export function saveState(state) {
-    console.log(state);
     let stateString = JSON.stringify(state);
     localStorage.setItem('jxword-creator', stateString);
 }
