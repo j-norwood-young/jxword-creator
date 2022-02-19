@@ -1,6 +1,6 @@
-import App from './App.svelte';
+import JXWordCreator from './JXWordCreator.svelte';
 
-const app = new App({
+const app = new JXWordCreator({
 	target: document.body,
 	props: {
 		name: 'world'

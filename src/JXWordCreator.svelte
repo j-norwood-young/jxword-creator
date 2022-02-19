@@ -1,8 +1,7 @@
 <script>
-	import Keyboard from "./Keyboard.svelte";
 	import Menu from "./Menu.svelte";
 	import Grid from "./Grid.svelte";
-	import { saveState, restoreState } from './savestate';
+	import { saveState, restoreState, clearState } from './savestate';
 	import { onMount } from "svelte";
 	import { questionsAcross, questionsDown } from "./stores.js";
 	import { XDEncode } from "./xd-encode.js";
@@ -14,7 +13,7 @@
 	let editor;
 	let date;
 	let xd;
-	let sample_grid = [
+	let local_grid = [
 		[
 			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
 		],
@@ -48,7 +47,7 @@
 	]
 
 	let state = {
-		grid: sample_grid,
+		grid: local_grid,
 		size,
 		current_x: 0,
 		current_y: 0,
@@ -59,7 +58,7 @@
 		let { x: current_x, y: current_y } = grid.getCurrentPos();
 		let direction = grid.getDir();
 		return {
-			grid: sample_grid,
+			grid: local_grid,
 			size,
 			current_x,
 			current_y,
@@ -93,7 +92,7 @@
 	function handleLetter(event) {
 		const letter = event.detail;
 		let {x, y} = grid.getCurrentPos();
-		sample_grid[y][x] = letter;
+		local_grid[y][x] = letter;
 		if (grid.getDir() === "across") {
 			grid.moveRight();
 		} else {
@@ -123,7 +122,7 @@
 
 	function handleBackspace(event) {
 		let {x, y} = grid.getCurrentPos();
-		sample_grid[y][x] = "";
+		local_grid[y][x] = "";
 		if (grid.getDir() === "across") {
 			grid.moveLeft();
 		} else {
@@ -138,7 +137,7 @@
 
 	onMount(() => {
 		state = restoreState();
-		sample_grid = state.grid;
+		local_grid = state.grid;
 		size = state.size;
 		author = state.author;
 		editor = state.editor;
@@ -150,6 +149,21 @@
 		grid.setCurrentPos(state.current_x, state.current_y);
 	});
 	
+	function handleReset() {
+		clearState();
+		size = 10;
+		grid.setDir("across");
+		grid.setCurrentPos(0, 0);
+		title = "";
+		author = "";
+		editor = "";
+		date = "";
+		local_grid = Array(size).fill(Array(size).fill(""));
+		questionsAcross.set([]);
+		clearState();
+		questionsDown.set([]);
+		xd = XDEncode(getState());
+	}
 
 </script>
 
@@ -166,11 +180,9 @@
 	<input type="number" id="size" placeholder="size" default="5" min="1" bind:value={size}>
 	<div class="jxword-container" >
 		<div class="jxword-header">
-			<Menu />
+			<Menu on:reset="{ handleReset }" />
 		</div>
-		<Grid size={size} grid={sample_grid} bind:this={grid} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
-		
-		<Keyboard  />
+		<Grid size={size} grid={local_grid} bind:this={grid} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 	</div>
 	<textarea class="jxword-xd-textarea" bind:value="{xd}" />
 </main>
