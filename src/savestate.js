@@ -12,3 +12,7 @@ export function restoreState() {
         return null;
     }
 }
+
+export function clearState() {
+    localStorage.clear();
+}

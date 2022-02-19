@@ -1,19 +1,32 @@
+<script>
+    // Dispatcher
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+    let showMenu = false;
+
+    function handleReset(e) {
+        e.preventDefault();
+        dispatch('reset');
+        showMenu = false;
+    }
+</script>
+
 <main>
     <nav class="jxword-controls">
         <div class="jxword-menu-toggle">
-            <input type="checkbox" />
+            <input type="checkbox" bind:checked="{showMenu}" />
             <span class="jxword-hamberder"></span>
             <span class="jxword-hamberder"></span>
             <span class="jxword-hamberder"></span>
             <ul class="jxword-menu">
-                <a href={"#"} class="jxword-button"><li>Puzzle Info</li></a>
+                <!-- <a href={"#"} class="jxword-button"><li>Puzzle Info</li></a>
                 <li class="jxword-menu-break"><hr></li>
                 <a href={"#"} class="jxword-button"><li>Autocheck</li></a>
                 <a href={"#"} class="jxword-button"><li>Check Square</li></a>
                 <a href={"#"} class="jxword-button"><li>Check Word</li></a>
                 <a href={"#"} class="jxword-button"><li>Check Puzzle</li></a>
-                <li class="jxword-menu-break"><hr></li>
-                <a href={"#"} class="jxword-button"><li>Reset</li></a>
+                <li class="jxword-menu-break"><hr></li> -->
+                <a href={"#"} class="jxword-button" on:click="{handleReset}"><li>Reset</li></a>
             </ul>
         </div>
     </nav>
@@ -51,9 +64,9 @@
         background-color: #b8ddec;
     }
 
-    .jxword-menu-break:hover {
-        background-color: white;
-    }
+    // .jxword-menu-break:hover {
+    //     background-color: white;
+    // }
 
     input {
         display: block;
