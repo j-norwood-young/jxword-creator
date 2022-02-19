@@ -73,15 +73,12 @@ $: {
         for (let x = 0; x < size; x++) {
             grid[y][x] = grid[y][x] || " ";
             if (grid[y][x] === "#") continue;
-            let answer_down = getWord(x, y, "down");
-            let answer_across = getWord(x, y, "across");
             let found = false;
-            if (isStartOfAcross(x, y) && answer_across.length > 1) {
+            if (isStartOfAcross(x, y)) {
                 questions_across.push(getQuestion(num, x, y, "across", ""));
                 found = true;
             } 
-            if (isStartOfDown(x, y) && answer_down.length > 1) {
-                // console.log(answer_down);
+            if (isStartOfDown(x, y)) {
                 questions_down.push(getQuestion(num, x, y, "down", ""));
                 found = true;
             } 
@@ -109,7 +106,7 @@ export function selectCell(e) {
 function isStartOfAcross(x, y) {
     if (grid[y][x] === "#") return false;
     if (x >= size) return false;
-    let word = getWord(x, y, "down");
+    let word = getWord(x, y, "across");
     if (word.length <= 1) return false;
     return ((x === 0) || (grid[y][x - 1] == "#"));
 }
