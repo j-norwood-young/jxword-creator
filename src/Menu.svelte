@@ -32,18 +32,7 @@
     </nav>
 </main>
 
-<style lang="scss">
-    /*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
-
+<style lang="scss" scoped>
 .jxword-menu-toggle
 {
     display: block;

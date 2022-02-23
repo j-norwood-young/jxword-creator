@@ -1,6 +1,6 @@
 const format_date = (date) => new Date(date).toISOString().slice(0, 10);
 
-export function XDEncode(obj) {
+export default function XDEncode(obj) {
     let str = "";
     if (obj.title) {
         str += `Title: ${obj.title}\n`;
