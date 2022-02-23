@@ -1,53 +1,56 @@
 <script>
 	import Menu from "./Menu.svelte";
 	import Grid from "./Grid.svelte";
+	import Instructions from "./Instructions.svelte";
 	import { saveState, restoreState, clearState } from './savestate';
 	import { onMount } from "svelte";
 	import { questionsAcross, questionsDown } from "./stores.js";
 	import { XDEncode } from "./xd-encode.js";
+	import XDParser from "xd-crossword-parser";
 
-	let size = 10;
-	let grid;
+	let gridComponent;
 	let title;
 	let author;
 	let editor;
 	let date;
 	let xd;
-	let local_grid = [
+	export let grid = [
 		[
 			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"E", "F", "G", "H", "I", "J", "K", "L", "M", "N"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"F", "G", "H", "I", "J", "K", "L", "M", "N", "O"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"G", "H", "I", "J", "K", "L", "M", "N", "O", "P"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
+			"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"
 		],
 		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
-		],
+			"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"
+		]
 	]
 
+	let size = grid.length;
+
 	let state = {
-		grid: local_grid,
+		grid,
 		size,
 		current_x: 0,
 		current_y: 0,
@@ -55,10 +58,10 @@
 	}
 
 	let getState = () => {
-		let { x: current_x, y: current_y } = grid.getCurrentPos();
-		let direction = grid.getDir();
+		let { x: current_x, y: current_y } = gridComponent.getCurrentPos();
+		let direction = gridComponent.getDir();
 		return {
-			grid: local_grid,
+			grid: grid,
 			size,
 			current_x,
 			current_y,
@@ -74,7 +77,7 @@
 
 	function handleMove(event) {
 		const direction = event.detail;
-		const currentDir = grid.getDir();
+		const currentDir = gridComponent.getDir();
 		let newDir;
 		if (direction === "down" || direction === "up") {
 			newDir = "down";
@@ -83,26 +86,26 @@
 			newDir = "across";
 		}
 		if (newDir !== currentDir) {
-			grid.setDir(newDir);
+			gridComponent.setDir(newDir);
 		} else {
-			grid.handleMove(direction);
+			gridComponent.handleMove(direction);
 		}
 	}
 
 	function handleLetter(event) {
 		const letter = event.detail;
-		let {x, y} = grid.getCurrentPos();
-		local_grid[y][x] = letter;
-		if (grid.getDir() === "across") {
-			grid.moveRight();
+		let {x, y} = gridComponent.getCurrentPos();
+		grid[y][x] = letter;
+		if (gridComponent.getDir() === "across") {
+			gridComponent.moveRight();
 		} else {
-			grid.moveDown();
+			gridComponent.moveDown();
 		}
 	}
 
 	function handleEnter(event) {
-		let {x, y} = grid.getCurrentPos();
-		let current_direction = grid.getDir();
+		let {x, y} = gridComponent.getCurrentPos();
+		let current_direction = gridComponent.getDir();
 		let selected_question;
 		let questions = current_direction === "across" ? $questionsAcross : $questionsDown;
 		if (current_direction === "across") {
@@ -121,12 +124,12 @@
 	}
 
 	function handleBackspace(event) {
-		let {x, y} = grid.getCurrentPos();
-		local_grid[y][x] = "";
-		if (grid.getDir() === "across") {
-			grid.moveLeft();
+		let {x, y} = gridComponent.getCurrentPos();
+		grid[y][x] = "";
+		if (gridComponent.getDir() === "across") {
+			gridComponent.moveLeft();
 		} else {
-			grid.moveUp();
+			gridComponent.moveUp();
 		}
 	}
 
@@ -137,7 +140,7 @@
 
 	onMount(() => {
 		state = restoreState();
-		local_grid = state.grid;
+		grid = state.grid;
 		size = state.size;
 		author = state.author;
 		editor = state.editor;
@@ -145,29 +148,74 @@
 		title = state.title;
 		questionsAcross.set(state.questions_across);
 		questionsDown.set(state.questions_down);
-		grid.setDir(state.direction);
-		grid.setCurrentPos(state.current_x, state.current_y);
+		gridComponent.setDir(state.direction);
+		gridComponent.setCurrentPos(state.current_x, state.current_y);
 	});
 	
 	function handleReset() {
 		clearState();
 		size = 10;
-		grid.setDir("across");
-		grid.setCurrentPos(0, 0);
+		gridComponent.setDir("across");
+		gridComponent.setCurrentPos(0, 0);
 		title = "";
 		author = "";
 		editor = "";
 		date = "";
-		local_grid = Array(size).fill(Array(size).fill(""));
+		grid = Array(size).fill(Array(size).fill(""));
 		questionsAcross.set([]);
 		clearState();
 		questionsDown.set([]);
 		xd = XDEncode(getState());
 	}
 
+	let fileInput;
+	function handleFileSelect() {
+		const reader = new FileReader();
+		reader.onload = (function() {
+			return function(e) {
+				try {
+					const xd_data = e.target.result;
+					const data= XDParser(xd_data);
+					// console.log(data);
+					grid = data.grid;
+					size = data.grid.length;
+					gridComponent.setDir("across");
+					gridComponent.setCurrentPos(0, 0);
+					let questions_across = $questionsAcross;
+					for (let question of questions_across) {
+						let matching_question = data.across.find(q => q.num === `A${question.num}`);
+						// console.log(matching_question);
+						if (matching_question) {
+							question.question = matching_question.question;
+						}
+					}
+					questionsAcross.set(questions_across);
+					let questions_down = $questionsDown;
+					for (let question of questions_down) {
+						let matching_question = data.down.find(q => q.num === `D${question.num}`);
+						// console.log(matching_question);
+						if (matching_question) {
+							question.question = matching_question.question;
+						}
+					}
+					questionsDown.set(questions_down);
+					handleStateChange();
+				} catch(err) {
+					console.error(err);
+					throw "Unable to parse file";
+				}
+			};
+		})(fileInput.files[0]);
+		// Read in the image file as a data URL.
+		reader.readAsText(fileInput.files[0]);
+	}
+
 </script>
 
 <main>
+	<Instructions />
+	<label for="file">Upload an XD file (optional)</label>
+	<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
 	<label for="title">Title</label>
 	<input id="title" type="text" bind:value={title} on:change="{handleStateChange}" />
 	<label for="author">Author</label>
@@ -182,7 +230,7 @@
 		<div class="jxword-header">
 			<Menu on:reset="{ handleReset }" />
 		</div>
-		<Grid size={size} grid={local_grid} bind:this={grid} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
+		<Grid size={size} grid={grid} bind:this={gridComponent} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 	</div>
 	<textarea class="jxword-xd-textarea" bind:value="{xd}" />
 </main>
