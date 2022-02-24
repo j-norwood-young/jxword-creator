@@ -1,4 +1,4 @@
-import XDEncode from "../src/xd-encode.js";
+import { XDEncode } from "../src/xd-encode.js";
 
 const test_xd = `Title: This Is 
 Author: Jason
