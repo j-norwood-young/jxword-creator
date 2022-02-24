@@ -29,7 +29,43 @@ function serve() {
 	};
 }
 
-export default {
+export default [
+	{
+		input: "src/dist.js",
+		output: {
+			sourcemap: false,
+			format: 'iife',
+			name: "jxwordcreator",
+			file: "dist/jxwordcreator.js"
+		},
+		plugins: [
+			svelte({
+				// enable run-time checks when not in production
+				dev: !production,
+				// we'll extract any component CSS out into
+				// a separate file - better for performance
+				preprocess: preprocess({ defaults: { style: "scss" } }),
+			}),
+			css({ output: "dist.css" }),
+			resolve({
+				browser: true,
+				dedupe: ['svelte']
+			}),
+			commonjs(),
+			// In dev mode, call `npm run start` once
+			// the bundle has been generated
+			!production && serve(),
+
+			// Watch the `public` directory and refresh the
+			// browser on changes when not in production
+			!production && livereload('public'),
+
+			// If we're building for production (npm run build
+			// instead of npm run dev), minify
+			production && terser()
+		]
+	},
+	{
 	input: 'src/main.js',
 	output: {
 		sourcemap: true,
@@ -75,4 +111,4 @@ export default {
 	watch: {
 		clearScreen: false
 	}
-};
+}];
