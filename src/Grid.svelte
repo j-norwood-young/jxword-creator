@@ -178,11 +178,11 @@ function getWord(x, y, direction) {
     let word = "";
     if (direction === "across") {
         for (let i = start.x; i <= end.x; i++) {
-            word += grid[y][i];
+            word += grid[y][i] || " ";
         }
     } else {
         for (let i = start.y; i <= end.y; i++) {
-            word += grid[i][x];
+            word += grid[i][x] || " ";
         }
     }
     return word;

@@ -132,11 +132,13 @@
 		author = "";
 		editor = "";
 		date = "";
-		grid = Array(size).fill(Array(size).fill(""));
+		grid = [...Array(10)].map(e => Array(10));;
 		questionsAcross.set([]);
 		clearState();
 		questionsDown.set([]);
-		xd = XDEncode(getState());
+		clearState();
+		xd = "";
+		clearState();
 	}
 
 	let fileInput;

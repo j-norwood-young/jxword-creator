@@ -1816,11 +1816,11 @@ function instance$1($$self, $$props, $$invalidate) {
 
 		if (direction === "across") {
 			for (let i = start.x; i <= end.x; i++) {
-				word += grid[y][i];
+				word += grid[y][i] || " ";
 			}
 		} else {
 			for (let i = start.y; i <= end.y; i++) {
-				word += grid[i][x];
+				word += grid[i][x] || " ";
 			}
 		}
 
@@ -2820,11 +2820,13 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(3, author = "");
 		$$invalidate(4, editor = "");
 		$$invalidate(5, date = "");
-		$$invalidate(0, grid = Array(size).fill(Array(size).fill("")));
+		$$invalidate(0, grid = [...Array(10)].map(e => Array(10)));
 		questionsAcross.set([]);
 		clearState();
 		questionsDown.set([]);
-		$$invalidate(6, xd = XDEncode(getState()));
+		clearState();
+		$$invalidate(6, xd = "");
+		clearState();
 	}
 
 	let fileInput;
