@@ -155,6 +155,10 @@ function schedule_update() {
         resolved_promise.then(flush);
     }
 }
+function tick() {
+    schedule_update();
+    return resolved_promise;
+}
 function add_render_callback(fn) {
     render_callbacks.push(fn);
 }
@@ -2840,8 +2844,9 @@ function instance($$self, $$props, $$invalidate) {
 		clearState();
 	}
 
-	function loadXd(xd) {
+	async function loadXd(xd) {
 		const data = xdCrosswordParser(xd);
+		console.log(data);
 		$$invalidate(1, grid = data.grid);
 		$$invalidate(7, size = data.grid.length);
 		$$invalidate(4, author = data.meta.Author);
@@ -2850,6 +2855,7 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(3, title = data.meta.Title);
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
+		await tick();
 		let questions_across = $questionsAcross;
 
 		for (let question of questions_across) {
@@ -2883,9 +2889,9 @@ function instance($$self, $$props, $$invalidate) {
 		const reader = new FileReader();
 
 		reader.onload = (function () {
-			return function (e) {
+			return async function (e) {
 				try {
-					loadXd(e.target.result);
+					await loadXd(e.target.result);
 				} catch(err) {
 					console.error(err);
 					throw "Unable to parse file";

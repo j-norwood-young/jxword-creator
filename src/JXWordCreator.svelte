@@ -3,7 +3,7 @@
 	import Grid from "./Grid.svelte";
 	import Instructions from "./Instructions.svelte";
 	import { saveState, restoreState, clearState } from './savestate';
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import { questionsAcross, questionsDown } from "./stores.js";
 	import { XDEncode } from "./xd-encode.js";
 	import XDParser from "xd-crossword-parser";
@@ -145,8 +145,9 @@
 		clearState();
 	}
 
-	function loadXd(xd) {
+	async function loadXd(xd) {
 		const data= XDParser(xd);
+		console.log(data);
 		grid = data.grid;
 		size = data.grid.length;
 		author = data.meta.Author;
@@ -155,6 +156,7 @@
 		title = data.meta.Title;
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
+		await tick();
 		let questions_across = $questionsAcross;
 		for (let question of questions_across) {
 			let matching_question = data.across.find(q => q.num === `A${question.num}`);
@@ -180,9 +182,9 @@
 	function handleFileSelect() {
 		const reader = new FileReader();
 		reader.onload = (function() {
-			return function(e) {
+			return async function(e) {
 				try {
-					loadXd(e.target.result);
+					await loadXd(e.target.result);
 				} catch(err) {
 					console.error(err);
 					throw "Unable to parse file";
