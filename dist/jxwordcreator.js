@@ -2480,7 +2480,7 @@ function create_fragment(ctx) {
 
 	let grid_1_props = {
 		size: /*size*/ ctx[7],
-		grid: /*grid*/ ctx[0]
+		grid: /*grid*/ ctx[1]
 	};
 
 	grid_1 = new Grid({ props: grid_1_props });
@@ -2581,22 +2581,22 @@ function create_fragment(ctx) {
 			append(main, label1);
 			append(main, t5);
 			append(main, input1);
-			set_input_value(input1, /*title*/ ctx[2]);
+			set_input_value(input1, /*title*/ ctx[3]);
 			append(main, t6);
 			append(main, label2);
 			append(main, t8);
 			append(main, input2);
-			set_input_value(input2, /*author*/ ctx[3]);
+			set_input_value(input2, /*author*/ ctx[4]);
 			append(main, t9);
 			append(main, label3);
 			append(main, t11);
 			append(main, input3);
-			set_input_value(input3, /*editor*/ ctx[4]);
+			set_input_value(input3, /*editor*/ ctx[5]);
 			append(main, t12);
 			append(main, label4);
 			append(main, t14);
 			append(main, input4);
-			set_input_value(input4, /*date*/ ctx[5]);
+			set_input_value(input4, /*date*/ ctx[6]);
 			append(main, t15);
 			append(main, label5);
 			append(main, t17);
@@ -2610,7 +2610,7 @@ function create_fragment(ctx) {
 			mount_component(grid_1, div1, null);
 			append(main, t20);
 			append(main, textarea);
-			set_input_value(textarea, /*xd*/ ctx[6]);
+			set_input_value(textarea, /*xd*/ ctx[0]);
 			current = true;
 
 			if (!mounted) {
@@ -2632,20 +2632,20 @@ function create_fragment(ctx) {
 			}
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*title*/ 4 && input1.value !== /*title*/ ctx[2]) {
-				set_input_value(input1, /*title*/ ctx[2]);
+			if (dirty & /*title*/ 8 && input1.value !== /*title*/ ctx[3]) {
+				set_input_value(input1, /*title*/ ctx[3]);
 			}
 
-			if (dirty & /*author*/ 8 && input2.value !== /*author*/ ctx[3]) {
-				set_input_value(input2, /*author*/ ctx[3]);
+			if (dirty & /*author*/ 16 && input2.value !== /*author*/ ctx[4]) {
+				set_input_value(input2, /*author*/ ctx[4]);
 			}
 
-			if (dirty & /*editor*/ 16 && input3.value !== /*editor*/ ctx[4]) {
-				set_input_value(input3, /*editor*/ ctx[4]);
+			if (dirty & /*editor*/ 32 && input3.value !== /*editor*/ ctx[5]) {
+				set_input_value(input3, /*editor*/ ctx[5]);
 			}
 
-			if (dirty & /*date*/ 32) {
-				set_input_value(input4, /*date*/ ctx[5]);
+			if (dirty & /*date*/ 64) {
+				set_input_value(input4, /*date*/ ctx[6]);
 			}
 
 			if (dirty & /*size*/ 128 && to_number(input5.value) !== /*size*/ ctx[7]) {
@@ -2654,11 +2654,11 @@ function create_fragment(ctx) {
 
 			const grid_1_changes = {};
 			if (dirty & /*size*/ 128) grid_1_changes.size = /*size*/ ctx[7];
-			if (dirty & /*grid*/ 1) grid_1_changes.grid = /*grid*/ ctx[0];
+			if (dirty & /*grid*/ 2) grid_1_changes.grid = /*grid*/ ctx[1];
 			grid_1.$set(grid_1_changes);
 
-			if (dirty & /*xd*/ 64) {
-				set_input_value(textarea, /*xd*/ ctx[6]);
+			if (dirty & /*xd*/ 1) {
+				set_input_value(textarea, /*xd*/ ctx[0]);
 			}
 		},
 		i(local) {
@@ -2697,7 +2697,7 @@ function instance($$self, $$props, $$invalidate) {
 	let author;
 	let editor;
 	let date;
-	let xd;
+	let { xd } = $$props;
 	let { grid = [...Array(10)].map(e => Array(10)) } = $$props;
 	let size = grid.length;
 
@@ -2753,7 +2753,7 @@ function instance($$self, $$props, $$invalidate) {
 	function handleLetter(event) {
 		const letter = event.detail;
 		let { x, y } = gridComponent.getCurrentPos();
-		$$invalidate(0, grid[y][x] = letter, grid);
+		$$invalidate(1, grid[y][x] = letter, grid);
 
 		if (gridComponent.getDir() === "across") {
 			gridComponent.moveRight();
@@ -2790,7 +2790,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function handleBackspace(event) {
 		let { x, y } = gridComponent.getCurrentPos();
-		$$invalidate(0, grid[y][x] = "", grid);
+		$$invalidate(1, grid[y][x] = "", grid);
 
 		if (gridComponent.getDir() === "across") {
 			gridComponent.moveLeft();
@@ -2801,21 +2801,25 @@ function instance($$self, $$props, $$invalidate) {
 
 	function handleStateChange() {
 		saveState(getState());
-		$$invalidate(6, xd = XDEncode(getState()));
+		$$invalidate(0, xd = XDEncode(getState()));
 	}
 
 	onMount(() => {
-		state = restoreState() || state;
-		$$invalidate(0, grid = state.grid);
-		$$invalidate(7, size = state.size);
-		$$invalidate(3, author = state.author);
-		$$invalidate(4, editor = state.editor);
-		$$invalidate(5, date = state.date);
-		$$invalidate(2, title = state.title);
-		questionsAcross.set(state.questions_across);
-		questionsDown.set(state.questions_down);
-		gridComponent.setDir(state.direction);
-		gridComponent.setCurrentPos(state.current_x, state.current_y);
+		if (xd) {
+			loadXd(xd);
+		} else {
+			state = restoreState() || state;
+			$$invalidate(1, grid = state.grid);
+			$$invalidate(7, size = state.size);
+			$$invalidate(4, author = state.author);
+			$$invalidate(5, editor = state.editor);
+			$$invalidate(6, date = state.date);
+			$$invalidate(3, title = state.title);
+			questionsAcross.set(state.questions_across);
+			questionsDown.set(state.questions_down);
+			gridComponent.setDir(state.direction);
+			gridComponent.setCurrentPos(state.current_x, state.current_y);
+		}
 	});
 
 	function handleReset() {
@@ -2823,17 +2827,54 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(7, size = 10);
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
-		$$invalidate(2, title = "");
-		$$invalidate(3, author = "");
-		$$invalidate(4, editor = "");
-		$$invalidate(5, date = "");
-		$$invalidate(0, grid = [...Array(10)].map(e => Array(10)));
+		$$invalidate(3, title = "");
+		$$invalidate(4, author = "");
+		$$invalidate(5, editor = "");
+		$$invalidate(6, date = "");
+		$$invalidate(1, grid = [...Array(10)].map(e => Array(10)));
 		questionsAcross.set([]);
 		clearState();
 		questionsDown.set([]);
 		clearState();
-		$$invalidate(6, xd = "");
+		$$invalidate(0, xd = "");
 		clearState();
+	}
+
+	function loadXd(xd) {
+		const data = xdCrosswordParser(xd);
+		$$invalidate(1, grid = data.grid);
+		$$invalidate(7, size = data.grid.length);
+		$$invalidate(4, author = data.meta.Author);
+		$$invalidate(5, editor = data.meta.Editor);
+		$$invalidate(6, date = data.meta.Date);
+		$$invalidate(3, title = data.meta.Title);
+		gridComponent.setDir("across");
+		gridComponent.setCurrentPos(0, 0);
+		let questions_across = $questionsAcross;
+
+		for (let question of questions_across) {
+			let matching_question = data.across.find(q => q.num === `A${question.num}`);
+
+			// console.log(matching_question);
+			if (matching_question) {
+				question.question = matching_question.question;
+			}
+		}
+
+		questionsAcross.set(questions_across);
+		let questions_down = $questionsDown;
+
+		for (let question of questions_down) {
+			let matching_question = data.down.find(q => q.num === `D${question.num}`);
+
+			// console.log(matching_question);
+			if (matching_question) {
+				question.question = matching_question.question;
+			}
+		}
+
+		questionsDown.set(questions_down);
+		handleStateChange();
 	}
 
 	let fileInput;
@@ -2844,40 +2885,7 @@ function instance($$self, $$props, $$invalidate) {
 		reader.onload = (function () {
 			return function (e) {
 				try {
-					const xd_data = e.target.result;
-					const data = xdCrosswordParser(xd_data);
-
-					// console.log(data);
-					$$invalidate(0, grid = data.grid);
-
-					$$invalidate(7, size = data.grid.length);
-					gridComponent.setDir("across");
-					gridComponent.setCurrentPos(0, 0);
-					let questions_across = $questionsAcross;
-
-					for (let question of questions_across) {
-						let matching_question = data.across.find(q => q.num === `A${question.num}`);
-
-						// console.log(matching_question);
-						if (matching_question) {
-							question.question = matching_question.question;
-						}
-					}
-
-					questionsAcross.set(questions_across);
-					let questions_down = $questionsDown;
-
-					for (let question of questions_down) {
-						let matching_question = data.down.find(q => q.num === `D${question.num}`);
-
-						// console.log(matching_question);
-						if (matching_question) {
-							question.question = matching_question.question;
-						}
-					}
-
-					questionsDown.set(questions_down);
-					handleStateChange();
+					loadXd(e.target.result);
 				} catch(err) {
 					console.error(err);
 					throw "Unable to parse file";
@@ -2898,22 +2906,22 @@ function instance($$self, $$props, $$invalidate) {
 
 	function input1_input_handler() {
 		title = this.value;
-		$$invalidate(2, title);
+		$$invalidate(3, title);
 	}
 
 	function input2_input_handler() {
 		author = this.value;
-		$$invalidate(3, author);
+		$$invalidate(4, author);
 	}
 
 	function input3_input_handler() {
 		editor = this.value;
-		$$invalidate(4, editor);
+		$$invalidate(5, editor);
 	}
 
 	function input4_input_handler() {
 		date = this.value;
-		$$invalidate(5, date);
+		$$invalidate(6, date);
 	}
 
 	function input5_input_handler() {
@@ -2924,27 +2932,28 @@ function instance($$self, $$props, $$invalidate) {
 	function grid_1_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			gridComponent = $$value;
-			$$invalidate(1, gridComponent);
+			$$invalidate(2, gridComponent);
 		});
 	}
 
 	function textarea_input_handler() {
 		xd = this.value;
-		$$invalidate(6, xd);
+		$$invalidate(0, xd);
 	}
 
 	$$self.$$set = $$props => {
-		if ('grid' in $$props) $$invalidate(0, grid = $$props.grid);
+		if ('xd' in $$props) $$invalidate(0, xd = $$props.xd);
+		if ('grid' in $$props) $$invalidate(1, grid = $$props.grid);
 	};
 
 	return [
+		xd,
 		grid,
 		gridComponent,
 		title,
 		author,
 		editor,
 		date,
-		xd,
 		size,
 		fileInput,
 		handleMove,
@@ -2968,7 +2977,7 @@ function instance($$self, $$props, $$invalidate) {
 class JXWordCreator extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { grid: 0 });
+		init(this, options, instance, create_fragment, safe_not_equal, { xd: 0, grid: 1 });
 	}
 }
 

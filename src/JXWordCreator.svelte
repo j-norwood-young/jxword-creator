@@ -13,7 +13,7 @@
 	let author;
 	let editor;
 	let date;
-	let xd;
+	export let xd;
 	export let grid = [...Array(10)].map(e => Array(10));
 
 	let size = grid.length;
@@ -110,17 +110,21 @@
 	}
 
 	onMount(() => {
-		state = restoreState() || state;
-		grid = state.grid;
-		size = state.size;
-		author = state.author;
-		editor = state.editor;
-		date = state.date;
-		title = state.title;
-		questionsAcross.set(state.questions_across);
-		questionsDown.set(state.questions_down);
-		gridComponent.setDir(state.direction);
-		gridComponent.setCurrentPos(state.current_x, state.current_y);
+		if (xd) {
+			loadXd(xd);
+		} else {
+			state = restoreState() || state;
+			grid = state.grid;
+			size = state.size;
+			author = state.author;
+			editor = state.editor;
+			date = state.date;
+			title = state.title;
+			questionsAcross.set(state.questions_across);
+			questionsDown.set(state.questions_down);
+			gridComponent.setDir(state.direction);
+			gridComponent.setCurrentPos(state.current_x, state.current_y);
+		}
 	});
 	
 	function handleReset() {
@@ -141,38 +145,44 @@
 		clearState();
 	}
 
+	function loadXd(xd) {
+		const data= XDParser(xd);
+		grid = data.grid;
+		size = data.grid.length;
+		author = data.meta.Author;
+		editor = data.meta.Editor;
+		date = data.meta.Date;
+		title = data.meta.Title;
+		gridComponent.setDir("across");
+		gridComponent.setCurrentPos(0, 0);
+		let questions_across = $questionsAcross;
+		for (let question of questions_across) {
+			let matching_question = data.across.find(q => q.num === `A${question.num}`);
+			// console.log(matching_question);
+			if (matching_question) {
+				question.question = matching_question.question;
+			}
+		}
+		questionsAcross.set(questions_across);
+		let questions_down = $questionsDown;
+		for (let question of questions_down) {
+			let matching_question = data.down.find(q => q.num === `D${question.num}`);
+			// console.log(matching_question);
+			if (matching_question) {
+				question.question = matching_question.question;
+			}
+		}
+		questionsDown.set(questions_down);
+		handleStateChange();
+	}
+
 	let fileInput;
 	function handleFileSelect() {
 		const reader = new FileReader();
 		reader.onload = (function() {
 			return function(e) {
 				try {
-					const xd_data = e.target.result;
-					const data= XDParser(xd_data);
-					// console.log(data);
-					grid = data.grid;
-					size = data.grid.length;
-					gridComponent.setDir("across");
-					gridComponent.setCurrentPos(0, 0);
-					let questions_across = $questionsAcross;
-					for (let question of questions_across) {
-						let matching_question = data.across.find(q => q.num === `A${question.num}`);
-						// console.log(matching_question);
-						if (matching_question) {
-							question.question = matching_question.question;
-						}
-					}
-					questionsAcross.set(questions_across);
-					let questions_down = $questionsDown;
-					for (let question of questions_down) {
-						let matching_question = data.down.find(q => q.num === `D${question.num}`);
-						// console.log(matching_question);
-						if (matching_question) {
-							question.question = matching_question.question;
-						}
-					}
-					questionsDown.set(questions_down);
-					handleStateChange();
+					loadXd(e.target.result);
 				} catch(err) {
 					console.error(err);
 					throw "Unable to parse file";
