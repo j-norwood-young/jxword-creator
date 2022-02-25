@@ -106,6 +106,7 @@
 	}
 
 	function handleStateChange() {
+		console.log({ save_state });
 		if (!save_state) return;
 		saveState(getState());
 		xd = XDEncode(getState());

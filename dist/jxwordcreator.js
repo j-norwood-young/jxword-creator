@@ -2805,6 +2805,7 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	function handleStateChange() {
+		console.log({ save_state });
 		saveState(getState());
 		$$invalidate(0, xd = XDEncode(getState()));
 	}
