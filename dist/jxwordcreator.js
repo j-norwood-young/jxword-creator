@@ -2541,26 +2541,33 @@ function create_fragment(ctx) {
 			attr(input0, "accept", ".xd");
 			attr(label1, "for", "title");
 			attr(input1, "id", "title");
+			attr(input1, "name", "title");
 			attr(input1, "type", "text");
 			attr(label2, "for", "author");
 			attr(input2, "id", "author");
+			attr(input2, "name", "author");
 			attr(input2, "type", "text");
 			attr(label3, "for", "editor");
 			attr(input3, "id", "editor");
+			attr(input3, "name", "editor");
 			attr(input3, "type", "text");
 			attr(label4, "for", "date");
 			attr(input4, "id", "date");
+			attr(input4, "name", "date");
 			attr(input4, "type", "date");
 			attr(label5, "for", "size");
 			attr(input5, "type", "number");
+			attr(input5, "name", "size");
 			attr(input5, "id", "size");
 			attr(input5, "placeholder", "size");
 			attr(input5, "default", "5");
 			attr(input5, "min", "1");
 			attr(div0, "class", "jxword-header");
 			attr(div1, "class", "jxword-container");
-			attr(textarea, "class", "jxword-xd-textarea svelte-wuybts");
-			attr(main, "class", "svelte-wuybts");
+			attr(textarea, "id", "xd");
+			attr(textarea, "name", "xd");
+			attr(textarea, "class", "jxword-xd-textarea svelte-5ln418");
+			attr(main, "class", "svelte-5ln418");
 		},
 		m(target, anchor) {
 			insert(target, main, anchor);

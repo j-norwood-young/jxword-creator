@@ -37,12 +37,16 @@ export default [
 	{
 		input: "src/dist.js",
 		output: [
+			{ file: pkg.module, 'format': 'en' },
 			{
 				sourcemap: false,
 				format: 'cjs',
 				name: "jxwordcreator",
 				file: "dist/jxwordcreator.js"
 			},
+			// { 
+			// 	file: `dist/${pkg.module}`, 'format': 'en' 
+			// },
 		],
 		plugins: [
 			svelte({

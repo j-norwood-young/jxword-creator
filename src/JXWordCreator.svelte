@@ -190,28 +190,26 @@
 	<label for="file">Upload an XD file (optional)</label>
 	<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
 	<label for="title">Title</label>
-	<input id="title" type="text" bind:value={title} on:change="{handleStateChange}" />
+	<input id="title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" />
 	<label for="author">Author</label>
-	<input id="author" type="text" bind:value={author} on:change="{handleStateChange}" />
+	<input id="author" name="author" type="text" bind:value={author} on:change="{handleStateChange}" />
 	<label for="editor">Editor</label>
-	<input id="editor" type="text" bind:value={editor} on:change="{handleStateChange}" />
+	<input id="editor" name="editor" type="text" bind:value={editor} on:change="{handleStateChange}" />
 	<label for="date">Date</label>
-	<input id="date" type="date" bind:value={date} on:change="{handleStateChange}" />
+	<input id="date" name="date" type="date" bind:value={date} on:change="{handleStateChange}" />
 	<label for="size">Size</label>
-	<input type="number" id="size" placeholder="size" default="5" min="1" bind:value={size}>
+	<input type="number" name="size" id="size" placeholder="size" default="5" min="1" bind:value={size}>
 	<div class="jxword-container" >
 		<div class="jxword-header">
 			<Menu on:reset="{ handleReset }" />
 		</div>
 		<Grid size={size} grid={grid} bind:this={gridComponent} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 	</div>
-	<textarea class="jxword-xd-textarea" bind:value="{xd}" />
+	<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" />
 </main>
 
 <style lang="scss">
 	main {
-		text-align: center;
-		padding: 1em;
 		max-width: none;
 		margin: 0 auto;
 	}
