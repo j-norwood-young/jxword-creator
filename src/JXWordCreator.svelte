@@ -115,7 +115,9 @@
 		if (xd) {
 			loadXd(xd);
 		} else {
-			state = restoreState() || state;
+			if (save_state) {
+				state = restoreState() || state;
+			}
 			grid = state.grid;
 			size = state.size;
 			author = state.author;

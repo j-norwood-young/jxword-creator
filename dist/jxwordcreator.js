@@ -2813,7 +2813,10 @@ function instance($$self, $$props, $$invalidate) {
 		if (xd) {
 			loadXd(xd);
 		} else {
-			state = restoreState() || state;
+			{
+				state = restoreState() || state;
+			}
+
 			$$invalidate(1, grid = state.grid);
 			$$invalidate(7, size = state.size);
 			$$invalidate(4, author = state.author);
