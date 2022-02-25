@@ -13,6 +13,7 @@
 	let author;
 	let editor;
 	let date;
+	export const save_state = true;
 	export let xd;
 	export let grid = [...Array(10)].map(e => Array(10));
 
@@ -105,6 +106,7 @@
 	}
 
 	function handleStateChange() {
+		if (!save_state) return;
 		saveState(getState());
 		xd = XDEncode(getState());
 	}

@@ -2488,7 +2488,7 @@ function create_fragment(ctx) {
 	};
 
 	grid_1 = new Grid({ props: grid_1_props });
-	/*grid_1_binding*/ ctx[22](grid_1);
+	/*grid_1_binding*/ ctx[23](grid_1);
 	grid_1.$on("change", /*handleStateChange*/ ctx[13]);
 	grid_1.$on("move", /*handleMove*/ ctx[9]);
 	grid_1.$on("letter", /*handleLetter*/ ctx[10]);
@@ -2580,7 +2580,7 @@ function create_fragment(ctx) {
 			append(main, label0);
 			append(main, t2);
 			append(main, input0);
-			/*input0_binding*/ ctx[16](input0);
+			/*input0_binding*/ ctx[17](input0);
 			append(main, t3);
 			append(main, label1);
 			append(main, t5);
@@ -2620,16 +2620,16 @@ function create_fragment(ctx) {
 			if (!mounted) {
 				dispose = [
 					listen(input0, "change", /*handleFileSelect*/ ctx[15]),
-					listen(input1, "input", /*input1_input_handler*/ ctx[17]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[18]),
 					listen(input1, "change", /*handleStateChange*/ ctx[13]),
-					listen(input2, "input", /*input2_input_handler*/ ctx[18]),
+					listen(input2, "input", /*input2_input_handler*/ ctx[19]),
 					listen(input2, "change", /*handleStateChange*/ ctx[13]),
-					listen(input3, "input", /*input3_input_handler*/ ctx[19]),
+					listen(input3, "input", /*input3_input_handler*/ ctx[20]),
 					listen(input3, "change", /*handleStateChange*/ ctx[13]),
-					listen(input4, "input", /*input4_input_handler*/ ctx[20]),
+					listen(input4, "input", /*input4_input_handler*/ ctx[21]),
 					listen(input4, "change", /*handleStateChange*/ ctx[13]),
-					listen(input5, "input", /*input5_input_handler*/ ctx[21]),
-					listen(textarea, "input", /*textarea_input_handler*/ ctx[23])
+					listen(input5, "input", /*input5_input_handler*/ ctx[22]),
+					listen(textarea, "input", /*textarea_input_handler*/ ctx[24])
 				];
 
 				mounted = true;
@@ -2681,9 +2681,9 @@ function create_fragment(ctx) {
 		d(detaching) {
 			if (detaching) detach(main);
 			destroy_component(instructions);
-			/*input0_binding*/ ctx[16](null);
+			/*input0_binding*/ ctx[17](null);
 			destroy_component(menu);
-			/*grid_1_binding*/ ctx[22](null);
+			/*grid_1_binding*/ ctx[23](null);
 			destroy_component(grid_1);
 			mounted = false;
 			run_all(dispose);
@@ -2694,13 +2694,14 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
 	let $questionsDown;
 	let $questionsAcross;
-	component_subscribe($$self, questionsDown, $$value => $$invalidate(25, $questionsDown = $$value));
-	component_subscribe($$self, questionsAcross, $$value => $$invalidate(26, $questionsAcross = $$value));
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(26, $questionsDown = $$value));
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(27, $questionsAcross = $$value));
 	let gridComponent;
 	let title;
 	let author;
 	let editor;
 	let date;
+	const save_state = true;
 	let { xd } = $$props;
 	let { grid = [...Array(10)].map(e => Array(10)) } = $$props;
 	let size = grid.length;
@@ -2969,6 +2970,7 @@ function instance($$self, $$props, $$invalidate) {
 		handleStateChange,
 		handleReset,
 		handleFileSelect,
+		save_state,
 		input0_binding,
 		input1_input_handler,
 		input2_input_handler,
@@ -2983,7 +2985,11 @@ function instance($$self, $$props, $$invalidate) {
 class JXWordCreator extends SvelteComponent {
 	constructor(options) {
 		super();
-		init(this, options, instance, create_fragment, safe_not_equal, { xd: 0, grid: 1 });
+		init(this, options, instance, create_fragment, safe_not_equal, { save_state: 16, xd: 0, grid: 1 });
+	}
+
+	get save_state() {
+		return this.$$.ctx[16];
 	}
 }
 
