@@ -14,38 +14,7 @@
 	let editor;
 	let date;
 	let xd;
-	export let grid = [
-		[
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
-		],
-		[
-			"B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
-		],
-		[
-			"C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
-		],
-		[
-			"D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
-		],
-		[
-			"E", "F", "G", "H", "I", "J", "K", "L", "M", "N"
-		],
-		[
-			"F", "G", "H", "I", "J", "K", "L", "M", "N", "O"
-		],
-		[
-			"G", "H", "I", "J", "K", "L", "M", "N", "O", "P"
-		],
-		[
-			"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"
-		],
-		[
-			"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"
-		],
-		[
-			"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"
-		]
-	]
+	export let grid = [...Array(10)].map(e => Array(10));
 
 	let size = grid.length;
 
@@ -54,7 +23,9 @@
 		size,
 		current_x: 0,
 		current_y: 0,
-		direction: "across"
+		direction: "across",
+		questions_across: $questionsAcross,
+		questions_down: $questionsDown,
 	}
 
 	let getState = () => {
@@ -139,7 +110,7 @@
 	}
 
 	onMount(() => {
-		state = restoreState();
+		state = restoreState() || state;
 		grid = state.grid;
 		size = state.size;
 		author = state.author;

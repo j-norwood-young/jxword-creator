@@ -50,12 +50,14 @@ $: {
     let questions_across = [];
     let questions_down = [];
     let num = 1;
+    // Grow grid if necessary
     if (grid.length - 1 < size) {
         for (let i = 0; i < size; i++) {
             grid[i] = grid[i] || Array(size).map(() => " ");
             number_grid[i] = number_grid[i] || Array(size).map(() => " ");
         }
     }
+    // Shrink grid if necessary
     while (grid.length > size) {
         for (let i = 0; i < grid.length; i++) {
             while(grid[i].length > size) {

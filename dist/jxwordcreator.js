@@ -1142,7 +1142,7 @@ function get_each_context_1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (392:28) {:else}
+// (394:28) {:else}
 function create_else_block(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1247,7 +1247,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (390:28) {#if letter=="#"}
+// (392:28) {#if letter=="#"}
 function create_if_block_1(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1317,7 +1317,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (396:28) {#if (number_grid[y][x] != null)}
+// (398:28) {#if (number_grid[y][x] != null)}
 function create_if_block(ctx) {
 	let text_1;
 	let t_value = /*number_grid*/ ctx[15][/*y*/ ctx[54]][/*x*/ ctx[57]] + "";
@@ -1369,7 +1369,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (388:20) {#each col_data as letter, x}
+// (390:20) {#each col_data as letter, x}
 function create_each_block_1(ctx) {
 	let g;
 	let if_block0_anchor;
@@ -1467,7 +1467,7 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (387:16) {#each grid as col_data, y}
+// (389:16) {#each grid as col_data, y}
 function create_each_block(ctx) {
 	let each_1_anchor;
 	let each_value_1 = /*col_data*/ ctx[52];
@@ -2064,6 +2064,7 @@ function instance$1($$self, $$props, $$invalidate) {
 				let questions_down = [];
 				let num = 1;
 
+				// Grow grid if necessary
 				if (grid.length - 1 < size) {
 					for (let i = 0; i < size; i++) {
 						$$invalidate(0, grid[i] = grid[i] || Array(size).map(() => " "), grid);
@@ -2071,6 +2072,7 @@ function instance$1($$self, $$props, $$invalidate) {
 					}
 				}
 
+				// Shrink grid if necessary
 				while (grid.length > size) {
 					for (let i = 0; i < grid.length; i++) {
 						while (grid[i].length > size) {
@@ -2689,20 +2691,7 @@ function instance($$self, $$props, $$invalidate) {
 	let editor;
 	let date;
 	let xd;
-
-	let { grid = [
-		["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
-		["B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
-		["C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
-		["D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-		["E", "F", "G", "H", "I", "J", "K", "L", "M", "N"],
-		["F", "G", "H", "I", "J", "K", "L", "M", "N", "O"],
-		["G", "H", "I", "J", "K", "L", "M", "N", "O", "P"],
-		["H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"],
-		["I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"],
-		["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
-	] } = $$props;
-
+	let { grid = [...Array(10)].map(e => Array(10)) } = $$props;
 	let size = grid.length;
 
 	let state = {
@@ -2710,7 +2699,9 @@ function instance($$self, $$props, $$invalidate) {
 		size,
 		current_x: 0,
 		current_y: 0,
-		direction: "across"
+		direction: "across",
+		questions_across: $questionsAcross,
+		questions_down: $questionsDown
 	};
 
 	let getState = () => {
@@ -2807,7 +2798,7 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	onMount(() => {
-		state = restoreState();
+		state = restoreState() || state;
 		$$invalidate(0, grid = state.grid);
 		$$invalidate(7, size = state.size);
 		$$invalidate(3, author = state.author);
