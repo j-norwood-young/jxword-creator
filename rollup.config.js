@@ -5,6 +5,8 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import preprocess from 'svelte-preprocess';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -29,15 +31,19 @@ function serve() {
 	};
 }
 
+const pkg = require('./package.json');
+
 export default [
 	{
 		input: "src/dist.js",
-		output: {
-			sourcemap: false,
-			format: 'iife',
-			name: "jxwordcreator",
-			file: "dist/jxwordcreator.js"
-		},
+		output: [
+			{
+				sourcemap: false,
+				format: 'cjs',
+				name: "jxwordcreator",
+				file: "dist/jxwordcreator.js"
+			},
+		],
 		plugins: [
 			svelte({
 				// enable run-time checks when not in production
@@ -74,6 +80,7 @@ export default [
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		nodeResolve(),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
