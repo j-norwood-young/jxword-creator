@@ -1146,7 +1146,7 @@ function get_each_context_1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (394:28) {:else}
+// (400:28) {:else}
 function create_else_block(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1251,7 +1251,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (392:28) {#if letter=="#"}
+// (398:28) {#if letter=="#"}
 function create_if_block_1(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1321,7 +1321,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (398:28) {#if (number_grid[y][x] != null)}
+// (404:28) {#if (number_grid[y][x] != null)}
 function create_if_block(ctx) {
 	let text_1;
 	let t_value = /*number_grid*/ ctx[15][/*y*/ ctx[54]][/*x*/ ctx[57]] + "";
@@ -1373,7 +1373,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (390:20) {#each col_data as letter, x}
+// (396:20) {#each col_data as letter, x}
 function create_each_block_1(ctx) {
 	let g;
 	let if_block0_anchor;
@@ -1471,7 +1471,7 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (389:16) {#each grid as col_data, y}
+// (395:16) {#each grid as col_data, y}
 function create_each_block(ctx) {
 	let each_1_anchor;
 	let each_value_1 = /*col_data*/ ctx[52];
@@ -1938,9 +1938,9 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function toggleDir() {
 		if (current_direction === "across") {
-			$$invalidate(24, current_direction = "down");
+			$$invalidate(25, current_direction = "down");
 		} else {
-			$$invalidate(24, current_direction = "across");
+			$$invalidate(25, current_direction = "across");
 		}
 
 		dispatch("change");
@@ -1949,9 +1949,9 @@ function instance$1($$self, $$props, $$invalidate) {
 
 	function setDir(direction) {
 		if (direction === "across") {
-			$$invalidate(24, current_direction = "across");
+			$$invalidate(25, current_direction = "across");
 		} else {
-			$$invalidate(24, current_direction = "down");
+			$$invalidate(25, current_direction = "down");
 		}
 
 		dispatch("change");
@@ -2039,11 +2039,11 @@ function instance$1($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$set = $$props => {
-		if ('size' in $$props) $$invalidate(25, size = $$props.size);
+		if ('size' in $$props) $$invalidate(24, size = $$props.size);
 		if ('current_x' in $$props) $$invalidate(1, current_x = $$props.current_x);
 		if ('current_y' in $$props) $$invalidate(2, current_y = $$props.current_y);
 		if ('grid' in $$props) $$invalidate(0, grid = $$props.grid);
-		if ('current_direction' in $$props) $$invalidate(24, current_direction = $$props.current_direction);
+		if ('current_direction' in $$props) $$invalidate(25, current_direction = $$props.current_direction);
 		if ('totalWidth' in $$props) $$invalidate(3, totalWidth = $$props.totalWidth);
 		if ('totalHeight' in $$props) $$invalidate(4, totalHeight = $$props.totalHeight);
 		if ('outerBorderWidth' in $$props) $$invalidate(5, outerBorderWidth = $$props.outerBorderWidth);
@@ -2056,8 +2056,16 @@ function instance$1($$self, $$props, $$invalidate) {
 	};
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty[0] & /*totalWidth, margin, outerBorderWidth, totalHeight, size, cellWidth, grid, number_grid*/ 33652921) {
+		if ($$self.$$.dirty[0] & /*size, totalWidth, margin, outerBorderWidth, totalHeight, cellWidth, grid, number_grid*/ 16875705) {
 			{
+				if (size < 2) {
+					$$invalidate(24, size = 2);
+				}
+
+				if (size > 30) {
+					$$invalidate(24, size = 30);
+				}
+
 				$$invalidate(21, viewbox_width = totalWidth + margin + outerBorderWidth);
 				$$invalidate(22, viewbox_height = totalHeight + margin + outerBorderWidth);
 				$$invalidate(16, cellWidth = totalWidth / size);
@@ -2151,8 +2159,8 @@ function instance$1($$self, $$props, $$invalidate) {
 		viewbox_width,
 		viewbox_height,
 		handleDoubleclick,
-		current_direction,
 		size,
+		current_direction,
 		fontRatio,
 		numRatio,
 		selectCell,
@@ -2183,11 +2191,11 @@ class Grid extends SvelteComponent {
 			create_fragment$2,
 			safe_not_equal,
 			{
-				size: 25,
+				size: 24,
 				current_x: 1,
 				current_y: 2,
 				grid: 0,
-				current_direction: 24,
+				current_direction: 25,
 				totalWidth: 3,
 				totalHeight: 4,
 				outerBorderWidth: 5,
@@ -2444,6 +2452,7 @@ function create_fragment(ctx) {
 	let main;
 	let instructions;
 	let t0;
+	let div2;
 	let label0;
 	let t2;
 	let input0;
@@ -2500,6 +2509,7 @@ function create_fragment(ctx) {
 			main = element("main");
 			create_component(instructions.$$.fragment);
 			t0 = space();
+			div2 = element("div");
 			label0 = element("label");
 			label0.textContent = "Upload an XD file (optional)";
 			t2 = space();
@@ -2538,82 +2548,95 @@ function create_fragment(ctx) {
 			t20 = space();
 			textarea = element("textarea");
 			attr(label0, "for", "file");
-			attr(input0, "class", "drop_zone");
+			attr(label0, "class", "svelte-1mhgt02");
+			attr(input0, "class", "drop_zone svelte-1mhgt02");
 			attr(input0, "type", "file");
 			attr(input0, "id", "file");
 			attr(input0, "name", "files");
 			attr(input0, "accept", ".xd");
 			attr(label1, "for", "title");
+			attr(label1, "class", "svelte-1mhgt02");
 			attr(input1, "id", "title");
 			attr(input1, "name", "title");
 			attr(input1, "type", "text");
+			attr(input1, "class", "svelte-1mhgt02");
 			attr(label2, "for", "author");
+			attr(label2, "class", "svelte-1mhgt02");
 			attr(input2, "id", "author");
 			attr(input2, "name", "author");
 			attr(input2, "type", "text");
+			attr(input2, "class", "svelte-1mhgt02");
 			attr(label3, "for", "editor");
+			attr(label3, "class", "svelte-1mhgt02");
 			attr(input3, "id", "editor");
 			attr(input3, "name", "editor");
 			attr(input3, "type", "text");
+			attr(input3, "class", "svelte-1mhgt02");
 			attr(label4, "for", "date");
+			attr(label4, "class", "svelte-1mhgt02");
 			attr(input4, "id", "date");
 			attr(input4, "name", "date");
 			attr(input4, "type", "date");
+			attr(input4, "class", "svelte-1mhgt02");
 			attr(label5, "for", "size");
+			attr(label5, "class", "svelte-1mhgt02");
 			attr(input5, "type", "number");
 			attr(input5, "name", "size");
 			attr(input5, "id", "size");
 			attr(input5, "placeholder", "size");
 			attr(input5, "default", "5");
-			attr(input5, "min", "1");
+			attr(input5, "min", "2");
+			attr(input5, "class", "svelte-1mhgt02");
 			attr(div0, "class", "jxword-header");
-			attr(div1, "class", "jxword-container");
+			attr(div1, "class", "jxword-container svelte-1mhgt02");
 			attr(textarea, "id", "xd");
 			attr(textarea, "name", "xd");
-			attr(textarea, "class", "jxword-xd-textarea svelte-5ln418");
-			attr(main, "class", "svelte-5ln418");
+			attr(textarea, "class", "jxword-xd-textarea svelte-1mhgt02");
+			attr(div2, "class", "jxword-form-container svelte-1mhgt02");
+			attr(main, "class", "svelte-1mhgt02");
 		},
 		m(target, anchor) {
 			insert(target, main, anchor);
 			mount_component(instructions, main, null);
 			append(main, t0);
-			append(main, label0);
-			append(main, t2);
-			append(main, input0);
+			append(main, div2);
+			append(div2, label0);
+			append(div2, t2);
+			append(div2, input0);
 			/*input0_binding*/ ctx[17](input0);
-			append(main, t3);
-			append(main, label1);
-			append(main, t5);
-			append(main, input1);
+			append(div2, t3);
+			append(div2, label1);
+			append(div2, t5);
+			append(div2, input1);
 			set_input_value(input1, /*title*/ ctx[3]);
-			append(main, t6);
-			append(main, label2);
-			append(main, t8);
-			append(main, input2);
+			append(div2, t6);
+			append(div2, label2);
+			append(div2, t8);
+			append(div2, input2);
 			set_input_value(input2, /*author*/ ctx[4]);
-			append(main, t9);
-			append(main, label3);
-			append(main, t11);
-			append(main, input3);
+			append(div2, t9);
+			append(div2, label3);
+			append(div2, t11);
+			append(div2, input3);
 			set_input_value(input3, /*editor*/ ctx[5]);
-			append(main, t12);
-			append(main, label4);
-			append(main, t14);
-			append(main, input4);
+			append(div2, t12);
+			append(div2, label4);
+			append(div2, t14);
+			append(div2, input4);
 			set_input_value(input4, /*date*/ ctx[6]);
-			append(main, t15);
-			append(main, label5);
-			append(main, t17);
-			append(main, input5);
+			append(div2, t15);
+			append(div2, label5);
+			append(div2, t17);
+			append(div2, input5);
 			set_input_value(input5, /*size*/ ctx[7]);
-			append(main, t18);
-			append(main, div1);
+			append(div2, t18);
+			append(div2, div1);
 			append(div1, div0);
 			mount_component(menu, div0, null);
 			append(div1, t19);
 			mount_component(grid_1, div1, null);
-			append(main, t20);
-			append(main, textarea);
+			append(div2, t20);
+			append(div2, textarea);
 			set_input_value(textarea, /*xd*/ ctx[0]);
 			current = true;
 
@@ -2805,7 +2828,6 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	function handleStateChange() {
-		console.log({ save_state });
 		saveState(getState());
 		$$invalidate(0, xd = XDEncode(getState()));
 	}

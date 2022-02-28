@@ -41,6 +41,12 @@
     export const numRatio = 0.33;
     
 $: {
+    if (size < 2) {
+        size = 2;
+    }
+    if (size > 30) {
+        size = 30;
+    }
     viewbox_width = totalWidth + margin + outerBorderWidth;
     viewbox_height = totalHeight + margin + outerBorderWidth;
     cellWidth = totalWidth / size;

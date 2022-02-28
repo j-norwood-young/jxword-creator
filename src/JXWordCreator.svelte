@@ -106,7 +106,6 @@
 	}
 
 	function handleStateChange() {
-		console.log({ save_state });
 		if (!save_state) return;
 		saveState(getState());
 		xd = XDEncode(getState());
@@ -204,25 +203,27 @@
 
 <main>
 	<Instructions />
-	<label for="file">Upload an XD file (optional)</label>
-	<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
-	<label for="title">Title</label>
-	<input id="title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" />
-	<label for="author">Author</label>
-	<input id="author" name="author" type="text" bind:value={author} on:change="{handleStateChange}" />
-	<label for="editor">Editor</label>
-	<input id="editor" name="editor" type="text" bind:value={editor} on:change="{handleStateChange}" />
-	<label for="date">Date</label>
-	<input id="date" name="date" type="date" bind:value={date} on:change="{handleStateChange}" />
-	<label for="size">Size</label>
-	<input type="number" name="size" id="size" placeholder="size" default="5" min="1" bind:value={size}>
-	<div class="jxword-container" >
-		<div class="jxword-header">
-			<Menu on:reset="{ handleReset }" />
+	<div class="jxword-form-container">
+		<label for="file">Upload an XD file (optional)</label>
+		<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
+		<label for="title">Title</label>
+		<input id="title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" />
+		<label for="author">Author</label>
+		<input id="author" name="author" type="text" bind:value={author} on:change="{handleStateChange}" />
+		<label for="editor">Editor</label>
+		<input id="editor" name="editor" type="text" bind:value={editor} on:change="{handleStateChange}" />
+		<label for="date">Date</label>
+		<input id="date" name="date" type="date" bind:value={date} on:change="{handleStateChange}" />
+		<label for="size">Size</label>
+		<input type="number" name="size" id="size" placeholder="size" default="5" min="2" bind:value={size}>
+		<div class="jxword-container" >
+			<div class="jxword-header">
+				<Menu on:reset="{ handleReset }" />
+			</div>
+			<Grid size={size} grid={grid} bind:this={gridComponent} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 		</div>
-		<Grid size={size} grid={grid} bind:this={gridComponent} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
+		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" />
 	</div>
-	<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" />
 </main>
 
 <style lang="scss">
@@ -243,5 +244,28 @@
 		border: 1px solid #ccc;
 		padding: 1em;
 		margin-top: 1em;
+	}
+
+	.jxword-form-container {
+		display: flex;
+		flex-direction: column;
+		align-items: left;
+		justify-content: left;
+		margin-top: 1em;
+
+		label {
+			display: block;
+			margin-bottom: 0.3em;
+		}
+
+		input {
+			display: block;
+			margin-bottom: 1em;
+			max-width: 400px;
+		}
+	}
+
+	.jxword-container {
+		margin-top: 15px;
 	}
 </style>
