@@ -1,24 +1,31 @@
 <script>
+	// Svelte stuff
+	import { onMount, tick } from "svelte";
+	import { questionsAcross, questionsDown } from "./stores.js";
+	
+	// Components
 	import Menu from "./Menu.svelte";
 	import Grid from "./Grid.svelte";
 	import Instructions from "./Instructions.svelte";
+	
+	// Libraries
 	import { saveState, restoreState, clearState } from './savestate';
-	import { onMount, tick } from "svelte";
-	import { questionsAcross, questionsDown } from "./stores.js";
 	import { XDEncode } from "./xd-encode.js";
 	import XDParser from "xd-crossword-parser";
 
-	let gridComponent;
-	let title;
-	let author;
-	let editor;
-	let date;
+	// Exposed properties
 	export const save_state = true;
 	export let xd;
 	export let grid = [...Array(10)].map(e => Array(10));
+	export let title;
+	export let author;
+	export let editor;
+	export let date;
+	export let displayXd = true;
 
+	// State
+	let gridComponent;
 	let size = grid.length;
-
 	let state = {
 		grid,
 		size,
@@ -33,7 +40,7 @@
 		let { x: current_x, y: current_y } = gridComponent.getCurrentPos();
 		let direction = gridComponent.getDir();
 		return {
-			grid: grid,
+			grid,
 			size,
 			current_x,
 			current_y,
@@ -198,11 +205,15 @@
 		// Read in the image file as a data URL.
 		reader.readAsText(fileInput.files[0]);
 	}
+	let instructionsVisible;
+	function handleInstructions() {
+		instructionsVisible = true;
+	}
 
 </script>
 
 <main>
-	<Instructions />
+	<Instructions bind:visible="{ instructionsVisible }" />
 	<div class="jxword-form-container">
 		<label for="file">Upload an XD file (optional)</label>
 		<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
@@ -218,11 +229,11 @@
 		<input type="number" name="size" id="size" placeholder="size" default="5" min="2" bind:value={size}>
 		<div class="jxword-container" >
 			<div class="jxword-header">
-				<Menu on:reset="{ handleReset }" />
+				<Menu on:reset="{ handleReset }" on:instructions="{ handleInstructions }" />
 			</div>
 			<Grid size={size} grid={grid} bind:this={gridComponent} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 		</div>
-		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" />
+		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" style:display="{displayXd ? 'block' : 'none'}" />
 	</div>
 </main>
 

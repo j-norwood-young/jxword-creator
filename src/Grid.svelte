@@ -21,10 +21,11 @@
     let viewbox_height;
 
     // Public properties
+    export let grid = [];
     export let size = 10;
     export let current_x = 0;
     export let current_y = 0;
-    export let grid = [];
+    // export let grid = [];
     export let current_direction = "across"; // across or down
     export let totalWidth = 500;
     export let totalHeight = 500;
@@ -74,6 +75,13 @@ $: {
         grid.pop();
         number_grid.pop();
     }
+    // Make sure we're still in the grid
+    if (current_x >= size) {
+        current_x = size - 1;
+    }
+    if (current_y >= size) {
+        current_y = size - 1;
+    }
     for (let y = 0; y < size; y++) {
         if (!number_grid[y]) {
             number_grid[y] = Array(size);
@@ -97,8 +105,8 @@ $: {
             }
         }
     }
-    questions_across.sort();
-    questions_down.sort();
+    // questions_across.sort();
+    // questions_down.sort();
     questionsAcross.set(questions_across);
     questionsDown.set(questions_down);
     drawMarkedWordGrid();
@@ -132,20 +140,20 @@ function getQuestion(num, x, y, direction, question) {
     if (direction === "across") {
         for (let i = 0; i < $questionsAcross.length; i++) {
             if ($questionsAcross[i].answer === answer && $questionsAcross[i].direction === direction) {
-                return { ...$questionsAcross[i], answer, num };
+                return { ...$questionsAcross[i], answer, num, x, y };
             }
             if ($questionsAcross[i].num === num && $questionsAcross[i].direction === direction) {
-                return { ...$questionsAcross[i], answer };
+                return { ...$questionsAcross[i], answer, x, y };
             }
         }
         return { num, x, y, question, answer, editing: false, direction };
     } else {
         for (let i = 0; i < $questionsDown.length; i++) {
             if ($questionsDown[i].answer === answer && $questionsDown[i].direction === direction) {
-                return { ...$questionsDown[i], answer, num };
+                return { ...$questionsDown[i], answer, num, x, y };
             }
             if ($questionsDown[i].num === num && $questionsDown[i].direction === direction) {
-                return $questionsDown[i] = { ...$questionsDown[i], answer };
+                return $questionsDown[i] = { ...$questionsDown[i], answer, x, y };
             }
         }
         return $questionsDown = { num, x, y, question, answer, editing: false, direction };
@@ -386,6 +394,19 @@ export function handleKeydown (e) {
 function handleFocus(e) {
     //console.log(e);
 }
+
+function handleUpdateQuestion(e) {
+    const { question, suggestion } = e.detail;
+    if (question.direction === "across") {
+        for (let i = 0; i < suggestion.length; i++) {
+            grid[question.y][i + question.x] = suggestion[i];
+        }
+    } else {
+        for (let i = 0; i < suggestion.length; i++) {
+            grid[i + question.y][question.x] = suggestion[i];
+        }
+    }
+}
 </script>
 
 <main on:move={handleMove}>
@@ -411,7 +432,7 @@ function handleFocus(e) {
             </g>
         </svg>
     </div>
-    <Questions on:change />
+    <Questions on:change on:update_question="{handleUpdateQuestion}" />
 </main>
 
 <style lang="scss" scoped>

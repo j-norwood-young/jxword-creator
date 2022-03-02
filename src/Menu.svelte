@@ -9,6 +9,12 @@
         dispatch('reset');
         showMenu = false;
     }
+
+    function handleInstructions(e) {
+        e.preventDefault();
+        dispatch('instructions');
+        showMenu = false;
+    }
 </script>
 
 <main>
@@ -19,9 +25,9 @@
             <span class="jxword-hamberder"></span>
             <span class="jxword-hamberder"></span>
             <ul class="jxword-menu">
-                <!-- <a href={"#"} class="jxword-button"><li>Puzzle Info</li></a>
+                <a href="instructions" class="jxword-button" on:click="{handleInstructions}"><li>Instructions</li></a>
                 <li class="jxword-menu-break"><hr></li>
-                <a href={"#"} class="jxword-button"><li>Autocheck</li></a>
+                <!-- <a href={"#"} class="jxword-button"><li>Autocheck</li></a>
                 <a href={"#"} class="jxword-button"><li>Check Square</li></a>
                 <a href={"#"} class="jxword-button"><li>Check Word</li></a>
                 <a href={"#"} class="jxword-button"><li>Check Puzzle</li></a>
@@ -51,6 +57,10 @@
 
     li:hover {
         background-color: #b8ddec;
+    }
+
+    li.jxword-menu-break:hover {
+        background-color: inherit;
     }
 
     // .jxword-menu-break:hover {
