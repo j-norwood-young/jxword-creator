@@ -1523,8 +1523,8 @@ function create_if_block_1(ctx) {
 			attr(line0, "tabindex", "-1");
 			attr(line0, "y1", line0_y__value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
 			attr(line0, "x1", line0_x__value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
-			attr(line0, "y2", line0_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9]);
-			attr(line0, "x2", line0_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9]);
+			attr(line0, "y2", line0_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22]);
+			attr(line0, "x2", line0_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18]);
 			attr(line0, "stroke", /*innerBorderColour*/ ctx[11]);
 			attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			attr(line0, "data-col", /*y*/ ctx[62]);
@@ -1534,8 +1534,8 @@ function create_if_block_1(ctx) {
 			attr(line1, "tabindex", "-1");
 			attr(line1, "y1", line1_y__value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
 			attr(line1, "x1", line1_x__value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
-			attr(line1, "y2", line1_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9]);
-			attr(line1, "x2", line1_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9]);
+			attr(line1, "y2", line1_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22]);
+			attr(line1, "x2", line1_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18]);
 			attr(line1, "stroke", /*innerBorderColour*/ ctx[11]);
 			attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			attr(line1, "data-col", /*y*/ ctx[62]);
@@ -1594,11 +1594,11 @@ function create_if_block_1(ctx) {
 				attr(line0, "x1", line0_x__value);
 			}
 
-			if (dirty[0] & /*cellHeight, innerBorderWidth, margin*/ 4195072 && line0_y__value_1 !== (line0_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellHeight, innerBorderWidth*/ 4194560 && line0_y__value_1 !== (line0_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22])) {
 				attr(line0, "y2", line0_y__value_1);
 			}
 
-			if (dirty[0] & /*cellWidth, innerBorderWidth, margin*/ 262912 && line0_x__value_1 !== (line0_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellWidth, innerBorderWidth*/ 262400 && line0_x__value_1 !== (line0_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18])) {
 				attr(line0, "x2", line0_x__value_1);
 			}
 
@@ -1618,11 +1618,11 @@ function create_if_block_1(ctx) {
 				attr(line1, "x1", line1_x__value);
 			}
 
-			if (dirty[0] & /*cellHeight, innerBorderWidth, margin*/ 4195072 && line1_y__value_1 !== (line1_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellHeight, innerBorderWidth*/ 4194560 && line1_y__value_1 !== (line1_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22])) {
 				attr(line1, "y2", line1_y__value_1);
 			}
 
-			if (dirty[0] & /*cellWidth, innerBorderWidth, margin*/ 262912 && line1_x__value_1 !== (line1_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellWidth, innerBorderWidth*/ 262400 && line1_x__value_1 !== (line1_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18])) {
 				attr(line1, "x2", line1_x__value_1);
 			}
 
@@ -1648,7 +1648,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (455:28) {#if (number_grid[y][x] != null)}
+// (455:28) {#if (number_grid[y][x] != null && letter!=="#")}
 function create_if_block(ctx) {
 	let text_1;
 	let t_value = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] + "";
@@ -1714,7 +1714,7 @@ function create_each_block_1(ctx) {
 
 	let current_block_type = select_block_type(ctx);
 	let if_block0 = current_block_type(ctx);
-	let if_block1 = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] != null && create_if_block(ctx);
+	let if_block1 = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] != null && /*letter*/ ctx[63] !== "#" && create_if_block(ctx);
 
 	function click_handler() {
 		return /*click_handler*/ ctx[46](/*x*/ ctx[65], /*y*/ ctx[62]);
@@ -1767,7 +1767,7 @@ function create_each_block_1(ctx) {
 				}
 			}
 
-			if (/*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] != null) {
+			if (/*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] != null && /*letter*/ ctx[63] !== "#") {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
@@ -1824,7 +1824,7 @@ function create_each_block(ctx) {
 			insert(target, each_1_anchor, anchor);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, innerBorderWidth, innerBorderColour, fillColour, grid, fontSize, backgroundColour*/ 109034247) {
+			if (dirty[0] & /*current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, grid, innerBorderWidth, innerBorderColour, fillColour, fontSize, backgroundColour*/ 109034247) {
 				each_value_1 = /*col_data*/ ctx[60];
 				let i;
 
@@ -2990,16 +2990,16 @@ function create_fragment(ctx) {
 	let t14;
 	let input4;
 	let t15;
-	let label5;
-	let t17;
-	let input5;
-	let t18;
 	let div1;
 	let div0;
 	let menu;
-	let t19;
+	let t16;
 	let grid_1;
 	let updating_Container;
+	let t17;
+	let label5;
+	let t19;
+	let input5;
 	let t20;
 	let textarea;
 	let current;
@@ -3023,7 +3023,7 @@ function create_fragment(ctx) {
 	menu.$on("instructions", /*handleInstructions*/ ctx[19]);
 
 	function grid_1_Container_binding(value) {
-		/*grid_1_Container_binding*/ ctx[29](value);
+		/*grid_1_Container_binding*/ ctx[28](value);
 	}
 
 	let grid_1_props = {
@@ -3036,7 +3036,7 @@ function create_fragment(ctx) {
 	}
 
 	grid_1 = new Grid({ props: grid_1_props });
-	/*grid_1_binding*/ ctx[28](grid_1);
+	/*grid_1_binding*/ ctx[27](grid_1);
 	binding_callbacks.push(() => bind(grid_1, 'Container', grid_1_Container_binding));
 	grid_1.$on("change", /*handleStateChange*/ ctx[16]);
 	grid_1.$on("move", /*handleMove*/ ctx[12]);
@@ -3051,90 +3051,90 @@ function create_fragment(ctx) {
 			t0 = space();
 			div2 = element("div");
 			label0 = element("label");
-			label0.textContent = "Upload an XD file (optional)";
+			label0.textContent = "Title";
 			t2 = space();
 			input0 = element("input");
 			t3 = space();
 			label1 = element("label");
-			label1.textContent = "Title";
+			label1.textContent = "Author";
 			t5 = space();
 			input1 = element("input");
 			t6 = space();
 			label2 = element("label");
-			label2.textContent = "Author";
+			label2.textContent = "Editor";
 			t8 = space();
 			input2 = element("input");
 			t9 = space();
 			label3 = element("label");
-			label3.textContent = "Editor";
+			label3.textContent = "Date";
 			t11 = space();
 			input3 = element("input");
 			t12 = space();
 			label4 = element("label");
-			label4.textContent = "Date";
+			label4.textContent = "Size";
 			t14 = space();
 			input4 = element("input");
 			t15 = space();
-			label5 = element("label");
-			label5.textContent = "Size";
-			t17 = space();
-			input5 = element("input");
-			t18 = space();
 			div1 = element("div");
 			div0 = element("div");
 			create_component(menu.$$.fragment);
-			t19 = space();
+			t16 = space();
 			create_component(grid_1.$$.fragment);
+			t17 = space();
+			label5 = element("label");
+			label5.textContent = "Upload an XD file (optional)";
+			t19 = space();
+			input5 = element("input");
 			t20 = space();
 			textarea = element("textarea");
-			attr(label0, "for", "file");
-			attr(label0, "class", "svelte-1vi301p");
-			attr(input0, "class", "drop_zone svelte-1vi301p");
-			attr(input0, "type", "file");
-			attr(input0, "id", "file");
-			attr(input0, "name", "files");
-			attr(input0, "accept", ".xd");
-			attr(label1, "for", "title");
-			attr(label1, "class", "svelte-1vi301p");
-			attr(input1, "id", "title");
-			attr(input1, "name", "title");
+			attr(label0, "for", "title");
+			attr(label0, "class", "svelte-vsl3gf");
+			attr(input0, "id", "title");
+			attr(input0, "name", "title");
+			attr(input0, "type", "text");
+			attr(input0, "class", "svelte-vsl3gf");
+			attr(label1, "for", "author");
+			attr(label1, "class", "svelte-vsl3gf");
+			attr(input1, "id", "author");
+			attr(input1, "name", "author");
 			attr(input1, "type", "text");
-			attr(input1, "class", "svelte-1vi301p");
-			attr(label2, "for", "author");
-			attr(label2, "class", "svelte-1vi301p");
-			attr(input2, "id", "author");
-			attr(input2, "name", "author");
+			attr(input1, "class", "svelte-vsl3gf");
+			attr(label2, "for", "editor");
+			attr(label2, "class", "svelte-vsl3gf");
+			attr(input2, "id", "editor");
+			attr(input2, "name", "editor");
 			attr(input2, "type", "text");
-			attr(input2, "class", "svelte-1vi301p");
-			attr(label3, "for", "editor");
-			attr(label3, "class", "svelte-1vi301p");
-			attr(input3, "id", "editor");
-			attr(input3, "name", "editor");
-			attr(input3, "type", "text");
-			attr(input3, "class", "svelte-1vi301p");
-			attr(label4, "for", "date");
-			attr(label4, "class", "svelte-1vi301p");
-			attr(input4, "id", "date");
-			attr(input4, "name", "date");
-			attr(input4, "type", "date");
-			attr(input4, "class", "svelte-1vi301p");
-			attr(label5, "for", "size");
-			attr(label5, "class", "svelte-1vi301p");
-			attr(input5, "type", "number");
-			attr(input5, "name", "size");
-			attr(input5, "id", "size");
-			attr(input5, "placeholder", "size");
-			attr(input5, "default", "5");
-			attr(input5, "min", "2");
-			attr(input5, "class", "svelte-1vi301p");
+			attr(input2, "class", "svelte-vsl3gf");
+			attr(label3, "for", "date");
+			attr(label3, "class", "svelte-vsl3gf");
+			attr(input3, "id", "date");
+			attr(input3, "name", "date");
+			attr(input3, "type", "date");
+			attr(input3, "class", "svelte-vsl3gf");
+			attr(label4, "for", "size");
+			attr(label4, "class", "svelte-vsl3gf");
+			attr(input4, "type", "number");
+			attr(input4, "name", "size");
+			attr(input4, "id", "size");
+			attr(input4, "placeholder", "size");
+			attr(input4, "default", "5");
+			attr(input4, "min", "2");
+			attr(input4, "class", "svelte-vsl3gf");
 			attr(div0, "class", "jxword-header");
-			attr(div1, "class", "jxword-container svelte-1vi301p");
+			attr(div1, "class", "jxword-container svelte-vsl3gf");
+			attr(label5, "for", "file");
+			attr(label5, "class", "svelte-vsl3gf");
+			attr(input5, "class", "drop_zone svelte-vsl3gf");
+			attr(input5, "type", "file");
+			attr(input5, "id", "file");
+			attr(input5, "name", "files");
+			attr(input5, "accept", ".xd");
 			attr(textarea, "id", "xd");
 			attr(textarea, "name", "xd");
-			attr(textarea, "class", "jxword-xd-textarea svelte-1vi301p");
+			attr(textarea, "class", "jxword-xd-textarea svelte-vsl3gf");
 			set_style(textarea, "display", /*displayXd*/ ctx[6] ? 'block' : 'none', false);
-			attr(div2, "class", "jxword-form-container svelte-1vi301p");
-			attr(main, "class", "svelte-1vi301p");
+			attr(div2, "class", "jxword-form-container svelte-vsl3gf");
+			attr(main, "class", "svelte-vsl3gf");
 		},
 		m(target, anchor) {
 			insert(target, main, anchor);
@@ -3144,38 +3144,38 @@ function create_fragment(ctx) {
 			append(div2, label0);
 			append(div2, t2);
 			append(div2, input0);
-			/*input0_binding*/ ctx[22](input0);
+			set_input_value(input0, /*title*/ ctx[2]);
 			append(div2, t3);
 			append(div2, label1);
 			append(div2, t5);
 			append(div2, input1);
-			set_input_value(input1, /*title*/ ctx[2]);
+			set_input_value(input1, /*author*/ ctx[3]);
 			append(div2, t6);
 			append(div2, label2);
 			append(div2, t8);
 			append(div2, input2);
-			set_input_value(input2, /*author*/ ctx[3]);
+			set_input_value(input2, /*editor*/ ctx[4]);
 			append(div2, t9);
 			append(div2, label3);
 			append(div2, t11);
 			append(div2, input3);
-			set_input_value(input3, /*editor*/ ctx[4]);
+			set_input_value(input3, /*date*/ ctx[5]);
 			append(div2, t12);
 			append(div2, label4);
 			append(div2, t14);
 			append(div2, input4);
-			set_input_value(input4, /*date*/ ctx[5]);
+			set_input_value(input4, /*size*/ ctx[9]);
 			append(div2, t15);
-			append(div2, label5);
-			append(div2, t17);
-			append(div2, input5);
-			set_input_value(input5, /*size*/ ctx[9]);
-			append(div2, t18);
 			append(div2, div1);
 			append(div1, div0);
 			mount_component(menu, div0, null);
-			append(div1, t19);
+			append(div1, t16);
 			mount_component(grid_1, div1, null);
+			append(div2, t17);
+			append(div2, label5);
+			append(div2, t19);
+			append(div2, input5);
+			/*input5_binding*/ ctx[29](input5);
 			append(div2, t20);
 			append(div2, textarea);
 			set_input_value(textarea, /*xd*/ ctx[0]);
@@ -3183,7 +3183,8 @@ function create_fragment(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(input0, "change", /*handleFileSelect*/ ctx[18]),
+					listen(input0, "input", /*input0_input_handler*/ ctx[22]),
+					listen(input0, "change", /*handleStateChange*/ ctx[16]),
 					listen(input1, "input", /*input1_input_handler*/ ctx[23]),
 					listen(input1, "change", /*handleStateChange*/ ctx[16]),
 					listen(input2, "input", /*input2_input_handler*/ ctx[24]),
@@ -3191,8 +3192,7 @@ function create_fragment(ctx) {
 					listen(input3, "input", /*input3_input_handler*/ ctx[25]),
 					listen(input3, "change", /*handleStateChange*/ ctx[16]),
 					listen(input4, "input", /*input4_input_handler*/ ctx[26]),
-					listen(input4, "change", /*handleStateChange*/ ctx[16]),
-					listen(input5, "input", /*input5_input_handler*/ ctx[27]),
+					listen(input5, "change", /*handleFileSelect*/ ctx[18]),
 					listen(textarea, "input", /*textarea_input_handler*/ ctx[30])
 				];
 
@@ -3210,24 +3210,24 @@ function create_fragment(ctx) {
 
 			instructions.$set(instructions_changes);
 
-			if (dirty[0] & /*title*/ 4 && input1.value !== /*title*/ ctx[2]) {
-				set_input_value(input1, /*title*/ ctx[2]);
+			if (dirty[0] & /*title*/ 4 && input0.value !== /*title*/ ctx[2]) {
+				set_input_value(input0, /*title*/ ctx[2]);
 			}
 
-			if (dirty[0] & /*author*/ 8 && input2.value !== /*author*/ ctx[3]) {
-				set_input_value(input2, /*author*/ ctx[3]);
+			if (dirty[0] & /*author*/ 8 && input1.value !== /*author*/ ctx[3]) {
+				set_input_value(input1, /*author*/ ctx[3]);
 			}
 
-			if (dirty[0] & /*editor*/ 16 && input3.value !== /*editor*/ ctx[4]) {
-				set_input_value(input3, /*editor*/ ctx[4]);
+			if (dirty[0] & /*editor*/ 16 && input2.value !== /*editor*/ ctx[4]) {
+				set_input_value(input2, /*editor*/ ctx[4]);
 			}
 
 			if (dirty[0] & /*date*/ 32) {
-				set_input_value(input4, /*date*/ ctx[5]);
+				set_input_value(input3, /*date*/ ctx[5]);
 			}
 
-			if (dirty[0] & /*size*/ 512 && to_number(input5.value) !== /*size*/ ctx[9]) {
-				set_input_value(input5, /*size*/ ctx[9]);
+			if (dirty[0] & /*size*/ 512 && to_number(input4.value) !== /*size*/ ctx[9]) {
+				set_input_value(input4, /*size*/ ctx[9]);
 			}
 
 			const grid_1_changes = {};
@@ -3266,10 +3266,10 @@ function create_fragment(ctx) {
 		d(detaching) {
 			if (detaching) detach(main);
 			destroy_component(instructions);
-			/*input0_binding*/ ctx[22](null);
 			destroy_component(menu);
-			/*grid_1_binding*/ ctx[28](null);
+			/*grid_1_binding*/ ctx[27](null);
 			destroy_component(grid_1);
+			/*input5_binding*/ ctx[29](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -3516,34 +3516,27 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(11, instructionsVisible);
 	}
 
-	function input0_binding($$value) {
-		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-			fileInput = $$value;
-			$$invalidate(10, fileInput);
-		});
-	}
-
-	function input1_input_handler() {
+	function input0_input_handler() {
 		title = this.value;
 		$$invalidate(2, title);
 	}
 
-	function input2_input_handler() {
+	function input1_input_handler() {
 		author = this.value;
 		$$invalidate(3, author);
 	}
 
-	function input3_input_handler() {
+	function input2_input_handler() {
 		editor = this.value;
 		$$invalidate(4, editor);
 	}
 
-	function input4_input_handler() {
+	function input3_input_handler() {
 		date = this.value;
 		$$invalidate(5, date);
 	}
 
-	function input5_input_handler() {
+	function input4_input_handler() {
 		size = to_number(this.value);
 		$$invalidate(9, size);
 	}
@@ -3558,6 +3551,13 @@ function instance($$self, $$props, $$invalidate) {
 	function grid_1_Container_binding(value) {
 		gridComponentContainer = value;
 		$$invalidate(8, gridComponentContainer);
+	}
+
+	function input5_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			fileInput = $$value;
+			$$invalidate(10, fileInput);
+		});
 	}
 
 	function textarea_input_handler() {
@@ -3598,14 +3598,14 @@ function instance($$self, $$props, $$invalidate) {
 		handleInstructions,
 		save_state,
 		instructions_visible_binding,
-		input0_binding,
+		input0_input_handler,
 		input1_input_handler,
 		input2_input_handler,
 		input3_input_handler,
 		input4_input_handler,
-		input5_input_handler,
 		grid_1_binding,
 		grid_1_Container_binding,
+		input5_binding,
 		textarea_input_handler
 	];
 }

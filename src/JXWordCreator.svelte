@@ -222,8 +222,6 @@
 <main>
 	<Instructions bind:visible="{ instructionsVisible }" />
 	<div class="jxword-form-container">
-		<label for="file">Upload an XD file (optional)</label>
-		<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
 		<label for="title">Title</label>
 		<input id="title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" />
 		<label for="author">Author</label>
@@ -240,6 +238,8 @@
 			</div>
 			<Grid size={size} grid={grid} bind:this={gridComponent} bind:Container={gridComponentContainer} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 		</div>
+		<label for="file">Upload an XD file (optional)</label>
+		<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
 		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" style:display="{displayXd ? 'block' : 'none'}" />
 	</div>
 </main>
@@ -285,6 +285,7 @@
 
 	.jxword-container {
 		margin-top: 15px;
+		margin-bottom: 25px;
 		min-width: 1024px;
 	}
 </style>
