@@ -72,6 +72,7 @@
 	}
 
 	function handleLetter(event) {
+		event.preventDefault();
 		const letter = event.detail;
 		let {x, y} = gridComponent.getCurrentPos();
 		grid[y][x] = letter;
@@ -278,5 +279,6 @@
 
 	.jxword-container {
 		margin-top: 15px;
+		min-width: 1024px;
 	}
 </style>
