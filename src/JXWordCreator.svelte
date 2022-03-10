@@ -25,6 +25,7 @@
 
 	// State
 	let gridComponent;
+	let gridComponentContainer;
 	let size = grid.length;
 	let state = {
 		grid,
@@ -74,6 +75,10 @@
 	function handleLetter(event) {
 		event.preventDefault();
 		const letter = event.detail;
+		if (letter === " ") {
+			gridComponent.toggleDir();
+			return;
+		}
 		let {x, y} = gridComponent.getCurrentPos();
 		grid[y][x] = letter;
 		if (gridComponent.getDir() === "across") {
@@ -81,6 +86,7 @@
 		} else {
 			gridComponent.moveDown();
 		}
+		gridComponentContainer.focus();
 	}
 
 	function handleEnter(event) {
@@ -104,6 +110,7 @@
 	}
 
 	function handleBackspace(event) {
+		event.preventDefault();
 		let {x, y} = gridComponent.getCurrentPos();
 		grid[y][x] = "";
 		if (gridComponent.getDir() === "across") {
@@ -232,7 +239,7 @@
 			<div class="jxword-header">
 				<Menu on:reset="{ handleReset }" on:instructions="{ handleInstructions }" />
 			</div>
-			<Grid size={size} grid={grid} bind:this={gridComponent} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
+			<Grid size={size} grid={grid} bind:this={gridComponent} bind:Container={gridComponentContainer} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 		</div>
 		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" style:display="{displayXd ? 'block' : 'none'}" />
 	</div>

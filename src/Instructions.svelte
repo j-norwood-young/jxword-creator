@@ -6,10 +6,12 @@
 </script>
 
 <main class:visible="{visible}">
-    <div class="close" on:click="{hideInstructions}">X</div>
+    <div class="close" on:click="{hideInstructions}">&times;</div>
     <h2>Instructions</h2>
     <p>Use "#" to create a blank square.</p>
-    <p>Double-click the question on the right to set an answer.</p>
+    <p>Hit Enter or double-click the question on the right to set an answer.</p>
+    <p>Use Space to change directions.</p>
+    <p>Use arrow keys to navigate.</p>
     <p>Hint: Complete the words before starting on the answers, because you might have to change something!</p>
     <p>Note: This Crossword Creator is in Alpha. <a href="https://github.com/j-norwood-young/jxword-creator/issues">Please report bugs here</a>.</p>
 </main>

@@ -19,6 +19,7 @@
     let cellHeight;
     let viewbox_width;
     let viewbox_height;
+    export let Container;
 
     // Public properties
     export let grid = [];
@@ -206,12 +207,14 @@ function drawMarkedWordGrid() {
     marked_word_grid = Array(size).fill(false).map(() => Array(size).fill(false));
     if (current_direction === "across") {
         for (let x = current_x; x < size; x++) {
+            if (!grid[current_y]) break;
             if (grid[current_y][x] === "#") {
                 break;
             }
             marked_word_grid[current_y][x] = true;
         }
         for (let x = current_x; x >= 0; x--) {
+            if (!grid[current_y]) break;
             if (grid[current_y][x] === "#") {
                 break;
             }
@@ -219,12 +222,14 @@ function drawMarkedWordGrid() {
         }
     } else { // down
         for (let y = current_y; y < size; y++) {
+            if (!grid[y]) break;
             if (grid[y][current_x] === "#") {
                 break;
             }
             marked_word_grid[y][current_x] = true;
         }
         for (let y = current_y; y >= 0; y--) {
+            if (!grid[y]) break;
             if (grid[y][current_x] === "#") {
                 break;
             }
@@ -254,6 +259,13 @@ export function moveLeft() {
         current_x--;
         dispatch("change");
         drawMarkedWordGrid();
+    } else {
+        if (current_y > 0) {
+            current_y--;
+            current_x = size - 1;
+            dispatch("change");
+            drawMarkedWordGrid();
+        }
     }
 }
 
@@ -262,6 +274,13 @@ export function moveRight() {
         current_x++;
         dispatch("change");
         drawMarkedWordGrid();
+    } else {
+        if (current_y < size - 1) {
+            current_y++;
+            current_x = 0;
+            dispatch("change");
+            drawMarkedWordGrid();
+        }
     }
 }
 
@@ -273,6 +292,18 @@ export function moveStartOfRow() {
 
 export function moveEndOfRow() {
     current_x = size - 1;
+    dispatch("change");
+    drawMarkedWordGrid();
+}
+
+export function moveStartOfCol() {
+    current_y = 0;
+    dispatch("change");
+    drawMarkedWordGrid();
+}
+
+export function moveEndOfCol() {
+    current_y = size - 1;
     dispatch("change");
     drawMarkedWordGrid();
 }
@@ -354,7 +385,8 @@ function handleDoubleclick(x, y) {
 }
 
 export function handleKeydown (e) {
-    // if (is_editing_question) return;
+    console.log(e);
+    e.preventDefault();
     const keycode = e.keyCode;
     if (e.metaKey) return;
     if ((keycode > 64 && keycode < 91)) {
@@ -362,13 +394,10 @@ export function handleKeydown (e) {
     } else if (keycode === 51) { // #
         dispatch("letter", "#");
     } else if (keycode === 8) { // Backspace
-        e.preventDefault();
         dispatch("backspace");
     } else if (keycode == 32) { // Space
-        e.preventDefault();
-        dispatch("move", "next");
+        dispatch("letter", " ");
     } else if ((keycode === 9)) { // Enter
-        e.preventDefault();
         if (e.shiftKey) {
             dispatch("move", "prev-word");
         } else {
@@ -377,22 +406,19 @@ export function handleKeydown (e) {
     } else if (keycode === 13) { // Enter
         dispatch("enter");
     } else if (keycode === 37) {
-        e.preventDefault();
         dispatch("move", "left");
     } else if (keycode === 38) {
-        e.preventDefault();
         dispatch("move", "up");
     } else if (keycode === 39) {
-        e.preventDefault();
         dispatch("move", "right");
     } else if (keycode === 40) {
-        e.preventDefault();
         dispatch("move", "down");
     }
+    Container.focus();
 }
 
 function handleFocus(e) {
-    //console.log(e);
+    Container.focus();
 }
 
 function handleUpdateQuestion(e) {
@@ -410,14 +436,17 @@ function handleUpdateQuestion(e) {
 </script>
 
 <main on:move={handleMove}>
-    <div class="jxword-svg-container">
+    <div class="jxword-svg-container" bind:this={Container}>
         <svg class='jxword-svg' min-x="0" min-y="0" width={viewbox_width} height={viewbox_height}>
             <g class="cell-group">
                 {#each grid as col_data, y}
                     {#each col_data as letter, x}
                         <g id="jxword-cell-{x}-{y}" class="jxword-cell" style="z-index: 20" class:selected="{(current_y === y && current_x === x)}" class:active="{(marked_word_grid[y][x])}" on:click="{() => { setCurrentPos(x, y);}}" on:dblclick="{() => {handleDoubleclick(x, y)}}" on:keydown="{handleKeydown}">
                             {#if letter=="#"}
-                                <rect class="jxword-cell-rect" role="cell" tabindex="-1" aria-label="" y="{(cellWidth * y) + margin}" x="{(cellHeight * x) + margin}" width="{cellWidth}" height="{cellHeight}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" fill="{fillColour}" data-col="{y}" data-row="{ x }" on:focus="{handleFocus}"></rect>
+                                <rect class="jxword-cell-rect" role="cell" tabindex="-1" aria-label="blank" y="{(cellWidth * y) + margin}" x="{(cellHeight * x) + margin}" width="{cellWidth}" height="{cellHeight}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" fill="{fillColour}" data-col="{y}" data-row="{ x }" on:focus="{handleFocus}"></rect>
+                                <!-- Draw cross -->
+                                <line class="jxword-cell-line" role="cell" tabindex="-1" y1="{(cellHeight * y) + margin + innerBorderWidth}" x1="{(cellWidth * x) + margin + innerBorderWidth}" y2="{(cellHeight * y) + (innerBorderWidth * y) + cellHeight - margin}" x2="{(cellWidth * x) + (innerBorderWidth * y) + cellWidth - margin}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" data-col="{y}" data-row="{ x }" on:focus="{handleFocus}"></line>
+                                <line class="jxword-cell-line" role="cell" tabindex="-1" y1="{(cellHeight * y) + margin + innerBorderWidth}" x1="{(cellWidth * x) + margin + innerBorderWidth}" y2="{(cellHeight * y) + (innerBorderWidth * y) + cellHeight - margin}" x2="{(cellWidth * x) + (innerBorderWidth * y) + cellWidth - margin}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" data-col="{y}" data-row="{ x }" on:focus="{handleFocus}" transform="rotate(90, {(cellWidth * x) + margin + (cellWidth / 2)}, {(cellHeight * y) + margin + (cellWidth / 2)})"></line>
                             {:else}
                                 <rect class="jxword-cell-rect" role="cell" tabindex="-1" aria-label="" y="{(cellWidth * y) + margin}" x="{(cellHeight * x) + margin}" width="{cellWidth}" height="{cellHeight}" stroke="{innerBorderColour}" stroke-width="{innerBorderWidth}" fill="{backgroundColour}" data-col="{ x }" data-row="{ y }" on:focus="{handleFocus}"></rect>
                                 <text id="jxword-letter-{x}-{y}" x="{ ((cellWidth * x) + margin) + (cellWidth / 2) }" y="{ ((cellHeight * y) + margin) + cellHeight - (cellHeight * 0.1) }" text-anchor="middle" font-size="{ fontSize }" width="{ cellWidth }" on:focus="{handleFocus}">{ letter }</text>
@@ -428,7 +457,7 @@ function handleUpdateQuestion(e) {
                         </g>
                     {/each}
                 {/each}
-                <rect x="{margin}" y="{margin}" width="{totalWidth}" height="{totalHeight}" stroke="{outerBorderColour }" stroke-width="{outerBorderWidth }" fill="none"></rect>
+                <rect x="{margin}" y="{margin}" width="{totalWidth}" height="{totalHeight}" stroke="{outerBorderColour }" stroke-width="{outerBorderWidth }" fill="none" on:focus="{handleFocus}"></rect>
             </g>
         </svg>
     </div>
