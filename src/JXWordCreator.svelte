@@ -86,7 +86,6 @@
 		} else {
 			gridComponent.moveDown();
 		}
-		gridComponentContainer.focus();
 	}
 
 	function handleEnter(event) {

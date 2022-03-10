@@ -20,6 +20,7 @@
     let viewbox_width;
     let viewbox_height;
     export let Container;
+    export let Input;
 
     // Public properties
     export let grid = [];
@@ -385,7 +386,6 @@ function handleDoubleclick(x, y) {
 }
 
 export function handleKeydown (e) {
-    console.log(e);
     e.preventDefault();
     const keycode = e.keyCode;
     if (e.metaKey) return;
@@ -414,11 +414,11 @@ export function handleKeydown (e) {
     } else if (keycode === 40) {
         dispatch("move", "down");
     }
-    Container.focus();
+    handleFocus(e);
 }
 
 function handleFocus(e) {
-    Container.focus();
+    Input.focus();
 }
 
 function handleUpdateQuestion(e) {
@@ -437,6 +437,7 @@ function handleUpdateQuestion(e) {
 
 <main on:move={handleMove}>
     <div class="jxword-svg-container" bind:this={Container}>
+        <input bind:this={Input} type="text" on:keydown={handleKeydown} />
         <svg class='jxword-svg' min-x="0" min-y="0" width={viewbox_width} height={viewbox_height}>
             <g class="cell-group">
                 {#each grid as col_data, y}
@@ -479,6 +480,13 @@ function handleUpdateQuestion(e) {
         }
         
     }
+
+    input {
+        opacity: 0;
+        position: absolute;
+        left: -1000px;
+    }
+
     svg.jxword-svg {
         max-width: 100%; 
         max-height: 100%;

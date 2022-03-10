@@ -1360,25 +1360,25 @@ class Questions extends SvelteComponent {
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[58] = list[i];
-	child_ctx[60] = i;
+	child_ctx[60] = list[i];
+	child_ctx[62] = i;
 	return child_ctx;
 }
 
 function get_each_context_1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[61] = list[i];
-	child_ctx[63] = i;
+	child_ctx[63] = list[i];
+	child_ctx[65] = i;
 	return child_ctx;
 }
 
-// (450:28) {:else}
+// (451:28) {:else}
 function create_else_block(ctx) {
 	let rect;
 	let rect_y_value;
 	let rect_x_value;
 	let text_1;
-	let t_value = /*letter*/ ctx[61] + "";
+	let t_value = /*letter*/ ctx[63] + "";
 	let t;
 	let text_1_x_value;
 	let text_1_y_value;
@@ -1390,26 +1390,26 @@ function create_else_block(ctx) {
 			rect = svg_element("rect");
 			text_1 = svg_element("text");
 			t = text(t_value);
-			attr(rect, "class", "jxword-cell-rect svelte-1txnct7");
+			attr(rect, "class", "jxword-cell-rect svelte-1013j5m");
 			attr(rect, "role", "cell");
 			attr(rect, "tabindex", "-1");
 			attr(rect, "aria-label", "");
-			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[17] * /*y*/ ctx[60] + /*margin*/ ctx[8]);
-			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[21] * /*x*/ ctx[63] + /*margin*/ ctx[8]);
-			attr(rect, "width", /*cellWidth*/ ctx[17]);
-			attr(rect, "height", /*cellHeight*/ ctx[21]);
-			attr(rect, "stroke", /*innerBorderColour*/ ctx[10]);
-			attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[7]);
-			attr(rect, "fill", /*backgroundColour*/ ctx[12]);
-			attr(rect, "data-col", /*x*/ ctx[63]);
-			attr(rect, "data-row", /*y*/ ctx[60]);
-			attr(text_1, "id", "jxword-letter-" + /*x*/ ctx[63] + "-" + /*y*/ ctx[60]);
-			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*cellWidth*/ ctx[17] / 2);
-			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*cellHeight*/ ctx[21] - /*cellHeight*/ ctx[21] * 0.1);
+			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[18] * /*y*/ ctx[62] + /*margin*/ ctx[9]);
+			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[22] * /*x*/ ctx[65] + /*margin*/ ctx[9]);
+			attr(rect, "width", /*cellWidth*/ ctx[18]);
+			attr(rect, "height", /*cellHeight*/ ctx[22]);
+			attr(rect, "stroke", /*innerBorderColour*/ ctx[11]);
+			attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[8]);
+			attr(rect, "fill", /*backgroundColour*/ ctx[13]);
+			attr(rect, "data-col", /*x*/ ctx[65]);
+			attr(rect, "data-row", /*y*/ ctx[62]);
+			attr(text_1, "id", "jxword-letter-" + /*x*/ ctx[65] + "-" + /*y*/ ctx[62]);
+			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[18] / 2);
+			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*cellHeight*/ ctx[22] - /*cellHeight*/ ctx[22] * 0.1);
 			attr(text_1, "text-anchor", "middle");
-			attr(text_1, "font-size", /*fontSize*/ ctx[19]);
-			attr(text_1, "width", /*cellWidth*/ ctx[17]);
-			attr(text_1, "class", "svelte-1txnct7");
+			attr(text_1, "font-size", /*fontSize*/ ctx[20]);
+			attr(text_1, "width", /*cellWidth*/ ctx[18]);
+			attr(text_1, "class", "svelte-1013j5m");
 		},
 		m(target, anchor) {
 			insert(target, rect, anchor);
@@ -1418,58 +1418,58 @@ function create_else_block(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(rect, "focus", /*handleFocus*/ ctx[25]),
-					listen(text_1, "focus", /*handleFocus*/ ctx[25])
+					listen(rect, "focus", /*handleFocus*/ ctx[26]),
+					listen(text_1, "focus", /*handleFocus*/ ctx[26])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*cellWidth, margin*/ 131328 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[17] * /*y*/ ctx[60] + /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellWidth, margin*/ 262656 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[18] * /*y*/ ctx[62] + /*margin*/ ctx[9])) {
 				attr(rect, "y", rect_y_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin*/ 2097408 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[21] * /*x*/ ctx[63] + /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellHeight, margin*/ 4194816 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[22] * /*x*/ ctx[65] + /*margin*/ ctx[9])) {
 				attr(rect, "x", rect_x_value);
 			}
 
-			if (dirty[0] & /*cellWidth*/ 131072) {
-				attr(rect, "width", /*cellWidth*/ ctx[17]);
+			if (dirty[0] & /*cellWidth*/ 262144) {
+				attr(rect, "width", /*cellWidth*/ ctx[18]);
 			}
 
-			if (dirty[0] & /*cellHeight*/ 2097152) {
-				attr(rect, "height", /*cellHeight*/ ctx[21]);
+			if (dirty[0] & /*cellHeight*/ 4194304) {
+				attr(rect, "height", /*cellHeight*/ ctx[22]);
 			}
 
-			if (dirty[0] & /*innerBorderColour*/ 1024) {
-				attr(rect, "stroke", /*innerBorderColour*/ ctx[10]);
+			if (dirty[0] & /*innerBorderColour*/ 2048) {
+				attr(rect, "stroke", /*innerBorderColour*/ ctx[11]);
 			}
 
-			if (dirty[0] & /*innerBorderWidth*/ 128) {
-				attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[7]);
+			if (dirty[0] & /*innerBorderWidth*/ 256) {
+				attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			}
 
-			if (dirty[0] & /*backgroundColour*/ 4096) {
-				attr(rect, "fill", /*backgroundColour*/ ctx[12]);
+			if (dirty[0] & /*backgroundColour*/ 8192) {
+				attr(rect, "fill", /*backgroundColour*/ ctx[13]);
 			}
 
-			if (dirty[0] & /*grid*/ 1 && t_value !== (t_value = /*letter*/ ctx[61] + "")) set_data(t, t_value);
+			if (dirty[0] & /*grid*/ 1 && t_value !== (t_value = /*letter*/ ctx[63] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*cellWidth, margin*/ 131328 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*cellWidth*/ ctx[17] / 2)) {
+			if (dirty[0] & /*cellWidth, margin*/ 262656 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[18] / 2)) {
 				attr(text_1, "x", text_1_x_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin*/ 2097408 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*cellHeight*/ ctx[21] - /*cellHeight*/ ctx[21] * 0.1)) {
+			if (dirty[0] & /*cellHeight, margin*/ 4194816 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*cellHeight*/ ctx[22] - /*cellHeight*/ ctx[22] * 0.1)) {
 				attr(text_1, "y", text_1_y_value);
 			}
 
-			if (dirty[0] & /*fontSize*/ 524288) {
-				attr(text_1, "font-size", /*fontSize*/ ctx[19]);
+			if (dirty[0] & /*fontSize*/ 1048576) {
+				attr(text_1, "font-size", /*fontSize*/ ctx[20]);
 			}
 
-			if (dirty[0] & /*cellWidth*/ 131072) {
-				attr(text_1, "width", /*cellWidth*/ ctx[17]);
+			if (dirty[0] & /*cellWidth*/ 262144) {
+				attr(text_1, "width", /*cellWidth*/ ctx[18]);
 			}
 		},
 		d(detaching) {
@@ -1481,7 +1481,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (445:28) {#if letter=="#"}
+// (446:28) {#if letter=="#"}
 function create_if_block_1(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1505,42 +1505,42 @@ function create_if_block_1(ctx) {
 			rect = svg_element("rect");
 			line0 = svg_element("line");
 			line1 = svg_element("line");
-			attr(rect, "class", "jxword-cell-rect svelte-1txnct7");
+			attr(rect, "class", "jxword-cell-rect svelte-1013j5m");
 			attr(rect, "role", "cell");
 			attr(rect, "tabindex", "-1");
 			attr(rect, "aria-label", "blank");
-			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[17] * /*y*/ ctx[60] + /*margin*/ ctx[8]);
-			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[21] * /*x*/ ctx[63] + /*margin*/ ctx[8]);
-			attr(rect, "width", /*cellWidth*/ ctx[17]);
-			attr(rect, "height", /*cellHeight*/ ctx[21]);
-			attr(rect, "stroke", /*innerBorderColour*/ ctx[10]);
-			attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[7]);
-			attr(rect, "fill", /*fillColour*/ ctx[11]);
-			attr(rect, "data-col", /*y*/ ctx[60]);
-			attr(rect, "data-row", /*x*/ ctx[63]);
-			attr(line0, "class", "jxword-cell-line svelte-1txnct7");
+			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[18] * /*y*/ ctx[62] + /*margin*/ ctx[9]);
+			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[22] * /*x*/ ctx[65] + /*margin*/ ctx[9]);
+			attr(rect, "width", /*cellWidth*/ ctx[18]);
+			attr(rect, "height", /*cellHeight*/ ctx[22]);
+			attr(rect, "stroke", /*innerBorderColour*/ ctx[11]);
+			attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[8]);
+			attr(rect, "fill", /*fillColour*/ ctx[12]);
+			attr(rect, "data-col", /*y*/ ctx[62]);
+			attr(rect, "data-row", /*x*/ ctx[65]);
+			attr(line0, "class", "jxword-cell-line svelte-1013j5m");
 			attr(line0, "role", "cell");
 			attr(line0, "tabindex", "-1");
-			attr(line0, "y1", line0_y__value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7]);
-			attr(line0, "x1", line0_x__value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7]);
-			attr(line0, "y2", line0_y__value_1 = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellHeight*/ ctx[21] - /*margin*/ ctx[8]);
-			attr(line0, "x2", line0_x__value_1 = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellWidth*/ ctx[17] - /*margin*/ ctx[8]);
-			attr(line0, "stroke", /*innerBorderColour*/ ctx[10]);
-			attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[7]);
-			attr(line0, "data-col", /*y*/ ctx[60]);
-			attr(line0, "data-row", /*x*/ ctx[63]);
-			attr(line1, "class", "jxword-cell-line svelte-1txnct7");
+			attr(line0, "y1", line0_y__value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line0, "x1", line0_x__value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line0, "y2", line0_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9]);
+			attr(line0, "x2", line0_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9]);
+			attr(line0, "stroke", /*innerBorderColour*/ ctx[11]);
+			attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[8]);
+			attr(line0, "data-col", /*y*/ ctx[62]);
+			attr(line0, "data-row", /*x*/ ctx[65]);
+			attr(line1, "class", "jxword-cell-line svelte-1013j5m");
 			attr(line1, "role", "cell");
 			attr(line1, "tabindex", "-1");
-			attr(line1, "y1", line1_y__value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7]);
-			attr(line1, "x1", line1_x__value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7]);
-			attr(line1, "y2", line1_y__value_1 = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellHeight*/ ctx[21] - /*margin*/ ctx[8]);
-			attr(line1, "x2", line1_x__value_1 = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellWidth*/ ctx[17] - /*margin*/ ctx[8]);
-			attr(line1, "stroke", /*innerBorderColour*/ ctx[10]);
-			attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[7]);
-			attr(line1, "data-col", /*y*/ ctx[60]);
-			attr(line1, "data-row", /*x*/ ctx[63]);
-			attr(line1, "transform", line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*cellWidth*/ ctx[17] / 2) + ", " + (/*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*cellWidth*/ ctx[17] / 2) + ")");
+			attr(line1, "y1", line1_y__value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line1, "x1", line1_x__value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line1, "y2", line1_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9]);
+			attr(line1, "x2", line1_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9]);
+			attr(line1, "stroke", /*innerBorderColour*/ ctx[11]);
+			attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[8]);
+			attr(line1, "data-col", /*y*/ ctx[62]);
+			attr(line1, "data-row", /*x*/ ctx[65]);
+			attr(line1, "transform", line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[18] / 2) + ", " + (/*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[18] / 2) + ")");
 		},
 		m(target, anchor) {
 			insert(target, rect, anchor);
@@ -1549,92 +1549,92 @@ function create_if_block_1(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(rect, "focus", /*handleFocus*/ ctx[25]),
-					listen(line0, "focus", /*handleFocus*/ ctx[25]),
-					listen(line1, "focus", /*handleFocus*/ ctx[25])
+					listen(rect, "focus", /*handleFocus*/ ctx[26]),
+					listen(line0, "focus", /*handleFocus*/ ctx[26]),
+					listen(line1, "focus", /*handleFocus*/ ctx[26])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*cellWidth, margin*/ 131328 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[17] * /*y*/ ctx[60] + /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellWidth, margin*/ 262656 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[18] * /*y*/ ctx[62] + /*margin*/ ctx[9])) {
 				attr(rect, "y", rect_y_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin*/ 2097408 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[21] * /*x*/ ctx[63] + /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellHeight, margin*/ 4194816 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[22] * /*x*/ ctx[65] + /*margin*/ ctx[9])) {
 				attr(rect, "x", rect_x_value);
 			}
 
-			if (dirty[0] & /*cellWidth*/ 131072) {
-				attr(rect, "width", /*cellWidth*/ ctx[17]);
+			if (dirty[0] & /*cellWidth*/ 262144) {
+				attr(rect, "width", /*cellWidth*/ ctx[18]);
 			}
 
-			if (dirty[0] & /*cellHeight*/ 2097152) {
-				attr(rect, "height", /*cellHeight*/ ctx[21]);
+			if (dirty[0] & /*cellHeight*/ 4194304) {
+				attr(rect, "height", /*cellHeight*/ ctx[22]);
 			}
 
-			if (dirty[0] & /*innerBorderColour*/ 1024) {
-				attr(rect, "stroke", /*innerBorderColour*/ ctx[10]);
+			if (dirty[0] & /*innerBorderColour*/ 2048) {
+				attr(rect, "stroke", /*innerBorderColour*/ ctx[11]);
 			}
 
-			if (dirty[0] & /*innerBorderWidth*/ 128) {
-				attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[7]);
+			if (dirty[0] & /*innerBorderWidth*/ 256) {
+				attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			}
 
-			if (dirty[0] & /*fillColour*/ 2048) {
-				attr(rect, "fill", /*fillColour*/ ctx[11]);
+			if (dirty[0] & /*fillColour*/ 4096) {
+				attr(rect, "fill", /*fillColour*/ ctx[12]);
 			}
 
-			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 2097536 && line0_y__value !== (line0_y__value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7])) {
+			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 4195072 && line0_y__value !== (line0_y__value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line0, "y1", line0_y__value);
 			}
 
-			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 131456 && line0_x__value !== (line0_x__value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7])) {
+			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 262912 && line0_x__value !== (line0_x__value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line0, "x1", line0_x__value);
 			}
 
-			if (dirty[0] & /*cellHeight, innerBorderWidth, margin*/ 2097536 && line0_y__value_1 !== (line0_y__value_1 = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellHeight*/ ctx[21] - /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellHeight, innerBorderWidth, margin*/ 4195072 && line0_y__value_1 !== (line0_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9])) {
 				attr(line0, "y2", line0_y__value_1);
 			}
 
-			if (dirty[0] & /*cellWidth, innerBorderWidth, margin*/ 131456 && line0_x__value_1 !== (line0_x__value_1 = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellWidth*/ ctx[17] - /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellWidth, innerBorderWidth, margin*/ 262912 && line0_x__value_1 !== (line0_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9])) {
 				attr(line0, "x2", line0_x__value_1);
 			}
 
-			if (dirty[0] & /*innerBorderColour*/ 1024) {
-				attr(line0, "stroke", /*innerBorderColour*/ ctx[10]);
+			if (dirty[0] & /*innerBorderColour*/ 2048) {
+				attr(line0, "stroke", /*innerBorderColour*/ ctx[11]);
 			}
 
-			if (dirty[0] & /*innerBorderWidth*/ 128) {
-				attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[7]);
+			if (dirty[0] & /*innerBorderWidth*/ 256) {
+				attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			}
 
-			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 2097536 && line1_y__value !== (line1_y__value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7])) {
+			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 4195072 && line1_y__value !== (line1_y__value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line1, "y1", line1_y__value);
 			}
 
-			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 131456 && line1_x__value !== (line1_x__value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*innerBorderWidth*/ ctx[7])) {
+			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 262912 && line1_x__value !== (line1_x__value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line1, "x1", line1_x__value);
 			}
 
-			if (dirty[0] & /*cellHeight, innerBorderWidth, margin*/ 2097536 && line1_y__value_1 !== (line1_y__value_1 = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellHeight*/ ctx[21] - /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellHeight, innerBorderWidth, margin*/ 4195072 && line1_y__value_1 !== (line1_y__value_1 = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellHeight*/ ctx[22] - /*margin*/ ctx[9])) {
 				attr(line1, "y2", line1_y__value_1);
 			}
 
-			if (dirty[0] & /*cellWidth, innerBorderWidth, margin*/ 131456 && line1_x__value_1 !== (line1_x__value_1 = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*innerBorderWidth*/ ctx[7] * /*y*/ ctx[60] + /*cellWidth*/ ctx[17] - /*margin*/ ctx[8])) {
+			if (dirty[0] & /*cellWidth, innerBorderWidth, margin*/ 262912 && line1_x__value_1 !== (line1_x__value_1 = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[62] + /*cellWidth*/ ctx[18] - /*margin*/ ctx[9])) {
 				attr(line1, "x2", line1_x__value_1);
 			}
 
-			if (dirty[0] & /*innerBorderColour*/ 1024) {
-				attr(line1, "stroke", /*innerBorderColour*/ ctx[10]);
+			if (dirty[0] & /*innerBorderColour*/ 2048) {
+				attr(line1, "stroke", /*innerBorderColour*/ ctx[11]);
 			}
 
-			if (dirty[0] & /*innerBorderWidth*/ 128) {
-				attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[7]);
+			if (dirty[0] & /*innerBorderWidth*/ 256) {
+				attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			}
 
-			if (dirty[0] & /*cellWidth, margin, cellHeight*/ 2228480 && line1_transform_value !== (line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + /*cellWidth*/ ctx[17] / 2) + ", " + (/*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*cellWidth*/ ctx[17] / 2) + ")")) {
+			if (dirty[0] & /*cellWidth, margin, cellHeight*/ 4456960 && line1_transform_value !== (line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[18] / 2) + ", " + (/*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[18] / 2) + ")")) {
 				attr(line1, "transform", line1_transform_value);
 			}
 		},
@@ -1648,10 +1648,10 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (454:28) {#if (number_grid[y][x] != null)}
+// (455:28) {#if (number_grid[y][x] != null)}
 function create_if_block(ctx) {
 	let text_1;
-	let t_value = /*number_grid*/ ctx[16][/*y*/ ctx[60]][/*x*/ ctx[63]] + "";
+	let t_value = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] + "";
 	let t;
 	let text_1_x_value;
 	let text_1_y_value;
@@ -1662,34 +1662,34 @@ function create_if_block(ctx) {
 		c() {
 			text_1 = svg_element("text");
 			t = text(t_value);
-			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + 2);
-			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*numFontSize*/ ctx[20]);
+			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + 2);
+			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*numFontSize*/ ctx[21]);
 			attr(text_1, "text-anchor", "left");
-			attr(text_1, "font-size", /*numFontSize*/ ctx[20]);
-			attr(text_1, "class", "svelte-1txnct7");
+			attr(text_1, "font-size", /*numFontSize*/ ctx[21]);
+			attr(text_1, "class", "svelte-1013j5m");
 		},
 		m(target, anchor) {
 			insert(target, text_1, anchor);
 			append(text_1, t);
 
 			if (!mounted) {
-				dispose = listen(text_1, "focus", /*handleFocus*/ ctx[25]);
+				dispose = listen(text_1, "focus", /*handleFocus*/ ctx[26]);
 				mounted = true;
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*number_grid*/ 65536 && t_value !== (t_value = /*number_grid*/ ctx[16][/*y*/ ctx[60]][/*x*/ ctx[63]] + "")) set_data(t, t_value);
+			if (dirty[0] & /*number_grid*/ 131072 && t_value !== (t_value = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*cellWidth, margin*/ 131328 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[17] * /*x*/ ctx[63] + /*margin*/ ctx[8] + 2)) {
+			if (dirty[0] & /*cellWidth, margin*/ 262656 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[18] * /*x*/ ctx[65] + /*margin*/ ctx[9] + 2)) {
 				attr(text_1, "x", text_1_x_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin, numFontSize*/ 3145984 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[21] * /*y*/ ctx[60] + /*margin*/ ctx[8] + /*numFontSize*/ ctx[20])) {
+			if (dirty[0] & /*cellHeight, margin, numFontSize*/ 6291968 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[22] * /*y*/ ctx[62] + /*margin*/ ctx[9] + /*numFontSize*/ ctx[21])) {
 				attr(text_1, "y", text_1_y_value);
 			}
 
-			if (dirty[0] & /*numFontSize*/ 1048576) {
-				attr(text_1, "font-size", /*numFontSize*/ ctx[20]);
+			if (dirty[0] & /*numFontSize*/ 2097152) {
+				attr(text_1, "font-size", /*numFontSize*/ ctx[21]);
 			}
 		},
 		d(detaching) {
@@ -1700,7 +1700,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (443:20) {#each col_data as letter, x}
+// (444:20) {#each col_data as letter, x}
 function create_each_block_1(ctx) {
 	let g;
 	let if_block0_anchor;
@@ -1708,20 +1708,20 @@ function create_each_block_1(ctx) {
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*letter*/ ctx[61] == "#") return create_if_block_1;
+		if (/*letter*/ ctx[63] == "#") return create_if_block_1;
 		return create_else_block;
 	}
 
 	let current_block_type = select_block_type(ctx);
 	let if_block0 = current_block_type(ctx);
-	let if_block1 = /*number_grid*/ ctx[16][/*y*/ ctx[60]][/*x*/ ctx[63]] != null && create_if_block(ctx);
+	let if_block1 = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] != null && create_if_block(ctx);
 
 	function click_handler() {
-		return /*click_handler*/ ctx[44](/*x*/ ctx[63], /*y*/ ctx[60]);
+		return /*click_handler*/ ctx[46](/*x*/ ctx[65], /*y*/ ctx[62]);
 	}
 
 	function dblclick_handler() {
-		return /*dblclick_handler*/ ctx[45](/*x*/ ctx[63], /*y*/ ctx[60]);
+		return /*dblclick_handler*/ ctx[47](/*x*/ ctx[65], /*y*/ ctx[62]);
 	}
 
 	return {
@@ -1730,11 +1730,11 @@ function create_each_block_1(ctx) {
 			if_block0.c();
 			if_block0_anchor = empty();
 			if (if_block1) if_block1.c();
-			attr(g, "id", "jxword-cell-" + /*x*/ ctx[63] + "-" + /*y*/ ctx[60]);
-			attr(g, "class", "jxword-cell svelte-1txnct7");
+			attr(g, "id", "jxword-cell-" + /*x*/ ctx[65] + "-" + /*y*/ ctx[62]);
+			attr(g, "class", "jxword-cell svelte-1013j5m");
 			set_style(g, "z-index", "20");
-			toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[60] && /*current_x*/ ctx[1] === /*x*/ ctx[63]);
-			toggle_class(g, "active", /*marked_word_grid*/ ctx[18][/*y*/ ctx[60]][/*x*/ ctx[63]]);
+			toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[62] && /*current_x*/ ctx[1] === /*x*/ ctx[65]);
+			toggle_class(g, "active", /*marked_word_grid*/ ctx[19][/*y*/ ctx[62]][/*x*/ ctx[65]]);
 		},
 		m(target, anchor) {
 			insert(target, g, anchor);
@@ -1746,7 +1746,7 @@ function create_each_block_1(ctx) {
 				dispose = [
 					listen(g, "click", click_handler),
 					listen(g, "dblclick", dblclick_handler),
-					listen(g, "keydown", /*handleKeydown*/ ctx[15])
+					listen(g, "keydown", /*handleKeydown*/ ctx[16])
 				];
 
 				mounted = true;
@@ -1767,7 +1767,7 @@ function create_each_block_1(ctx) {
 				}
 			}
 
-			if (/*number_grid*/ ctx[16][/*y*/ ctx[60]][/*x*/ ctx[63]] != null) {
+			if (/*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] != null) {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
@@ -1781,11 +1781,11 @@ function create_each_block_1(ctx) {
 			}
 
 			if (dirty[0] & /*current_y, current_x*/ 6) {
-				toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[60] && /*current_x*/ ctx[1] === /*x*/ ctx[63]);
+				toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[62] && /*current_x*/ ctx[1] === /*x*/ ctx[65]);
 			}
 
-			if (dirty[0] & /*marked_word_grid*/ 262144) {
-				toggle_class(g, "active", /*marked_word_grid*/ ctx[18][/*y*/ ctx[60]][/*x*/ ctx[63]]);
+			if (dirty[0] & /*marked_word_grid*/ 524288) {
+				toggle_class(g, "active", /*marked_word_grid*/ ctx[19][/*y*/ ctx[62]][/*x*/ ctx[65]]);
 			}
 		},
 		d(detaching) {
@@ -1798,10 +1798,10 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (442:16) {#each grid as col_data, y}
+// (443:16) {#each grid as col_data, y}
 function create_each_block(ctx) {
 	let each_1_anchor;
-	let each_value_1 = /*col_data*/ ctx[58];
+	let each_value_1 = /*col_data*/ ctx[60];
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value_1.length; i += 1) {
@@ -1824,8 +1824,8 @@ function create_each_block(ctx) {
 			insert(target, each_1_anchor, anchor);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, innerBorderWidth, innerBorderColour, fillColour, grid, fontSize, backgroundColour*/ 54517127) {
-				each_value_1 = /*col_data*/ ctx[58];
+			if (dirty[0] & /*current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, innerBorderWidth, innerBorderColour, fillColour, grid, fontSize, backgroundColour*/ 109034247) {
+				each_value_1 = /*col_data*/ ctx[60];
 				let i;
 
 				for (i = 0; i < each_value_1.length; i += 1) {
@@ -1857,10 +1857,12 @@ function create_each_block(ctx) {
 function create_fragment$2(ctx) {
 	let main;
 	let div;
+	let input;
+	let t0;
 	let svg;
 	let g;
 	let rect;
-	let t;
+	let t1;
 	let questions;
 	let current;
 	let mounted;
@@ -1873,13 +1875,15 @@ function create_fragment$2(ctx) {
 	}
 
 	questions = new Questions({});
-	questions.$on("change", /*change_handler*/ ctx[47]);
-	questions.$on("update_question", /*handleUpdateQuestion*/ ctx[26]);
+	questions.$on("change", /*change_handler*/ ctx[49]);
+	questions.$on("update_question", /*handleUpdateQuestion*/ ctx[27]);
 
 	return {
 		c() {
 			main = element("main");
 			div = element("div");
+			input = element("input");
+			t0 = space();
 			svg = svg_element("svg");
 			g = svg_element("g");
 
@@ -1888,28 +1892,33 @@ function create_fragment$2(ctx) {
 			}
 
 			rect = svg_element("rect");
-			t = space();
+			t1 = space();
 			create_component(questions.$$.fragment);
-			attr(rect, "x", /*margin*/ ctx[8]);
-			attr(rect, "y", /*margin*/ ctx[8]);
-			attr(rect, "width", /*totalWidth*/ ctx[4]);
-			attr(rect, "height", /*totalHeight*/ ctx[5]);
-			attr(rect, "stroke", /*outerBorderColour*/ ctx[9]);
-			attr(rect, "stroke-width", /*outerBorderWidth*/ ctx[6]);
+			attr(input, "type", "text");
+			attr(input, "class", "svelte-1013j5m");
+			attr(rect, "x", /*margin*/ ctx[9]);
+			attr(rect, "y", /*margin*/ ctx[9]);
+			attr(rect, "width", /*totalWidth*/ ctx[5]);
+			attr(rect, "height", /*totalHeight*/ ctx[6]);
+			attr(rect, "stroke", /*outerBorderColour*/ ctx[10]);
+			attr(rect, "stroke-width", /*outerBorderWidth*/ ctx[7]);
 			attr(rect, "fill", "none");
-			attr(rect, "class", "svelte-1txnct7");
-			attr(g, "class", "cell-group svelte-1txnct7");
-			attr(svg, "class", "jxword-svg svelte-1txnct7");
+			attr(rect, "class", "svelte-1013j5m");
+			attr(g, "class", "cell-group svelte-1013j5m");
+			attr(svg, "class", "jxword-svg svelte-1013j5m");
 			attr(svg, "min-x", "0");
 			attr(svg, "min-y", "0");
-			attr(svg, "width", /*viewbox_width*/ ctx[22]);
-			attr(svg, "height", /*viewbox_height*/ ctx[23]);
-			attr(div, "class", "jxword-svg-container svelte-1txnct7");
-			attr(main, "class", "svelte-1txnct7");
+			attr(svg, "width", /*viewbox_width*/ ctx[23]);
+			attr(svg, "height", /*viewbox_height*/ ctx[24]);
+			attr(div, "class", "jxword-svg-container svelte-1013j5m");
+			attr(main, "class", "svelte-1013j5m");
 		},
 		m(target, anchor) {
 			insert(target, main, anchor);
 			append(main, div);
+			append(div, input);
+			/*input_binding*/ ctx[45](input);
+			append(div, t0);
 			append(div, svg);
 			append(svg, g);
 
@@ -1918,22 +1927,23 @@ function create_fragment$2(ctx) {
 			}
 
 			append(g, rect);
-			/*div_binding*/ ctx[46](div);
-			append(main, t);
+			/*div_binding*/ ctx[48](div);
+			append(main, t1);
 			mount_component(questions, main, null);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen(rect, "focus", /*handleFocus*/ ctx[25]),
-					listen(main, "move", /*handleMove*/ ctx[13])
+					listen(input, "keydown", /*handleKeydown*/ ctx[16]),
+					listen(rect, "focus", /*handleFocus*/ ctx[26]),
+					listen(main, "move", /*handleMove*/ ctx[14])
 				];
 
 				mounted = true;
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*grid, current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, innerBorderWidth, innerBorderColour, fillColour, fontSize, backgroundColour*/ 54517127) {
+			if (dirty[0] & /*grid, current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, innerBorderWidth, innerBorderColour, fillColour, fontSize, backgroundColour*/ 109034247) {
 				each_value = /*grid*/ ctx[0];
 				let i;
 
@@ -1956,36 +1966,36 @@ function create_fragment$2(ctx) {
 				each_blocks.length = each_value.length;
 			}
 
-			if (!current || dirty[0] & /*margin*/ 256) {
-				attr(rect, "x", /*margin*/ ctx[8]);
+			if (!current || dirty[0] & /*margin*/ 512) {
+				attr(rect, "x", /*margin*/ ctx[9]);
 			}
 
-			if (!current || dirty[0] & /*margin*/ 256) {
-				attr(rect, "y", /*margin*/ ctx[8]);
+			if (!current || dirty[0] & /*margin*/ 512) {
+				attr(rect, "y", /*margin*/ ctx[9]);
 			}
 
-			if (!current || dirty[0] & /*totalWidth*/ 16) {
-				attr(rect, "width", /*totalWidth*/ ctx[4]);
+			if (!current || dirty[0] & /*totalWidth*/ 32) {
+				attr(rect, "width", /*totalWidth*/ ctx[5]);
 			}
 
-			if (!current || dirty[0] & /*totalHeight*/ 32) {
-				attr(rect, "height", /*totalHeight*/ ctx[5]);
+			if (!current || dirty[0] & /*totalHeight*/ 64) {
+				attr(rect, "height", /*totalHeight*/ ctx[6]);
 			}
 
-			if (!current || dirty[0] & /*outerBorderColour*/ 512) {
-				attr(rect, "stroke", /*outerBorderColour*/ ctx[9]);
+			if (!current || dirty[0] & /*outerBorderColour*/ 1024) {
+				attr(rect, "stroke", /*outerBorderColour*/ ctx[10]);
 			}
 
-			if (!current || dirty[0] & /*outerBorderWidth*/ 64) {
-				attr(rect, "stroke-width", /*outerBorderWidth*/ ctx[6]);
+			if (!current || dirty[0] & /*outerBorderWidth*/ 128) {
+				attr(rect, "stroke-width", /*outerBorderWidth*/ ctx[7]);
 			}
 
-			if (!current || dirty[0] & /*viewbox_width*/ 4194304) {
-				attr(svg, "width", /*viewbox_width*/ ctx[22]);
+			if (!current || dirty[0] & /*viewbox_width*/ 8388608) {
+				attr(svg, "width", /*viewbox_width*/ ctx[23]);
 			}
 
-			if (!current || dirty[0] & /*viewbox_height*/ 8388608) {
-				attr(svg, "height", /*viewbox_height*/ ctx[23]);
+			if (!current || dirty[0] & /*viewbox_height*/ 16777216) {
+				attr(svg, "height", /*viewbox_height*/ ctx[24]);
 			}
 		},
 		i(local) {
@@ -1999,8 +2009,9 @@ function create_fragment$2(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(main);
+			/*input_binding*/ ctx[45](null);
 			destroy_each(each_blocks, detaching);
-			/*div_binding*/ ctx[46](null);
+			/*div_binding*/ ctx[48](null);
 			destroy_component(questions);
 			mounted = false;
 			run_all(dispose);
@@ -2011,8 +2022,8 @@ function create_fragment$2(ctx) {
 function instance$2($$self, $$props, $$invalidate) {
 	let $questionsDown;
 	let $questionsAcross;
-	component_subscribe($$self, questionsDown, $$value => $$invalidate(48, $questionsDown = $$value));
-	component_subscribe($$self, questionsAcross, $$value => $$invalidate(49, $questionsAcross = $$value));
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(50, $questionsDown = $$value));
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(51, $questionsAcross = $$value));
 	const dispatch = createEventDispatcher();
 
 	// Private properties
@@ -2026,6 +2037,7 @@ function instance$2($$self, $$props, $$invalidate) {
 	let viewbox_width;
 	let viewbox_height;
 	let { Container } = $$props;
+	let { Input } = $$props;
 	let { grid = [] } = $$props;
 	let { size = 10 } = $$props;
 	let { current_x = 0 } = $$props;
@@ -2169,7 +2181,7 @@ function instance$2($$self, $$props, $$invalidate) {
 	}
 
 	function drawMarkedWordGrid() {
-		$$invalidate(18, marked_word_grid = Array(size).fill(false).map(() => Array(size).fill(false)));
+		$$invalidate(19, marked_word_grid = Array(size).fill(false).map(() => Array(size).fill(false)));
 
 		if (current_direction === "across") {
 			for (let x = current_x; x < size; x++) {
@@ -2179,7 +2191,7 @@ function instance$2($$self, $$props, $$invalidate) {
 					break;
 				}
 
-				$$invalidate(18, marked_word_grid[current_y][x] = true, marked_word_grid);
+				$$invalidate(19, marked_word_grid[current_y][x] = true, marked_word_grid);
 			}
 
 			for (let x = current_x; x >= 0; x--) {
@@ -2189,7 +2201,7 @@ function instance$2($$self, $$props, $$invalidate) {
 					break;
 				}
 
-				$$invalidate(18, marked_word_grid[current_y][x] = true, marked_word_grid);
+				$$invalidate(19, marked_word_grid[current_y][x] = true, marked_word_grid);
 			}
 		} else {
 			// down
@@ -2200,7 +2212,7 @@ function instance$2($$self, $$props, $$invalidate) {
 					break;
 				}
 
-				$$invalidate(18, marked_word_grid[y][current_x] = true, marked_word_grid);
+				$$invalidate(19, marked_word_grid[y][current_x] = true, marked_word_grid);
 			}
 
 			for (let y = current_y; y >= 0; y--) {
@@ -2210,7 +2222,7 @@ function instance$2($$self, $$props, $$invalidate) {
 					break;
 				}
 
-				$$invalidate(18, marked_word_grid[y][current_x] = true, marked_word_grid);
+				$$invalidate(19, marked_word_grid[y][current_x] = true, marked_word_grid);
 			}
 		}
 	}
@@ -2309,9 +2321,9 @@ function instance$2($$self, $$props, $$invalidate) {
 
 	function toggleDir() {
 		if (current_direction === "across") {
-			$$invalidate(28, current_direction = "down");
+			$$invalidate(29, current_direction = "down");
 		} else {
-			$$invalidate(28, current_direction = "across");
+			$$invalidate(29, current_direction = "across");
 		}
 
 		dispatch("change");
@@ -2320,9 +2332,9 @@ function instance$2($$self, $$props, $$invalidate) {
 
 	function setDir(direction) {
 		if (direction === "across") {
-			$$invalidate(28, current_direction = "across");
+			$$invalidate(29, current_direction = "across");
 		} else {
-			$$invalidate(28, current_direction = "down");
+			$$invalidate(29, current_direction = "down");
 		}
 
 		dispatch("change");
@@ -2350,7 +2362,6 @@ function instance$2($$self, $$props, $$invalidate) {
 	// let questions = current_direction === "across" ? $questionsAcross : $questionsDown;
 
 	function handleKeydown(e) {
-		console.log(e);
 		e.preventDefault();
 		const keycode = e.keyCode;
 		if (e.metaKey) return;
@@ -2386,11 +2397,11 @@ function instance$2($$self, $$props, $$invalidate) {
 			dispatch("move", "down");
 		}
 
-		Container.focus();
+		handleFocus();
 	}
 
 	function handleFocus(e) {
-		Container.focus();
+		Input.focus();
 	}
 
 	function handleUpdateQuestion(e) {
@@ -2405,6 +2416,13 @@ function instance$2($$self, $$props, $$invalidate) {
 				$$invalidate(0, grid[i + question.y][question.x] = suggestion[i], grid);
 			}
 		}
+	}
+
+	function input_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			Input = $$value;
+			$$invalidate(4, Input);
+		});
 	}
 
 	const click_handler = (x, y) => {
@@ -2428,39 +2446,40 @@ function instance$2($$self, $$props, $$invalidate) {
 
 	$$self.$$set = $$props => {
 		if ('Container' in $$props) $$invalidate(3, Container = $$props.Container);
+		if ('Input' in $$props) $$invalidate(4, Input = $$props.Input);
 		if ('grid' in $$props) $$invalidate(0, grid = $$props.grid);
-		if ('size' in $$props) $$invalidate(27, size = $$props.size);
+		if ('size' in $$props) $$invalidate(28, size = $$props.size);
 		if ('current_x' in $$props) $$invalidate(1, current_x = $$props.current_x);
 		if ('current_y' in $$props) $$invalidate(2, current_y = $$props.current_y);
-		if ('current_direction' in $$props) $$invalidate(28, current_direction = $$props.current_direction);
-		if ('totalWidth' in $$props) $$invalidate(4, totalWidth = $$props.totalWidth);
-		if ('totalHeight' in $$props) $$invalidate(5, totalHeight = $$props.totalHeight);
-		if ('outerBorderWidth' in $$props) $$invalidate(6, outerBorderWidth = $$props.outerBorderWidth);
-		if ('innerBorderWidth' in $$props) $$invalidate(7, innerBorderWidth = $$props.innerBorderWidth);
-		if ('margin' in $$props) $$invalidate(8, margin = $$props.margin);
-		if ('outerBorderColour' in $$props) $$invalidate(9, outerBorderColour = $$props.outerBorderColour);
-		if ('innerBorderColour' in $$props) $$invalidate(10, innerBorderColour = $$props.innerBorderColour);
-		if ('fillColour' in $$props) $$invalidate(11, fillColour = $$props.fillColour);
-		if ('backgroundColour' in $$props) $$invalidate(12, backgroundColour = $$props.backgroundColour);
+		if ('current_direction' in $$props) $$invalidate(29, current_direction = $$props.current_direction);
+		if ('totalWidth' in $$props) $$invalidate(5, totalWidth = $$props.totalWidth);
+		if ('totalHeight' in $$props) $$invalidate(6, totalHeight = $$props.totalHeight);
+		if ('outerBorderWidth' in $$props) $$invalidate(7, outerBorderWidth = $$props.outerBorderWidth);
+		if ('innerBorderWidth' in $$props) $$invalidate(8, innerBorderWidth = $$props.innerBorderWidth);
+		if ('margin' in $$props) $$invalidate(9, margin = $$props.margin);
+		if ('outerBorderColour' in $$props) $$invalidate(10, outerBorderColour = $$props.outerBorderColour);
+		if ('innerBorderColour' in $$props) $$invalidate(11, innerBorderColour = $$props.innerBorderColour);
+		if ('fillColour' in $$props) $$invalidate(12, fillColour = $$props.fillColour);
+		if ('backgroundColour' in $$props) $$invalidate(13, backgroundColour = $$props.backgroundColour);
 	};
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty[0] & /*size, totalWidth, margin, outerBorderWidth, totalHeight, cellWidth, grid, number_grid, current_x, current_y*/ 134414711) {
+		if ($$self.$$.dirty[0] & /*size, totalWidth, margin, outerBorderWidth, totalHeight, cellWidth, grid, number_grid, current_x, current_y*/ 268829415) {
 			{
 				if (size < 2) {
-					$$invalidate(27, size = 2);
+					$$invalidate(28, size = 2);
 				}
 
 				if (size > 30) {
-					$$invalidate(27, size = 30);
+					$$invalidate(28, size = 30);
 				}
 
-				$$invalidate(22, viewbox_width = totalWidth + margin + outerBorderWidth);
-				$$invalidate(23, viewbox_height = totalHeight + margin + outerBorderWidth);
-				$$invalidate(17, cellWidth = totalWidth / size);
-				$$invalidate(21, cellHeight = totalHeight / size);
-				$$invalidate(19, fontSize = cellWidth * fontRatio);
-				$$invalidate(20, numFontSize = cellWidth * numRatio);
+				$$invalidate(23, viewbox_width = totalWidth + margin + outerBorderWidth);
+				$$invalidate(24, viewbox_height = totalHeight + margin + outerBorderWidth);
+				$$invalidate(18, cellWidth = totalWidth / size);
+				$$invalidate(22, cellHeight = totalHeight / size);
+				$$invalidate(20, fontSize = cellWidth * fontRatio);
+				$$invalidate(21, numFontSize = cellWidth * numRatio);
 				let questions_across = [];
 				let questions_down = [];
 				let num = 1;
@@ -2469,7 +2488,7 @@ function instance$2($$self, $$props, $$invalidate) {
 				if (grid.length - 1 < size) {
 					for (let i = 0; i < size; i++) {
 						$$invalidate(0, grid[i] = grid[i] || Array(size).map(() => " "), grid);
-						$$invalidate(16, number_grid[i] = number_grid[i] || Array(size).map(() => " "), number_grid);
+						$$invalidate(17, number_grid[i] = number_grid[i] || Array(size).map(() => " "), number_grid);
 					}
 				}
 
@@ -2497,7 +2516,7 @@ function instance$2($$self, $$props, $$invalidate) {
 
 				for (let y = 0; y < size; y++) {
 					if (!number_grid[y]) {
-						$$invalidate(16, number_grid[y] = Array(size), number_grid);
+						$$invalidate(17, number_grid[y] = Array(size), number_grid);
 					}
 
 					for (let x = 0; x < size; x++) {
@@ -2516,9 +2535,9 @@ function instance$2($$self, $$props, $$invalidate) {
 						}
 
 						if (!found) {
-							$$invalidate(16, number_grid[y][x] = null, number_grid);
+							$$invalidate(17, number_grid[y][x] = null, number_grid);
 						} else {
-							$$invalidate(16, number_grid[y][x] = num++, number_grid);
+							$$invalidate(17, number_grid[y][x] = num++, number_grid);
 						}
 					}
 				}
@@ -2538,6 +2557,7 @@ function instance$2($$self, $$props, $$invalidate) {
 		current_x,
 		current_y,
 		Container,
+		Input,
 		totalWidth,
 		totalHeight,
 		outerBorderWidth,
@@ -2578,6 +2598,7 @@ function instance$2($$self, $$props, $$invalidate) {
 		setDir,
 		getDir,
 		getCurrentPos,
+		input_binding,
 		click_handler,
 		dblclick_handler,
 		div_binding,
@@ -2597,38 +2618,39 @@ class Grid extends SvelteComponent {
 			safe_not_equal,
 			{
 				Container: 3,
+				Input: 4,
 				grid: 0,
-				size: 27,
+				size: 28,
 				current_x: 1,
 				current_y: 2,
-				current_direction: 28,
-				totalWidth: 4,
-				totalHeight: 5,
-				outerBorderWidth: 6,
-				innerBorderWidth: 7,
-				margin: 8,
-				outerBorderColour: 9,
-				innerBorderColour: 10,
-				fillColour: 11,
-				backgroundColour: 12,
-				fontRatio: 29,
-				numRatio: 30,
-				selectCell: 31,
-				moveUp: 32,
-				moveDown: 33,
-				moveLeft: 34,
-				moveRight: 35,
-				moveStartOfRow: 36,
-				moveEndOfRow: 37,
-				moveStartOfCol: 38,
-				moveEndOfCol: 39,
-				handleMove: 13,
-				toggleDir: 40,
-				setDir: 41,
-				getDir: 42,
-				getCurrentPos: 43,
-				setCurrentPos: 14,
-				handleKeydown: 15
+				current_direction: 29,
+				totalWidth: 5,
+				totalHeight: 6,
+				outerBorderWidth: 7,
+				innerBorderWidth: 8,
+				margin: 9,
+				outerBorderColour: 10,
+				innerBorderColour: 11,
+				fillColour: 12,
+				backgroundColour: 13,
+				fontRatio: 30,
+				numRatio: 31,
+				selectCell: 32,
+				moveUp: 33,
+				moveDown: 34,
+				moveLeft: 35,
+				moveRight: 36,
+				moveStartOfRow: 37,
+				moveEndOfRow: 38,
+				moveStartOfCol: 39,
+				moveEndOfCol: 40,
+				handleMove: 14,
+				toggleDir: 41,
+				setDir: 42,
+				getDir: 43,
+				getCurrentPos: 44,
+				setCurrentPos: 15,
+				handleKeydown: 16
 			},
 			null,
 			[-1, -1, -1]
@@ -2636,75 +2658,75 @@ class Grid extends SvelteComponent {
 	}
 
 	get fontRatio() {
-		return this.$$.ctx[29];
-	}
-
-	get numRatio() {
 		return this.$$.ctx[30];
 	}
 
-	get selectCell() {
+	get numRatio() {
 		return this.$$.ctx[31];
 	}
 
-	get moveUp() {
+	get selectCell() {
 		return this.$$.ctx[32];
 	}
 
-	get moveDown() {
+	get moveUp() {
 		return this.$$.ctx[33];
 	}
 
-	get moveLeft() {
+	get moveDown() {
 		return this.$$.ctx[34];
 	}
 
-	get moveRight() {
+	get moveLeft() {
 		return this.$$.ctx[35];
 	}
 
-	get moveStartOfRow() {
+	get moveRight() {
 		return this.$$.ctx[36];
 	}
 
-	get moveEndOfRow() {
+	get moveStartOfRow() {
 		return this.$$.ctx[37];
 	}
 
-	get moveStartOfCol() {
+	get moveEndOfRow() {
 		return this.$$.ctx[38];
 	}
 
-	get moveEndOfCol() {
+	get moveStartOfCol() {
 		return this.$$.ctx[39];
 	}
 
-	get handleMove() {
-		return this.$$.ctx[13];
-	}
-
-	get toggleDir() {
+	get moveEndOfCol() {
 		return this.$$.ctx[40];
 	}
 
-	get setDir() {
-		return this.$$.ctx[41];
-	}
-
-	get getDir() {
-		return this.$$.ctx[42];
-	}
-
-	get getCurrentPos() {
-		return this.$$.ctx[43];
-	}
-
-	get setCurrentPos() {
+	get handleMove() {
 		return this.$$.ctx[14];
 	}
 
-	get handleKeydown() {
+	get toggleDir() {
+		return this.$$.ctx[41];
+	}
+
+	get setDir() {
+		return this.$$.ctx[42];
+	}
+
+	get getDir() {
+		return this.$$.ctx[43];
+	}
+
+	get getCurrentPos() {
+		return this.$$.ctx[44];
+	}
+
+	get setCurrentPos() {
 		return this.$$.ctx[15];
+	}
+
+	get handleKeydown() {
+		return this.$$.ctx[16];
 	}
 }
 
@@ -3340,8 +3362,6 @@ function instance($$self, $$props, $$invalidate) {
 		} else {
 			gridComponent.moveDown();
 		}
-
-		gridComponentContainer.focus();
 	}
 
 	function handleEnter(event) {
