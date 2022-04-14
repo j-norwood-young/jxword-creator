@@ -1,7 +1,7 @@
 <script>
 	// Svelte stuff
 	import { onMount, tick } from "svelte";
-	import { questionsAcross, questionsDown } from "./stores.js";
+	import { questionsAcross, questionsDown, currentDirection } from "./stores.js";
 	
 	// Components
 	import Menu from "./Menu.svelte";
@@ -39,13 +39,12 @@
 
 	let getState = () => {
 		let { x: current_x, y: current_y } = gridComponent.getCurrentPos();
-		let direction = gridComponent.getDir();
 		return {
 			grid,
 			size,
 			current_x,
 			current_y,
-			direction,
+			direction: $currentDirection,
 			questions_across: $questionsAcross,
 			questions_down: $questionsDown,
 			title,
@@ -57,7 +56,6 @@
 
 	function handleMove(event) {
 		const direction = event.detail;
-		const currentDir = gridComponent.getDir();
 		let newDir;
 		if (direction === "down" || direction === "up") {
 			newDir = "down";
@@ -65,7 +63,7 @@
 		if (direction === "left" || direction === "right") {
 			newDir = "across";
 		}
-		if (newDir !== currentDir) {
+		if (newDir !== $currentDirection) {
 			gridComponent.setDir(newDir);
 		} else {
 			gridComponent.handleMove(direction);
@@ -81,7 +79,7 @@
 		}
 		let {x, y} = gridComponent.getCurrentPos();
 		grid[y][x] = letter;
-		if (gridComponent.getDir() === "across") {
+		if ($currentDirection === "across") {
 			gridComponent.moveRight();
 		} else {
 			gridComponent.moveDown();
@@ -90,10 +88,9 @@
 
 	function handleEnter(event) {
 		let {x, y} = gridComponent.getCurrentPos();
-		let current_direction = gridComponent.getDir();
 		let selected_question;
-		let questions = current_direction === "across" ? $questionsAcross : $questionsDown;
-		if (current_direction === "across") {
+		let questions = $currentDirection === "across" ? $questionsAcross : $questionsDown;
+		if ($currentDirection === "across") {
 			selected_question = questions.find(q => y === q.y && x >= q.x && x <= q.x + q.answer.length - 1);
 			if (selected_question) {
 				selected_question.editing = true;
@@ -112,7 +109,7 @@
 		event.preventDefault();
 		let {x, y} = gridComponent.getCurrentPos();
 		grid[y][x] = "";
-		if (gridComponent.getDir() === "across") {
+		if ($currentDirection === "across") {
 			gridComponent.moveLeft();
 		} else {
 			gridComponent.moveUp();

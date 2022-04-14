@@ -4,7 +4,7 @@
     const dispatch = createEventDispatcher();
 
     // Stores
-    import { questionsAcross, questionsDown } from "./stores.js";
+    import { questionsAcross, questionsDown, currentDirection, currentQuestion } from "./stores.js";
 
     // Components
     import Questions from "./Questions.svelte";
@@ -27,8 +27,6 @@
     export let size = 10;
     export let current_x = 0;
     export let current_y = 0;
-    // export let grid = [];
-    export let current_direction = "across"; // across or down
     export let totalWidth = 500;
     export let totalHeight = 500;
     export let outerBorderWidth = 1.5;
@@ -111,6 +109,10 @@ $: {
     // questions_down.sort();
     questionsAcross.set(questions_across);
     questionsDown.set(questions_down);
+    // Find the current question
+    const current_question = getCurrentQuestion();
+    // console.log(current_question);
+    currentQuestion.set(current_question);
     drawMarkedWordGrid();
 }
 
@@ -162,6 +164,19 @@ function getQuestion(num, x, y, direction, question) {
     }
 }
 
+function getCurrentQuestion() {
+    let {x, y} = getCurrentPos();
+    let selected_question;
+    let questions = $currentDirection === "across" ? $questionsAcross : $questionsDown;
+    if (!questions.length) return;
+    if ($currentDirection === "across") {
+        selected_question = questions.find(q => y === q.y && x >= q.x && x <= q.x + q.answer.length - 1);
+    } else {
+        selected_question = questions.find(q => x === q.x && y >= q.y && y <= q.y + q.answer.length - 1);
+    }
+    return selected_question;
+}
+
 function getStartOfWord(x, y, direction) {
     if (direction === "across") {
         while(x > 0 && grid[y][x - 1] !== "#") {
@@ -206,7 +221,7 @@ function getWord(x, y, direction) {
 
 function drawMarkedWordGrid() {
     marked_word_grid = Array(size).fill(false).map(() => Array(size).fill(false));
-    if (current_direction === "across") {
+    if ($currentDirection === "across") {
         for (let x = current_x; x < size; x++) {
             if (!grid[current_y]) break;
             if (grid[current_y][x] === "#") {
@@ -328,10 +343,10 @@ export function handleMove(dir) {
 }
 
 export function toggleDir() {
-    if (current_direction === "across") {
-        current_direction = "down";
+    if ($currentDirection === "across") {
+        currentDirection.set("down");
     } else {
-        current_direction = "across";
+        currentDirection.set("across");
     }
     dispatch("change");
     drawMarkedWordGrid();
@@ -339,16 +354,12 @@ export function toggleDir() {
 
 export function setDir(direction) {
     if (direction === "across") {
-        current_direction = "across";
+        currentDirection.set("across");
     } else {
-        current_direction = "down";
+        currentDirection.set("down");
     }
     dispatch("change");
     drawMarkedWordGrid();
-}
-
-export function getDir() {
-    return current_direction;
 }
 
 export function getCurrentPos() {
@@ -368,8 +379,8 @@ export function setCurrentPos(x, y) {
 function handleDoubleclick(x, y) {
     toggleDir();
     // let selected_question;
-    // let questions = current_direction === "across" ? $questionsAcross : $questionsDown;
-    // if (current_direction === "across") {
+    // let questions = $currentDirection === "across" ? $questionsAcross : $questionsDown;
+    // if ($currentDirection === "across") {
     //     selected_question = questions.find(q => y === q.y && x >= q.x && x <= q.x + q.answer.length - 1);
     //     if (selected_question) {
     //         selected_question.editing = true;

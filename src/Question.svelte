@@ -4,7 +4,7 @@
     import { suggest } from "./suggestions/suggest";
     
     const dispatch = createEventDispatcher();
-    import { questionsAcross, questionsDown, isEditingQuestion } from "./stores.js";
+    import { questionsAcross, questionsDown, isEditingQuestion, currentQuestion, currentDirection } from "./stores.js";
 
     // Exposed props
     export let questions_across = [];
@@ -54,6 +54,8 @@
         dispatch("update_question", {suggestion, question: q});
     }
 
+    let is_current_question = false;
+
     $: {
         let suggestion_query = question.answer.replace(/\ /g, "?");
         if (!suggestion_query.includes("?")) {
@@ -61,10 +63,11 @@
         } else {
             suggestions = suggest(suggestion_query);
         }
+        is_current_question = ($currentQuestion.num === question.num && $currentDirection === question.direction);
     }
 </script>
 
-<main>
+<main class:current="{is_current_question}">
     {#if question.editing}
     <div class="jxword-question jxword-question-editing">
         <div class="jxword-question-number">
@@ -112,5 +115,9 @@
         padding: 2px 3px;
         border-radius: 2px;
         cursor: pointer;
+    }
+    .current {
+        background-color: #9ce0fb;
+        // color: white;
     }
 </style>
