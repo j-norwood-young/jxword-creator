@@ -63,7 +63,9 @@
         } else {
             suggestions = suggest(suggestion_query);
         }
-        is_current_question = ($currentQuestion.num === question.num && $currentDirection === question.direction);
+        if ($currentQuestion) {
+            is_current_question = ($currentQuestion.num === question.num && $currentDirection === question.direction);
+        }
     }
 </script>
 
