@@ -1076,14 +1076,14 @@ function get_each_context$2(ctx, list, i) {
 	return child_ctx;
 }
 
-function get_each_context_1$1(ctx, list, i) {
+function get_each_context_1$2(ctx, list, i) {
 	const child_ctx = ctx.slice();
 	child_ctx[6] = list[i];
 	return child_ctx;
 }
 
 // (5:16) {#each questions_across as question}
-function create_each_block_1$1(ctx) {
+function create_each_block_1$2(ctx) {
 	let question;
 	let current;
 
@@ -1187,7 +1187,7 @@ function create_fragment$5(ctx) {
 	let each_blocks_1 = [];
 
 	for (let i = 0; i < each_value_1.length; i += 1) {
-		each_blocks_1[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
+		each_blocks_1[i] = create_each_block_1$2(get_each_context_1$2(ctx, each_value_1, i));
 	}
 
 	const out = i => transition_out(each_blocks_1[i], 1, 1, () => {
@@ -1261,13 +1261,13 @@ function create_fragment$5(ctx) {
 				let i;
 
 				for (i = 0; i < each_value_1.length; i += 1) {
-					const child_ctx = get_each_context_1$1(ctx, each_value_1, i);
+					const child_ctx = get_each_context_1$2(ctx, each_value_1, i);
 
 					if (each_blocks_1[i]) {
 						each_blocks_1[i].p(child_ctx, dirty);
 						transition_in(each_blocks_1[i], 1);
 					} else {
-						each_blocks_1[i] = create_each_block_1$1(child_ctx);
+						each_blocks_1[i] = create_each_block_1$2(child_ctx);
 						each_blocks_1[i].c();
 						transition_in(each_blocks_1[i], 1);
 						each_blocks_1[i].m(div0, null);
@@ -1400,7 +1400,7 @@ function get_each_context$1(ctx, list, i) {
 	return child_ctx;
 }
 
-function get_each_context_1(ctx, list, i) {
+function get_each_context_1$1(ctx, list, i) {
 	const child_ctx = ctx.slice();
 	child_ctx[63] = list[i];
 	child_ctx[65] = i;
@@ -1736,7 +1736,7 @@ function create_if_block(ctx) {
 }
 
 // (455:20) {#each col_data as letter, x}
-function create_each_block_1(ctx) {
+function create_each_block_1$1(ctx) {
 	let g;
 	let if_block0_anchor;
 	let mounted;
@@ -1840,7 +1840,7 @@ function create_each_block$1(ctx) {
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value_1.length; i += 1) {
-		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+		each_blocks[i] = create_each_block_1$1(get_each_context_1$1(ctx, each_value_1, i));
 	}
 
 	return {
@@ -1864,12 +1864,12 @@ function create_each_block$1(ctx) {
 				let i;
 
 				for (i = 0; i < each_value_1.length; i += 1) {
-					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+					const child_ctx = get_each_context_1$1(ctx, each_value_1, i);
 
 					if (each_blocks[i]) {
 						each_blocks[i].p(child_ctx, dirty);
 					} else {
-						each_blocks[i] = create_each_block_1(child_ctx);
+						each_blocks[i] = create_each_block_1$1(child_ctx);
 						each_blocks[i].c();
 						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
 					}
@@ -3192,6 +3192,9 @@ function XDEncode(obj) {
     if (obj.difficulty) {
         str += `Difficulty: ${obj.difficulty}\n`;
     }
+    if (obj.type) {
+        str += `Type: ${obj.type}\n`;
+    }
     if (obj.copyright) {
         str += `Copyright: ${obj.copyright}\n`;
     }
@@ -3285,14 +3288,20 @@ var xdCrosswordParser = XDParser;
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[44] = list[i];
+	child_ctx[47] = list[i];
 	return child_ctx;
 }
 
-// (261:5) {#each difficulties as type_option}
-function create_each_block(ctx) {
+function get_each_context_1(ctx, list, i) {
+	const child_ctx = ctx.slice();
+	child_ctx[50] = list[i];
+	return child_ctx;
+}
+
+// (272:6) {#each difficulties as difficulty_option}
+function create_each_block_1(ctx) {
 	let option;
-	let t_value = /*type_option*/ ctx[44] + "";
+	let t_value = /*difficulty_option*/ ctx[50] + "";
 	let t;
 	let option_value_value;
 
@@ -3300,7 +3309,7 @@ function create_each_block(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*type_option*/ ctx[44];
+			option.__value = option_value_value = /*difficulty_option*/ ctx[50];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3308,9 +3317,41 @@ function create_each_block(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*difficulties*/ 256 && t_value !== (t_value = /*type_option*/ ctx[44] + "")) set_data(t, t_value);
+			if (dirty[0] & /*difficulties*/ 512 && t_value !== (t_value = /*difficulty_option*/ ctx[50] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*difficulties*/ 256 && option_value_value !== (option_value_value = /*type_option*/ ctx[44])) {
+			if (dirty[0] & /*difficulties*/ 512 && option_value_value !== (option_value_value = /*difficulty_option*/ ctx[50])) {
+				option.__value = option_value_value;
+				option.value = option.__value;
+			}
+		},
+		d(detaching) {
+			if (detaching) detach(option);
+		}
+	};
+}
+
+// (280:6) {#each types as type_option}
+function create_each_block(ctx) {
+	let option;
+	let t_value = /*type_option*/ ctx[47] + "";
+	let t;
+	let option_value_value;
+
+	return {
+		c() {
+			option = element("option");
+			t = text(t_value);
+			option.__value = option_value_value = /*type_option*/ ctx[47];
+			option.value = option.__value;
+		},
+		m(target, anchor) {
+			insert(target, option, anchor);
+			append(option, t);
+		},
+		p(ctx, dirty) {
+			if (dirty[0] & /*types*/ 1024 && t_value !== (t_value = /*type_option*/ ctx[47] + "")) set_data(t, t_value);
+
+			if (dirty[0] & /*types*/ 1024 && option_value_value !== (option_value_value = /*type_option*/ ctx[47])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3326,73 +3367,88 @@ function create_fragment(ctx) {
 	let instructions;
 	let updating_visible;
 	let t0;
-	let div5;
+	let div7;
+	let div4;
 	let div2;
-	let div0;
 	let input0;
 	let t1;
 	let sizeslider;
 	let updating_size;
 	let t2;
-	let select;
-	let t3;
-	let input1;
+	let div0;
+	let label0;
 	let t4;
-	let input2;
+	let select0;
 	let t5;
-	let input3;
-	let t6;
-	let input4;
-	let t7;
 	let div1;
+	let label1;
+	let t7;
+	let select1;
+	let t8;
+	let input1;
+	let t9;
+	let input2;
+	let t10;
+	let input3;
+	let t11;
+	let input4;
+	let t12;
+	let div3;
 	let print;
 	let updating_state;
-	let t8;
-	let div4;
-	let div3;
+	let t13;
+	let div6;
+	let div5;
 	let menu;
-	let t9;
+	let t14;
 	let grid_1;
 	let updating_Container;
-	let t10;
-	let label;
-	let t12;
+	let t15;
+	let label2;
+	let t17;
 	let input5;
-	let t13;
+	let t18;
 	let textarea;
-	let t14;
+	let t19;
 	let input6;
 	let current;
 	let mounted;
 	let dispose;
 
 	function instructions_visible_binding(value) {
-		/*instructions_visible_binding*/ ctx[26](value);
+		/*instructions_visible_binding*/ ctx[28](value);
 	}
 
 	let instructions_props = {};
 
-	if (/*instructionsVisible*/ ctx[15] !== void 0) {
-		instructions_props.visible = /*instructionsVisible*/ ctx[15];
+	if (/*instructionsVisible*/ ctx[17] !== void 0) {
+		instructions_props.visible = /*instructionsVisible*/ ctx[17];
 	}
 
 	instructions = new Instructions({ props: instructions_props });
 	binding_callbacks.push(() => bind(instructions, 'visible', instructions_visible_binding));
 
 	function sizeslider_size_binding(value) {
-		/*sizeslider_size_binding*/ ctx[28](value);
+		/*sizeslider_size_binding*/ ctx[30](value);
 	}
 
 	let sizeslider_props = {};
 
-	if (/*size*/ ctx[12] !== void 0) {
-		sizeslider_props.size = /*size*/ ctx[12];
+	if (/*size*/ ctx[14] !== void 0) {
+		sizeslider_props.size = /*size*/ ctx[14];
 	}
 
 	sizeslider = new SizeSlider({ props: sizeslider_props });
 	binding_callbacks.push(() => bind(sizeslider, 'size', sizeslider_size_binding));
-	sizeslider.$on("change", /*handleStateChange*/ ctx[20]);
-	let each_value = /*difficulties*/ ctx[8];
+	sizeslider.$on("change", /*handleStateChange*/ ctx[22]);
+	let each_value_1 = /*difficulties*/ ctx[9];
+	let each_blocks_1 = [];
+
+	for (let i = 0; i < each_value_1.length; i += 1) {
+		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+	}
+
+	let each_value = /*types*/ ctx[10];
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value.length; i += 1) {
@@ -3400,208 +3456,248 @@ function create_fragment(ctx) {
 	}
 
 	function print_state_binding(value) {
-		/*print_state_binding*/ ctx[34](value);
+		/*print_state_binding*/ ctx[37](value);
 	}
 
 	let print_props = {};
 
-	if (/*state*/ ctx[13] !== void 0) {
-		print_props.state = /*state*/ ctx[13];
+	if (/*state*/ ctx[15] !== void 0) {
+		print_props.state = /*state*/ ctx[15];
 	}
 
 	print = new Print({ props: print_props });
 	binding_callbacks.push(() => bind(print, 'state', print_state_binding));
 	menu = new Menu({});
-	menu.$on("reset", /*handleReset*/ ctx[21]);
-	menu.$on("instructions", /*handleInstructions*/ ctx[23]);
+	menu.$on("reset", /*handleReset*/ ctx[23]);
+	menu.$on("instructions", /*handleInstructions*/ ctx[25]);
 
 	function grid_1_Container_binding(value) {
-		/*grid_1_Container_binding*/ ctx[36](value);
+		/*grid_1_Container_binding*/ ctx[39](value);
 	}
 
 	let grid_1_props = {
-		size: /*size*/ ctx[12],
+		size: /*size*/ ctx[14],
 		grid: /*grid*/ ctx[1]
 	};
 
-	if (/*gridComponentContainer*/ ctx[11] !== void 0) {
-		grid_1_props.Container = /*gridComponentContainer*/ ctx[11];
+	if (/*gridComponentContainer*/ ctx[13] !== void 0) {
+		grid_1_props.Container = /*gridComponentContainer*/ ctx[13];
 	}
 
 	grid_1 = new Grid({ props: grid_1_props });
-	/*grid_1_binding*/ ctx[35](grid_1);
+	/*grid_1_binding*/ ctx[38](grid_1);
 	binding_callbacks.push(() => bind(grid_1, 'Container', grid_1_Container_binding));
-	grid_1.$on("change", /*handleStateChange*/ ctx[20]);
-	grid_1.$on("move", /*handleMove*/ ctx[16]);
-	grid_1.$on("letter", /*handleLetter*/ ctx[17]);
-	grid_1.$on("backspace", /*handleBackspace*/ ctx[19]);
-	grid_1.$on("enter", /*handleEnter*/ ctx[18]);
+	grid_1.$on("change", /*handleStateChange*/ ctx[22]);
+	grid_1.$on("move", /*handleMove*/ ctx[18]);
+	grid_1.$on("letter", /*handleLetter*/ ctx[19]);
+	grid_1.$on("backspace", /*handleBackspace*/ ctx[21]);
+	grid_1.$on("enter", /*handleEnter*/ ctx[20]);
 
 	return {
 		c() {
 			main = element("main");
 			create_component(instructions.$$.fragment);
 			t0 = space();
-			div5 = element("div");
+			div7 = element("div");
+			div4 = element("div");
 			div2 = element("div");
-			div0 = element("div");
 			input0 = element("input");
 			t1 = space();
 			create_component(sizeslider.$$.fragment);
 			t2 = space();
-			select = element("select");
+			div0 = element("div");
+			label0 = element("label");
+			label0.textContent = "Difficulty";
+			t4 = space();
+			select0 = element("select");
+
+			for (let i = 0; i < each_blocks_1.length; i += 1) {
+				each_blocks_1[i].c();
+			}
+
+			t5 = space();
+			div1 = element("div");
+			label1 = element("label");
+			label1.textContent = "Type";
+			t7 = space();
+			select1 = element("select");
 
 			for (let i = 0; i < each_blocks.length; i += 1) {
 				each_blocks[i].c();
 			}
 
-			t3 = space();
-			input1 = element("input");
-			t4 = space();
-			input2 = element("input");
-			t5 = space();
-			input3 = element("input");
-			t6 = space();
-			input4 = element("input");
-			t7 = space();
-			div1 = element("div");
-			create_component(print.$$.fragment);
 			t8 = space();
-			div4 = element("div");
-			div3 = element("div");
-			create_component(menu.$$.fragment);
+			input1 = element("input");
 			t9 = space();
-			create_component(grid_1.$$.fragment);
+			input2 = element("input");
 			t10 = space();
-			label = element("label");
-			label.textContent = "Upload an XD file (optional)";
+			input3 = element("input");
+			t11 = space();
+			input4 = element("input");
 			t12 = space();
-			input5 = element("input");
+			div3 = element("div");
+			create_component(print.$$.fragment);
 			t13 = space();
-			textarea = element("textarea");
+			div6 = element("div");
+			div5 = element("div");
+			create_component(menu.$$.fragment);
 			t14 = space();
+			create_component(grid_1.$$.fragment);
+			t15 = space();
+			label2 = element("label");
+			label2.textContent = "Upload an XD file (optional)";
+			t17 = space();
+			input5 = element("input");
+			t18 = space();
+			textarea = element("textarea");
+			t19 = space();
 			input6 = element("input");
 			attr(input0, "id", "jxword-title");
-			attr(input0, "class", "jxword-title svelte-z6fyly");
+			attr(input0, "class", "jxword-title svelte-4b0cz6");
 			attr(input0, "name", "title");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Title");
-			attr(select, "name", "difficulty");
-			attr(select, "class", "svelte-z6fyly");
-			if (/*difficulty*/ ctx[7] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[29].call(select));
+			attr(label0, "for", "difficulty");
+			attr(label0, "class", "svelte-4b0cz6");
+			attr(select0, "id", "jxword-difficulty");
+			attr(select0, "name", "difficulty");
+			attr(select0, "class", "svelte-4b0cz6");
+			if (/*difficulty*/ ctx[7] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[31].call(select0));
+			attr(label1, "for", "type");
+			attr(label1, "class", "svelte-4b0cz6");
+			attr(select1, "id", "jxword-type");
+			attr(select1, "name", "type");
+			attr(select1, "class", "svelte-4b0cz6");
+			if (/*type*/ ctx[8] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[32].call(select1));
 			attr(input1, "id", "jxword-date");
 			attr(input1, "name", "date");
 			attr(input1, "type", "date");
 			attr(input1, "placeholder", "Publish Date");
-			attr(input1, "class", "svelte-z6fyly");
+			attr(input1, "class", "svelte-4b0cz6");
 			attr(input2, "id", "jxword-author");
 			attr(input2, "name", "author");
 			attr(input2, "type", "text");
 			attr(input2, "placeholder", "Author");
-			attr(input2, "class", "svelte-z6fyly");
+			attr(input2, "class", "svelte-4b0cz6");
 			attr(input3, "id", "jxword-editor");
 			attr(input3, "name", "editor");
 			attr(input3, "type", "text");
 			attr(input3, "placeholder", "Editor");
-			attr(input3, "class", "svelte-z6fyly");
+			attr(input3, "class", "svelte-4b0cz6");
 			attr(input4, "id", "jxword-copyright");
 			attr(input4, "name", "copyright");
 			attr(input4, "type", "text");
 			attr(input4, "placeholder", "Copyright");
-			attr(input4, "class", "svelte-z6fyly");
-			attr(div0, "id", "jxword-meta");
-			attr(div1, "id", "jxword-options");
-			attr(div1, "class", "svelte-z6fyly");
-			attr(div2, "id", "jxword-top");
-			attr(div2, "class", "svelte-z6fyly");
-			attr(div3, "class", "jxword-header");
-			attr(div4, "class", "jxword-container svelte-z6fyly");
-			attr(label, "for", "file");
-			attr(label, "class", "svelte-z6fyly");
-			attr(input5, "class", "drop_zone svelte-z6fyly");
+			attr(input4, "class", "svelte-4b0cz6");
+			attr(div2, "id", "jxword-meta");
+			attr(div3, "id", "jxword-options");
+			attr(div3, "class", "svelte-4b0cz6");
+			attr(div4, "id", "jxword-top");
+			attr(div4, "class", "svelte-4b0cz6");
+			attr(div5, "class", "jxword-header");
+			attr(div6, "class", "jxword-container svelte-4b0cz6");
+			attr(label2, "for", "file");
+			attr(label2, "class", "svelte-4b0cz6");
+			attr(input5, "class", "drop_zone svelte-4b0cz6");
 			attr(input5, "type", "file");
 			attr(input5, "id", "file");
 			attr(input5, "name", "files");
 			attr(input5, "accept", ".xd");
 			attr(textarea, "id", "xd");
 			attr(textarea, "name", "xd");
-			attr(textarea, "class", "jxword-xd-textarea svelte-z6fyly");
-			set_style(textarea, "display", /*displayXd*/ ctx[9] ? 'block' : 'none', false);
-			attr(input6, "class", "jxword-btn svelte-z6fyly");
+			attr(textarea, "class", "jxword-xd-textarea svelte-4b0cz6");
+			set_style(textarea, "display", /*displayXd*/ ctx[11] ? 'block' : 'none', false);
+			attr(input6, "class", "jxword-btn svelte-4b0cz6");
 			attr(input6, "type", "submit");
 			input6.value = "Download XD";
-			attr(div5, "class", "jxword-form-container svelte-z6fyly");
-			attr(main, "class", "svelte-z6fyly");
+			attr(div7, "class", "jxword-form-container svelte-4b0cz6");
+			attr(main, "class", "svelte-4b0cz6");
 		},
 		m(target, anchor) {
 			insert(target, main, anchor);
 			mount_component(instructions, main, null);
 			append(main, t0);
-			append(main, div5);
-			append(div5, div2);
-			append(div2, div0);
-			append(div0, input0);
+			append(main, div7);
+			append(div7, div4);
+			append(div4, div2);
+			append(div2, input0);
 			set_input_value(input0, /*title*/ ctx[2]);
-			append(div0, t1);
-			mount_component(sizeslider, div0, null);
-			append(div0, t2);
-			append(div0, select);
+			append(div2, t1);
+			mount_component(sizeslider, div2, null);
+			append(div2, t2);
+			append(div2, div0);
+			append(div0, label0);
+			append(div0, t4);
+			append(div0, select0);
 
-			for (let i = 0; i < each_blocks.length; i += 1) {
-				each_blocks[i].m(select, null);
+			for (let i = 0; i < each_blocks_1.length; i += 1) {
+				each_blocks_1[i].m(select0, null);
 			}
 
-			select_option(select, /*difficulty*/ ctx[7]);
-			append(div0, t3);
-			append(div0, input1);
-			set_input_value(input1, /*date*/ ctx[6]);
-			append(div0, t4);
-			append(div0, input2);
-			set_input_value(input2, /*author*/ ctx[3]);
-			append(div0, t5);
-			append(div0, input3);
-			set_input_value(input3, /*editor*/ ctx[4]);
-			append(div0, t6);
-			append(div0, input4);
-			set_input_value(input4, /*copyright*/ ctx[5]);
-			append(div2, t7);
+			select_option(select0, /*difficulty*/ ctx[7]);
+			append(div2, t5);
 			append(div2, div1);
-			mount_component(print, div1, null);
-			append(div5, t8);
-			append(div5, div4);
+			append(div1, label1);
+			append(div1, t7);
+			append(div1, select1);
+
+			for (let i = 0; i < each_blocks.length; i += 1) {
+				each_blocks[i].m(select1, null);
+			}
+
+			select_option(select1, /*type*/ ctx[8]);
+			append(div2, t8);
+			append(div2, input1);
+			set_input_value(input1, /*date*/ ctx[6]);
+			append(div2, t9);
+			append(div2, input2);
+			set_input_value(input2, /*author*/ ctx[3]);
+			append(div2, t10);
+			append(div2, input3);
+			set_input_value(input3, /*editor*/ ctx[4]);
+			append(div2, t11);
+			append(div2, input4);
+			set_input_value(input4, /*copyright*/ ctx[5]);
+			append(div4, t12);
 			append(div4, div3);
-			mount_component(menu, div3, null);
-			append(div4, t9);
-			mount_component(grid_1, div4, null);
-			append(div5, t10);
-			append(div5, label);
-			append(div5, t12);
-			append(div5, input5);
-			/*input5_binding*/ ctx[37](input5);
-			append(div5, t13);
-			append(div5, textarea);
+			mount_component(print, div3, null);
+			append(div7, t13);
+			append(div7, div6);
+			append(div6, div5);
+			mount_component(menu, div5, null);
+			append(div6, t14);
+			mount_component(grid_1, div6, null);
+			append(div7, t15);
+			append(div7, label2);
+			append(div7, t17);
+			append(div7, input5);
+			/*input5_binding*/ ctx[40](input5);
+			append(div7, t18);
+			append(div7, textarea);
 			set_input_value(textarea, /*xd*/ ctx[0]);
-			append(div5, t14);
-			append(div5, input6);
+			append(div7, t19);
+			append(div7, input6);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen(input0, "input", /*input0_input_handler*/ ctx[27]),
-					listen(input0, "change", /*handleStateChange*/ ctx[20]),
-					listen(select, "change", /*select_change_handler*/ ctx[29]),
-					listen(select, "change", /*handleStateChange*/ ctx[20]),
-					listen(input1, "input", /*input1_input_handler*/ ctx[30]),
-					listen(input1, "change", /*handleStateChange*/ ctx[20]),
-					listen(input2, "input", /*input2_input_handler*/ ctx[31]),
-					listen(input2, "change", /*handleStateChange*/ ctx[20]),
-					listen(input3, "input", /*input3_input_handler*/ ctx[32]),
-					listen(input3, "change", /*handleStateChange*/ ctx[20]),
-					listen(input4, "input", /*input4_input_handler*/ ctx[33]),
-					listen(input4, "change", /*handleStateChange*/ ctx[20]),
-					listen(input5, "change", /*handleFileSelect*/ ctx[22]),
-					listen(textarea, "input", /*textarea_input_handler*/ ctx[38]),
-					listen(input6, "click", /*downloadXD*/ ctx[24])
+					listen(input0, "input", /*input0_input_handler*/ ctx[29]),
+					listen(input0, "change", /*handleStateChange*/ ctx[22]),
+					listen(select0, "change", /*select0_change_handler*/ ctx[31]),
+					listen(select0, "change", /*handleStateChange*/ ctx[22]),
+					listen(select1, "change", /*select1_change_handler*/ ctx[32]),
+					listen(select1, "change", /*handleStateChange*/ ctx[22]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[33]),
+					listen(input1, "change", /*handleStateChange*/ ctx[22]),
+					listen(input2, "input", /*input2_input_handler*/ ctx[34]),
+					listen(input2, "change", /*handleStateChange*/ ctx[22]),
+					listen(input3, "input", /*input3_input_handler*/ ctx[35]),
+					listen(input3, "change", /*handleStateChange*/ ctx[22]),
+					listen(input4, "input", /*input4_input_handler*/ ctx[36]),
+					listen(input4, "change", /*handleStateChange*/ ctx[22]),
+					listen(input5, "change", /*handleFileSelect*/ ctx[24]),
+					listen(textarea, "input", /*textarea_input_handler*/ ctx[41]),
+					listen(input6, "click", /*downloadXD*/ ctx[26])
 				];
 
 				mounted = true;
@@ -3610,9 +3706,9 @@ function create_fragment(ctx) {
 		p(ctx, dirty) {
 			const instructions_changes = {};
 
-			if (!updating_visible && dirty[0] & /*instructionsVisible*/ 32768) {
+			if (!updating_visible && dirty[0] & /*instructionsVisible*/ 131072) {
 				updating_visible = true;
-				instructions_changes.visible = /*instructionsVisible*/ ctx[15];
+				instructions_changes.visible = /*instructionsVisible*/ ctx[17];
 				add_flush_callback(() => updating_visible = false);
 			}
 
@@ -3624,16 +3720,43 @@ function create_fragment(ctx) {
 
 			const sizeslider_changes = {};
 
-			if (!updating_size && dirty[0] & /*size*/ 4096) {
+			if (!updating_size && dirty[0] & /*size*/ 16384) {
 				updating_size = true;
-				sizeslider_changes.size = /*size*/ ctx[12];
+				sizeslider_changes.size = /*size*/ ctx[14];
 				add_flush_callback(() => updating_size = false);
 			}
 
 			sizeslider.$set(sizeslider_changes);
 
-			if (dirty[0] & /*difficulties*/ 256) {
-				each_value = /*difficulties*/ ctx[8];
+			if (dirty[0] & /*difficulties*/ 512) {
+				each_value_1 = /*difficulties*/ ctx[9];
+				let i;
+
+				for (i = 0; i < each_value_1.length; i += 1) {
+					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+					if (each_blocks_1[i]) {
+						each_blocks_1[i].p(child_ctx, dirty);
+					} else {
+						each_blocks_1[i] = create_each_block_1(child_ctx);
+						each_blocks_1[i].c();
+						each_blocks_1[i].m(select0, null);
+					}
+				}
+
+				for (; i < each_blocks_1.length; i += 1) {
+					each_blocks_1[i].d(1);
+				}
+
+				each_blocks_1.length = each_value_1.length;
+			}
+
+			if (dirty[0] & /*difficulty, difficulties*/ 640) {
+				select_option(select0, /*difficulty*/ ctx[7]);
+			}
+
+			if (dirty[0] & /*types*/ 1024) {
+				each_value = /*types*/ ctx[10];
 				let i;
 
 				for (i = 0; i < each_value.length; i += 1) {
@@ -3644,7 +3767,7 @@ function create_fragment(ctx) {
 					} else {
 						each_blocks[i] = create_each_block(child_ctx);
 						each_blocks[i].c();
-						each_blocks[i].m(select, null);
+						each_blocks[i].m(select1, null);
 					}
 				}
 
@@ -3655,8 +3778,8 @@ function create_fragment(ctx) {
 				each_blocks.length = each_value.length;
 			}
 
-			if (dirty[0] & /*difficulty, difficulties*/ 384) {
-				select_option(select, /*difficulty*/ ctx[7]);
+			if (dirty[0] & /*type, types*/ 1280) {
+				select_option(select1, /*type*/ ctx[8]);
 			}
 
 			if (dirty[0] & /*date*/ 64) {
@@ -3677,20 +3800,20 @@ function create_fragment(ctx) {
 
 			const print_changes = {};
 
-			if (!updating_state && dirty[0] & /*state*/ 8192) {
+			if (!updating_state && dirty[0] & /*state*/ 32768) {
 				updating_state = true;
-				print_changes.state = /*state*/ ctx[13];
+				print_changes.state = /*state*/ ctx[15];
 				add_flush_callback(() => updating_state = false);
 			}
 
 			print.$set(print_changes);
 			const grid_1_changes = {};
-			if (dirty[0] & /*size*/ 4096) grid_1_changes.size = /*size*/ ctx[12];
+			if (dirty[0] & /*size*/ 16384) grid_1_changes.size = /*size*/ ctx[14];
 			if (dirty[0] & /*grid*/ 2) grid_1_changes.grid = /*grid*/ ctx[1];
 
-			if (!updating_Container && dirty[0] & /*gridComponentContainer*/ 2048) {
+			if (!updating_Container && dirty[0] & /*gridComponentContainer*/ 8192) {
 				updating_Container = true;
-				grid_1_changes.Container = /*gridComponentContainer*/ ctx[11];
+				grid_1_changes.Container = /*gridComponentContainer*/ ctx[13];
 				add_flush_callback(() => updating_Container = false);
 			}
 
@@ -3700,8 +3823,8 @@ function create_fragment(ctx) {
 				set_input_value(textarea, /*xd*/ ctx[0]);
 			}
 
-			if (dirty[0] & /*displayXd*/ 512) {
-				set_style(textarea, "display", /*displayXd*/ ctx[9] ? 'block' : 'none', false);
+			if (dirty[0] & /*displayXd*/ 2048) {
+				set_style(textarea, "display", /*displayXd*/ ctx[11] ? 'block' : 'none', false);
 			}
 		},
 		i(local) {
@@ -3725,12 +3848,13 @@ function create_fragment(ctx) {
 			if (detaching) detach(main);
 			destroy_component(instructions);
 			destroy_component(sizeslider);
+			destroy_each(each_blocks_1, detaching);
 			destroy_each(each_blocks, detaching);
 			destroy_component(print);
 			destroy_component(menu);
-			/*grid_1_binding*/ ctx[35](null);
+			/*grid_1_binding*/ ctx[38](null);
 			destroy_component(grid_1);
-			/*input5_binding*/ ctx[37](null);
+			/*input5_binding*/ ctx[40](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -3741,10 +3865,11 @@ function instance($$self, $$props, $$invalidate) {
 	let $questionsDown;
 	let $questionsAcross;
 	let $currentDirection;
-	component_subscribe($$self, questionsDown, $$value => $$invalidate(39, $questionsDown = $$value));
-	component_subscribe($$self, questionsAcross, $$value => $$invalidate(40, $questionsAcross = $$value));
-	component_subscribe($$self, currentDirection, $$value => $$invalidate(41, $currentDirection = $$value));
-	let { difficulties = ["Straight", "Easy", "Medium", "Hard", "Evil", "Cryptic"] } = $$props;
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(42, $questionsDown = $$value));
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(43, $questionsAcross = $$value));
+	component_subscribe($$self, currentDirection, $$value => $$invalidate(44, $currentDirection = $$value));
+	let { difficulties = ["Easy", "Medium", "Hard", "Evil"] } = $$props;
+	let { types = ["Straight", "Quick", "Cryptic"] } = $$props;
 	const save_state = true;
 	let { xd } = $$props;
 	let { grid = [...Array(15)].map(e => Array(15)) } = $$props;
@@ -3754,6 +3879,7 @@ function instance($$self, $$props, $$invalidate) {
 	let { copyright } = $$props;
 	let { date } = $$props;
 	let { difficulty } = $$props;
+	let { type } = $$props;
 	let { displayXd = true } = $$props;
 
 	// Private properties
@@ -3791,6 +3917,7 @@ function instance($$self, $$props, $$invalidate) {
 			editor,
 			copyright,
 			difficulty,
+			type,
 			date
 		}; // symmetry_id,
 	};
@@ -3880,17 +4007,18 @@ function instance($$self, $$props, $$invalidate) {
 			loadXd(xd);
 		} else {
 			{
-				$$invalidate(13, state = restoreState() || state);
+				$$invalidate(15, state = restoreState() || state);
 			}
 
 			$$invalidate(1, grid = state.grid);
-			$$invalidate(12, size = state.size);
+			$$invalidate(14, size = state.size);
 			$$invalidate(3, author = state.author);
 			$$invalidate(4, editor = state.editor);
 			$$invalidate(5, copyright = state.copyright);
 			$$invalidate(6, date = state.date);
 			$$invalidate(2, title = state.title);
 			$$invalidate(7, difficulty = state.difficulty);
+			$$invalidate(8, type = state.type);
 			questionsAcross.set(state.questions_across);
 			questionsDown.set(state.questions_down);
 			gridComponent.setDir(state.direction);
@@ -3900,7 +4028,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function handleReset() {
 		clearState();
-		$$invalidate(12, size = 15);
+		$$invalidate(14, size = 15);
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
 		$$invalidate(2, title = "");
@@ -3908,7 +4036,8 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(4, editor = "");
 		$$invalidate(5, copyright = "");
 		$$invalidate(6, date = "");
-		$$invalidate(7, difficulty = "Straight");
+		$$invalidate(7, difficulty = "Medium");
+		$$invalidate(8, type = "Straight");
 		$$invalidate(1, grid = [...Array(15)].map(e => Array(15)));
 		questionsAcross.set([]);
 		clearState();
@@ -3921,13 +4050,14 @@ function instance($$self, $$props, $$invalidate) {
 	async function loadXd(xd) {
 		const data = xdCrosswordParser(xd);
 		$$invalidate(1, grid = data.grid);
-		$$invalidate(12, size = data.grid.length);
+		$$invalidate(14, size = data.grid.length);
 		$$invalidate(3, author = data.meta.Author);
 		$$invalidate(4, editor = data.meta.Editor);
 		$$invalidate(5, copyright = data.meta.Copyright);
 		$$invalidate(6, date = data.meta.Date);
 		$$invalidate(2, title = data.meta.Title);
 		$$invalidate(7, difficulty = data.meta.Difficulty);
+		$$invalidate(8, type = data.meta.Type);
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
 		await tick();
@@ -3981,7 +4111,7 @@ function instance($$self, $$props, $$invalidate) {
 	let instructionsVisible;
 
 	function handleInstructions() {
-		$$invalidate(15, instructionsVisible = true);
+		$$invalidate(17, instructionsVisible = true);
 	}
 
 	function downloadXD() {
@@ -3996,7 +4126,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function instructions_visible_binding(value) {
 		instructionsVisible = value;
-		$$invalidate(15, instructionsVisible);
+		$$invalidate(17, instructionsVisible);
 	}
 
 	function input0_input_handler() {
@@ -4006,13 +4136,19 @@ function instance($$self, $$props, $$invalidate) {
 
 	function sizeslider_size_binding(value) {
 		size = value;
-		$$invalidate(12, size);
+		$$invalidate(14, size);
 	}
 
-	function select_change_handler() {
+	function select0_change_handler() {
 		difficulty = select_value(this);
 		$$invalidate(7, difficulty);
-		$$invalidate(8, difficulties);
+		$$invalidate(9, difficulties);
+	}
+
+	function select1_change_handler() {
+		type = select_value(this);
+		$$invalidate(8, type);
+		$$invalidate(10, types);
 	}
 
 	function input1_input_handler() {
@@ -4037,25 +4173,25 @@ function instance($$self, $$props, $$invalidate) {
 
 	function print_state_binding(value) {
 		state = value;
-		$$invalidate(13, state);
+		$$invalidate(15, state);
 	}
 
 	function grid_1_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			gridComponent = $$value;
-			$$invalidate(10, gridComponent);
+			$$invalidate(12, gridComponent);
 		});
 	}
 
 	function grid_1_Container_binding(value) {
 		gridComponentContainer = value;
-		$$invalidate(11, gridComponentContainer);
+		$$invalidate(13, gridComponentContainer);
 	}
 
 	function input5_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			fileInput = $$value;
-			$$invalidate(14, fileInput);
+			$$invalidate(16, fileInput);
 		});
 	}
 
@@ -4065,7 +4201,8 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$set = $$props => {
-		if ('difficulties' in $$props) $$invalidate(8, difficulties = $$props.difficulties);
+		if ('difficulties' in $$props) $$invalidate(9, difficulties = $$props.difficulties);
+		if ('types' in $$props) $$invalidate(10, types = $$props.types);
 		if ('xd' in $$props) $$invalidate(0, xd = $$props.xd);
 		if ('grid' in $$props) $$invalidate(1, grid = $$props.grid);
 		if ('title' in $$props) $$invalidate(2, title = $$props.title);
@@ -4074,7 +4211,8 @@ function instance($$self, $$props, $$invalidate) {
 		if ('copyright' in $$props) $$invalidate(5, copyright = $$props.copyright);
 		if ('date' in $$props) $$invalidate(6, date = $$props.date);
 		if ('difficulty' in $$props) $$invalidate(7, difficulty = $$props.difficulty);
-		if ('displayXd' in $$props) $$invalidate(9, displayXd = $$props.displayXd);
+		if ('type' in $$props) $$invalidate(8, type = $$props.type);
+		if ('displayXd' in $$props) $$invalidate(11, displayXd = $$props.displayXd);
 	};
 
 	return [
@@ -4086,7 +4224,9 @@ function instance($$self, $$props, $$invalidate) {
 		copyright,
 		date,
 		difficulty,
+		type,
 		difficulties,
+		types,
 		displayXd,
 		gridComponent,
 		gridComponentContainer,
@@ -4107,7 +4247,8 @@ function instance($$self, $$props, $$invalidate) {
 		instructions_visible_binding,
 		input0_input_handler,
 		sizeslider_size_binding,
-		select_change_handler,
+		select0_change_handler,
+		select1_change_handler,
 		input1_input_handler,
 		input2_input_handler,
 		input3_input_handler,
@@ -4131,8 +4272,9 @@ class JXWordCreator extends SvelteComponent {
 			create_fragment,
 			safe_not_equal,
 			{
-				difficulties: 8,
-				save_state: 25,
+				difficulties: 9,
+				types: 10,
+				save_state: 27,
 				xd: 0,
 				grid: 1,
 				title: 2,
@@ -4141,7 +4283,8 @@ class JXWordCreator extends SvelteComponent {
 				copyright: 5,
 				date: 6,
 				difficulty: 7,
-				displayXd: 9
+				type: 8,
+				displayXd: 11
 			},
 			null,
 			[-1, -1]
@@ -4149,7 +4292,7 @@ class JXWordCreator extends SvelteComponent {
 	}
 
 	get save_state() {
-		return this.$$.ctx[25];
+		return this.$$.ctx[27];
 	}
 }
 

@@ -18,6 +18,9 @@ export function XDEncode(obj) {
     if (obj.difficulty) {
         str += `Difficulty: ${obj.difficulty}\n`;
     }
+    if (obj.type) {
+        str += `Type: ${obj.type}\n`;
+    }
     if (obj.copyright) {
         str += `Copyright: ${obj.copyright}\n`;
     }

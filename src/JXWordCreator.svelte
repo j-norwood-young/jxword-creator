@@ -1,7 +1,7 @@
 <script>
 	// Svelte stuff
 	import { onMount, tick } from "svelte";
-	import { questionsAcross, questionsDown, currentDirection, symmetry, symmetries } from "./stores.js";
+	import { questionsAcross, questionsDown, currentDirection } from "./stores.js";
 	
 	// Components
 	import Menu from "./Menu.svelte";
@@ -17,7 +17,11 @@
 	import XDParser from "xd-crossword-parser";
 
 	export let difficulties = [
-		"Straight", "Easy", "Medium", "Hard", "Evil", "Cryptic" 
+		"Easy", "Medium", "Hard", "Evil" 
+	];
+
+	export let types = [
+		"Straight", "Quick", "Cryptic"
 	];
 	
 	// export let selected_size = sizes[0];
@@ -32,6 +36,7 @@
 	export let copyright;
 	export let date;
 	export let difficulty;
+	export let type;
 	export let displayXd = true;
 
 	// Private properties
@@ -68,6 +73,7 @@
 			editor,
 			copyright,
 			difficulty,
+			type,
 			date,
 			// symmetry_id,
 		}
@@ -156,6 +162,7 @@
 			date = state.date;
 			title = state.title;
 			difficulty = state.difficulty;
+			type = state.type;
 			questionsAcross.set(state.questions_across);
 			questionsDown.set(state.questions_down);
 			gridComponent.setDir(state.direction);
@@ -174,7 +181,8 @@
 		editor = "";
 		copyright = "";
 		date = "";
-		difficulty = "Straight";
+		difficulty = "Medium";
+		type = "Straight";
 		grid = [...Array(15)].map(e => Array(15));;
 		questionsAcross.set([]);
 		clearState();
@@ -194,6 +202,7 @@
 		date = data.meta.Date;
 		title = data.meta.Title;
 		difficulty = data.meta.Difficulty;
+		type = data.meta.Type;
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
 		await tick();
@@ -257,11 +266,22 @@
 			<div id="jxword-meta">
 				<input id="jxword-title" class="jxword-title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" placeholder="Title" />
 				<SizeSlider bind:size="{size}" on:change="{handleStateChange}" />
-				<select name="difficulty" bind:value="{difficulty}" on:change="{handleStateChange}" >
-					{#each difficulties as type_option}
-						<option value="{type_option}">{type_option}</option>
-					{/each}
-				</select>
+				<div>
+					<label for="difficulty">Difficulty</label>
+					<select id="jxword-difficulty" name="difficulty" bind:value="{difficulty}" on:change="{handleStateChange}" >
+						{#each difficulties as difficulty_option}
+							<option value="{difficulty_option}">{difficulty_option}</option>
+						{/each}
+					</select>
+				</div>
+				<div>
+					<label for="type">Type</label>
+					<select id="jxword-type" name="type" bind:value="{type}" on:change="{handleStateChange}">
+						{#each types as type_option}
+							<option value="{type_option}">{type_option}</option>
+						{/each}
+					</select>
+				</div>
 				<input id="jxword-date" name="date" type="date" bind:value={date} on:change="{handleStateChange}" placeholder="Publish Date" />
 				<input id="jxword-author" name="author" type="text" bind:value={author} on:change="{handleStateChange}" placeholder="Author" />
 				<input id="jxword-editor" name="editor" type="text" bind:value={editor} on:change="{handleStateChange}" placeholder="Editor" />
@@ -351,5 +371,15 @@
 		margin-left: 40px;
 		padding-left: 40px;
 		border-left: 1px solid #ccc;
+	}
+
+	.jxword-flex-col {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.jword-flex-row {
+		display: flex;
+		flex-direction: row;
 	}
 </style>
