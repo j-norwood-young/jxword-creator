@@ -1,27 +1,41 @@
 <script>
 	// Svelte stuff
 	import { onMount, tick } from "svelte";
-	import { questionsAcross, questionsDown, currentDirection } from "./stores.js";
+	import { questionsAcross, questionsDown, currentDirection, symmetry, symmetries } from "./stores.js";
 	
 	// Components
 	import Menu from "./Menu.svelte";
 	import Grid from "./Grid.svelte";
 	import Instructions from "./Instructions.svelte";
+	import SizeSlider from "./SizeSlider.svelte";
+	// import Symmetry from "./Symmetry.svelte";
+	import Print from "./Print.svelte";
 	
 	// Libraries
 	import { saveState, restoreState, clearState } from './savestate';
 	import { XDEncode } from "./xd-encode.js";
 	import XDParser from "xd-crossword-parser";
 
+	export let difficulties = [
+		"Straight", "Easy", "Medium", "Hard", "Evil", "Cryptic" 
+	];
+	
+	// export let selected_size = sizes[0];
+
 	// Exposed properties
 	export const save_state = true;
 	export let xd;
-	export let grid = [...Array(10)].map(e => Array(10));
+	export let grid = [...Array(15)].map(e => Array(15));
 	export let title;
 	export let author;
 	export let editor;
+	export let copyright;
 	export let date;
+	export let difficulty;
 	export let displayXd = true;
+
+	// Private properties
+	// let symmetry_id = $symmetries.findIndex(s => s.default);
 
 	// State
 	let gridComponent;
@@ -35,9 +49,11 @@
 		direction: "across",
 		questions_across: $questionsAcross,
 		questions_down: $questionsDown,
+		// symmetry_id,
 	}
 
 	let getState = () => {
+		if (!gridComponent) return; // We haven't loaded the grid yet
 		let { x: current_x, y: current_y } = gridComponent.getCurrentPos();
 		return {
 			grid,
@@ -50,7 +66,10 @@
 			title,
 			author,
 			editor,
-			date
+			copyright,
+			difficulty,
+			date,
+			// symmetry_id,
 		}
 	};
 
@@ -116,7 +135,7 @@
 		}
 	}
 
-	function handleStateChange() {
+	async function handleStateChange() {
 		if (!save_state) return;
 		saveState(getState());
 		xd = XDEncode(getState());
@@ -133,25 +152,30 @@
 			size = state.size;
 			author = state.author;
 			editor = state.editor;
+			copyright = state.copyright;
 			date = state.date;
 			title = state.title;
+			difficulty = state.difficulty;
 			questionsAcross.set(state.questions_across);
 			questionsDown.set(state.questions_down);
 			gridComponent.setDir(state.direction);
 			gridComponent.setCurrentPos(state.current_x, state.current_y);
+			// symmetry_id = state.symmetry_id;
 		}
 	});
 	
 	function handleReset() {
 		clearState();
-		size = 10;
+		size = 15;
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
 		title = "";
 		author = "";
 		editor = "";
+		copyright = "";
 		date = "";
-		grid = [...Array(10)].map(e => Array(10));;
+		difficulty = "Straight";
+		grid = [...Array(15)].map(e => Array(15));;
 		questionsAcross.set([]);
 		clearState();
 		questionsDown.set([]);
@@ -162,13 +186,14 @@
 
 	async function loadXd(xd) {
 		const data= XDParser(xd);
-		console.log(data);
 		grid = data.grid;
 		size = data.grid.length;
 		author = data.meta.Author;
 		editor = data.meta.Editor;
+		copyright = data.meta.Copyright;
 		date = data.meta.Date;
 		title = data.meta.Title;
+		difficulty = data.meta.Difficulty;
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
 		await tick();
@@ -214,21 +239,38 @@
 		instructionsVisible = true;
 	}
 
+	function downloadXD() {
+		// Download contents of xd
+		const file = new Blob([xd], {type: "text/plain;charset=utf-8"});
+		const downloadLink = document.createElement("a");
+		downloadLink.download = "crossword.xd";
+		downloadLink.href = URL.createObjectURL(file);
+		downloadLink.click();
+	}
+
 </script>
 
 <main>
 	<Instructions bind:visible="{ instructionsVisible }" />
 	<div class="jxword-form-container">
-		<label for="title">Title</label>
-		<input id="title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" />
-		<label for="author">Author</label>
-		<input id="author" name="author" type="text" bind:value={author} on:change="{handleStateChange}" />
-		<label for="editor">Editor</label>
-		<input id="editor" name="editor" type="text" bind:value={editor} on:change="{handleStateChange}" />
-		<label for="date">Date</label>
-		<input id="date" name="date" type="date" bind:value={date} on:change="{handleStateChange}" />
-		<label for="size">Size</label>
-		<input type="number" name="size" id="size" placeholder="size" default="5" min="2" bind:value={size}>
+		<div id="jxword-top">
+			<div id="jxword-meta">
+				<input id="jxword-title" class="jxword-title" name="title" type="text" bind:value={title} on:change="{handleStateChange}" placeholder="Title" />
+				<SizeSlider bind:size="{size}" on:change="{handleStateChange}" />
+				<select name="difficulty" bind:value="{difficulty}" on:change="{handleStateChange}" >
+					{#each difficulties as type_option}
+						<option value="{type_option}">{type_option}</option>
+					{/each}
+				</select>
+				<input id="jxword-date" name="date" type="date" bind:value={date} on:change="{handleStateChange}" placeholder="Publish Date" />
+				<input id="jxword-author" name="author" type="text" bind:value={author} on:change="{handleStateChange}" placeholder="Author" />
+				<input id="jxword-editor" name="editor" type="text" bind:value={editor} on:change="{handleStateChange}" placeholder="Editor" />
+				<input id="jxword-copyright" name="copyright" type="text" bind:value={copyright} on:change="{handleStateChange}" placeholder="Copyright" />
+			</div>
+			<div id="jxword-options">
+				<Print bind:state={state} />
+			</div>
+		</div>
 		<div class="jxword-container" >
 			<div class="jxword-header">
 				<Menu on:reset="{ handleReset }" on:instructions="{ handleInstructions }" />
@@ -238,6 +280,7 @@
 		<label for="file">Upload an XD file (optional)</label>
 		<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
 		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" style:display="{displayXd ? 'block' : 'none'}" />
+		<input class="jxword-btn" type="submit" value="Download XD" on:click="{downloadXD}" />
 	</div>
 </main>
 
@@ -273,10 +316,17 @@
 			margin-bottom: 0.3em;
 		}
 
-		input {
+		input, select {
 			display: block;
 			margin-bottom: 1em;
 			max-width: 400px;
+			border: none;
+			border-bottom: 1px solid #ccc;
+		}
+
+		input.jxword-title {
+			font-size: 1.5em;
+			font-weight: bold;
 		}
 	}
 
@@ -284,5 +334,22 @@
 		margin-top: 15px;
 		margin-bottom: 25px;
 		min-width: 1024px;
+	}
+
+	.jxword-btn {
+		margin-top: 1em;
+	}
+
+	#jxword-top {
+		display: flex;
+		flex-direction: row;
+		align-items: left;
+		justify-content: left;
+	}
+
+	#jxword-options {
+		margin-left: 40px;
+		padding-left: 40px;
+		border-left: 1px solid #ccc;
 	}
 </style>

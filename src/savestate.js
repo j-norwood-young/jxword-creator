@@ -5,7 +5,7 @@ export function saveState(state) {
 
 export function restoreState() {
     let stateString = localStorage.getItem('jxword-creator');
-    if (stateString) {
+    if (stateString && stateString !== 'undefined') {
         let state = JSON.parse(stateString);
         return state;
     } else {

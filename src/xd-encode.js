@@ -1,6 +1,7 @@
 const format_date = (date) => new Date(date).toISOString().slice(0, 10);
 
 export function XDEncode(obj) {
+    if (!obj) return;
     let str = "";
     if (obj.title) {
         str += `Title: ${obj.title}\n`;
@@ -13,6 +14,12 @@ export function XDEncode(obj) {
     }
     if (obj.date) {
         str += `Date: ${format_date(obj.date)}\n`;
+    }
+    if (obj.difficulty) {
+        str += `Difficulty: ${obj.difficulty}\n`;
+    }
+    if (obj.copyright) {
+        str += `Copyright: ${obj.copyright}\n`;
     }
     str += `\n\n`;
     for (let y = 0; y < obj.grid.length; y++) {

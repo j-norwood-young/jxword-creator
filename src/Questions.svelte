@@ -6,7 +6,7 @@
                     <Question question={question} direction={"across"} questions_across={questions_across} on:change on:update_question />
                 {/each}
         </div>
-        <div class="jxword-questions-direction jxword-questions-across">
+        <div class="jxword-questions-direction jxword-questions-down">
             <h4>Down</h4>
                 {#each questions_down as question}
                     <Question question={question} direction="down" questions_down={questions_down} on:change on:update_question />
