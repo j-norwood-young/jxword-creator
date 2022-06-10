@@ -82,12 +82,15 @@
         <div class="btn" on:click="{saveQuestion(question)}">Save</div>
     </div>
     {:else}
-    <div class="jxword-question" on:dblclick="{editQuestion(question)}">{question.num}: {question.question || "No question set"} ~ {question.answer}
-    {#if suggestions.length}
-        {#each suggestions as suggestion}
-            <span class="suggestion" on:click="{useSuggestion(suggestion)}">{suggestion}</span>
-        {/each}
-    {/if}
+    <div class="jxword-question" on:dblclick="{editQuestion(question)}">
+        <span class="jxword-question-num">{question.num}:</span> <span class="jxword-question-question">{question.question || "No question set"}</span> <span class="jxword-question-answer">~ {question.answer}</span>
+        <div class="jxword-suggestions">
+        {#if suggestions.length}
+            {#each suggestions as suggestion}
+                <span class="jxword-suggestion" on:click="{useSuggestion(suggestion)}">{suggestion}</span>
+            {/each}
+        {/if}
+        </div>
     </div>
     {/if}
 </main>
@@ -109,7 +112,7 @@
         font-size: 16px;
         cursor: pointer;
     }
-    .suggestion {
+    .jxword-suggestion {
         font-size: 9pt;
         background-color: #2e4877;
         color: white;

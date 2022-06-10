@@ -438,6 +438,7 @@ function handleFocus(e) {
 
 function handleUpdateQuestion(e) {
     const { question, suggestion } = e.detail;
+    console.log(question, suggestion);
     if (question.direction === "across") {
         for (let i = 0; i < suggestion.length; i++) {
             grid[question.y][i + question.x] = suggestion[i];

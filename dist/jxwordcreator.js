@@ -646,44 +646,66 @@ function get_each_context$3(ctx, list, i) {
 
 // (84:4) {:else}
 function create_else_block$1(ctx) {
-	let div;
+	let div1;
+	let span0;
 	let t0_value = /*question*/ ctx[0].num + "";
 	let t0;
 	let t1;
-	let t2_value = (/*question*/ ctx[0].question || "No question set") + "";
 	let t2;
+	let span1;
+	let t3_value = (/*question*/ ctx[0].question || "No question set") + "";
 	let t3;
-	let t4_value = /*question*/ ctx[0].answer + "";
 	let t4;
+	let span2;
 	let t5;
+	let t6_value = /*question*/ ctx[0].answer + "";
+	let t6;
+	let t7;
+	let div0;
 	let mounted;
 	let dispose;
 	let if_block = /*suggestions*/ ctx[1].length && create_if_block_1$1(ctx);
 
 	return {
 		c() {
-			div = element("div");
+			div1 = element("div");
+			span0 = element("span");
 			t0 = text(t0_value);
-			t1 = text(": ");
-			t2 = text(t2_value);
-			t3 = text(" ~ ");
-			t4 = text(t4_value);
-			t5 = space();
+			t1 = text(":");
+			t2 = space();
+			span1 = element("span");
+			t3 = text(t3_value);
+			t4 = space();
+			span2 = element("span");
+			t5 = text("~ ");
+			t6 = text(t6_value);
+			t7 = space();
+			div0 = element("div");
 			if (if_block) if_block.c();
-			attr(div, "class", "jxword-question svelte-1bhhin7");
+			attr(span0, "class", "jxword-question-num");
+			attr(span1, "class", "jxword-question-question");
+			attr(span2, "class", "jxword-question-answer");
+			attr(div0, "class", "jxword-suggestions");
+			attr(div1, "class", "jxword-question svelte-tw6vzm");
 		},
 		m(target, anchor) {
-			insert(target, div, anchor);
-			append(div, t0);
-			append(div, t1);
-			append(div, t2);
-			append(div, t3);
-			append(div, t4);
-			append(div, t5);
-			if (if_block) if_block.m(div, null);
+			insert(target, div1, anchor);
+			append(div1, span0);
+			append(span0, t0);
+			append(span0, t1);
+			append(div1, t2);
+			append(div1, span1);
+			append(span1, t3);
+			append(div1, t4);
+			append(div1, span2);
+			append(span2, t5);
+			append(span2, t6);
+			append(div1, t7);
+			append(div1, div0);
+			if (if_block) if_block.m(div0, null);
 
 			if (!mounted) {
-				dispose = listen(div, "dblclick", function () {
+				dispose = listen(div1, "dblclick", function () {
 					if (is_function(/*editQuestion*/ ctx[3](/*question*/ ctx[0]))) /*editQuestion*/ ctx[3](/*question*/ ctx[0]).apply(this, arguments);
 				});
 
@@ -693,8 +715,8 @@ function create_else_block$1(ctx) {
 		p(new_ctx, dirty) {
 			ctx = new_ctx;
 			if (dirty & /*question*/ 1 && t0_value !== (t0_value = /*question*/ ctx[0].num + "")) set_data(t0, t0_value);
-			if (dirty & /*question*/ 1 && t2_value !== (t2_value = (/*question*/ ctx[0].question || "No question set") + "")) set_data(t2, t2_value);
-			if (dirty & /*question*/ 1 && t4_value !== (t4_value = /*question*/ ctx[0].answer + "")) set_data(t4, t4_value);
+			if (dirty & /*question*/ 1 && t3_value !== (t3_value = (/*question*/ ctx[0].question || "No question set") + "")) set_data(t3, t3_value);
+			if (dirty & /*question*/ 1 && t6_value !== (t6_value = /*question*/ ctx[0].answer + "")) set_data(t6, t6_value);
 
 			if (/*suggestions*/ ctx[1].length) {
 				if (if_block) {
@@ -702,7 +724,7 @@ function create_else_block$1(ctx) {
 				} else {
 					if_block = create_if_block_1$1(ctx);
 					if_block.c();
-					if_block.m(div, null);
+					if_block.m(div0, null);
 				}
 			} else if (if_block) {
 				if_block.d(1);
@@ -710,7 +732,7 @@ function create_else_block$1(ctx) {
 			}
 		},
 		d(detaching) {
-			if (detaching) detach(div);
+			if (detaching) detach(div1);
 			if (if_block) if_block.d();
 			mounted = false;
 			dispose();
@@ -755,8 +777,8 @@ function create_if_block$1(ctx) {
 			attr(input, "class", "jxword-question-text");
 			input.autofocus = true;
 			attr(div1, "class", "jxword-question-answer");
-			attr(div2, "class", "btn svelte-1bhhin7");
-			attr(div3, "class", "jxword-question jxword-question-editing svelte-1bhhin7");
+			attr(div2, "class", "btn svelte-tw6vzm");
+			attr(div3, "class", "jxword-question jxword-question-editing svelte-tw6vzm");
 		},
 		m(target, anchor) {
 			insert(target, div3, anchor);
@@ -803,7 +825,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (86:4) {#if suggestions.length}
+// (88:8) {#if suggestions.length}
 function create_if_block_1$1(ctx) {
 	let each_1_anchor;
 	let each_value = /*suggestions*/ ctx[1];
@@ -859,7 +881,7 @@ function create_if_block_1$1(ctx) {
 	};
 }
 
-// (87:8) {#each suggestions as suggestion}
+// (89:12) {#each suggestions as suggestion}
 function create_each_block$3(ctx) {
 	let span;
 	let t_value = /*suggestion*/ ctx[16] + "";
@@ -871,7 +893,7 @@ function create_each_block$3(ctx) {
 		c() {
 			span = element("span");
 			t = text(t_value);
-			attr(span, "class", "suggestion svelte-1bhhin7");
+			attr(span, "class", "jxword-suggestion svelte-tw6vzm");
 		},
 		m(target, anchor) {
 			insert(target, span, anchor);
@@ -912,7 +934,7 @@ function create_fragment$6(ctx) {
 		c() {
 			main = element("main");
 			if_block.c();
-			attr(main, "class", "svelte-1bhhin7");
+			attr(main, "class", "svelte-tw6vzm");
 			toggle_class(main, "current", /*is_current_question*/ ctx[2]);
 		},
 		m(target, anchor) {
@@ -1407,7 +1429,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (466:28) {:else}
+// (467:28) {:else}
 function create_else_block(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1516,7 +1538,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (461:28) {#if letter=="#"}
+// (462:28) {#if letter=="#"}
 function create_if_block_1(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1683,7 +1705,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (470:28) {#if (number_grid[y][x] != null && letter!=="#")}
+// (471:28) {#if (number_grid[y][x] != null && letter!=="#")}
 function create_if_block(ctx) {
 	let text_1;
 	let t_value = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] + "";
@@ -1735,7 +1757,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (459:20) {#each col_data as letter, x}
+// (460:20) {#each col_data as letter, x}
 function create_each_block_1$1(ctx) {
 	let g;
 	let if_block0_anchor;
@@ -1833,7 +1855,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (458:16) {#each grid as col_data, y}
+// (459:16) {#each grid as col_data, y}
 function create_each_block$1(ctx) {
 	let each_1_anchor;
 	let each_value_1 = /*col_data*/ ctx[60];
@@ -2463,6 +2485,7 @@ function instance$4($$self, $$props, $$invalidate) {
 
 	function handleUpdateQuestion(e) {
 		const { question, suggestion } = e.detail;
+		console.log(question, suggestion);
 
 		if (question.direction === "across") {
 			for (let i = 0; i < suggestion.length; i++) {
@@ -3063,6 +3086,10 @@ function create_fragment$1(ctx) {
 }
 
 function instance$1($$self, $$props, $$invalidate) {
+	let $questionsAcross;
+	let $questionsDown;
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(3, $questionsAcross = $$value));
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(4, $questionsDown = $$value));
 	let { state } = $$props;
 
 	function printBlank() {
@@ -3091,12 +3118,24 @@ function instance$1($$self, $$props, $$invalidate) {
 		print(svg);
 	}
 
+	function formatQuestions(direction) {
+		let questions;
+
+		if (direction === "down") {
+			questions = $questionsDown;
+		} else {
+			questions = $questionsAcross;
+		}
+
+		return questions.map(question => `<li>${question.num}: ${question.question}</li>`).join("");
+	}
+
 	function print(svg) {
 		// console.log(svg);
 		const svg_text = svg.outerHTML.replace(/fill="#f7f457"/g, `fill="#ffffff"`).replace(/fill="#9ce0fb"/g, `fill="#ffffff"`);
 
-		const questions_across = document.querySelector(`.jxword-questions-across`).outerHTML;
-		const questions_down = document.querySelector(`.jxword-questions-down`).outerHTML;
+		const questions_across = `<h4>Across</h4><ol class="jxword-questions-list">${formatQuestions("across")}</ol>`;
+		const questions_down = `<h4>Down</h4><ol class="jxword-questions-list">${formatQuestions("down")}</ol>`;
 		let printWindow = window.open();
 		printWindow.document.write(`<html><head><title>${state.title}</title>`);
 
@@ -3294,20 +3333,20 @@ var xdCrosswordParser = XDParser;
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[47] = list[i];
+	child_ctx[49] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[50] = list[i];
+	child_ctx[52] = list[i];
 	return child_ctx;
 }
 
-// (272:6) {#each difficulties as difficulty_option}
+// (282:6) {#each difficulties as difficulty_option}
 function create_each_block_1(ctx) {
 	let option;
-	let t_value = /*difficulty_option*/ ctx[50] + "";
+	let t_value = /*difficulty_option*/ ctx[52] + "";
 	let t;
 	let option_value_value;
 
@@ -3315,7 +3354,7 @@ function create_each_block_1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*difficulty_option*/ ctx[50];
+			option.__value = option_value_value = /*difficulty_option*/ ctx[52];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3323,9 +3362,9 @@ function create_each_block_1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*difficulties*/ 512 && t_value !== (t_value = /*difficulty_option*/ ctx[50] + "")) set_data(t, t_value);
+			if (dirty[0] & /*difficulties*/ 1024 && t_value !== (t_value = /*difficulty_option*/ ctx[52] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*difficulties*/ 512 && option_value_value !== (option_value_value = /*difficulty_option*/ ctx[50])) {
+			if (dirty[0] & /*difficulties*/ 1024 && option_value_value !== (option_value_value = /*difficulty_option*/ ctx[52])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3336,10 +3375,10 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (280:6) {#each types as type_option}
+// (290:6) {#each types as type_option}
 function create_each_block(ctx) {
 	let option;
-	let t_value = /*type_option*/ ctx[47] + "";
+	let t_value = /*type_option*/ ctx[49] + "";
 	let t;
 	let option_value_value;
 
@@ -3347,7 +3386,7 @@ function create_each_block(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*type_option*/ ctx[47];
+			option.__value = option_value_value = /*type_option*/ ctx[49];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -3355,9 +3394,9 @@ function create_each_block(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*types*/ 1024 && t_value !== (t_value = /*type_option*/ ctx[47] + "")) set_data(t, t_value);
+			if (dirty[0] & /*types*/ 2048 && t_value !== (t_value = /*type_option*/ ctx[49] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*types*/ 1024 && option_value_value !== (option_value_value = /*type_option*/ ctx[47])) {
+			if (dirty[0] & /*types*/ 2048 && option_value_value !== (option_value_value = /*type_option*/ ctx[49])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -3373,8 +3412,8 @@ function create_fragment(ctx) {
 	let instructions;
 	let updating_visible;
 	let t0;
+	let div10;
 	let div7;
-	let div4;
 	let div2;
 	let input0;
 	let t1;
@@ -3399,62 +3438,69 @@ function create_fragment(ctx) {
 	let t11;
 	let input4;
 	let t12;
+	let div6;
 	let div3;
+	let input5;
+	let t13;
+	let label2;
+	let t15;
 	let print;
 	let updating_state;
-	let t13;
-	let div6;
+	let t16;
+	let div4;
+	let label3;
+	let t18;
+	let input6;
+	let t19;
 	let div5;
+	let button;
+	let t21;
+	let div9;
+	let div8;
 	let menu;
-	let t14;
+	let t22;
 	let grid_1;
 	let updating_Container;
-	let t15;
-	let label2;
-	let t17;
-	let input5;
-	let t18;
+	let t23;
 	let textarea;
-	let t19;
-	let input6;
 	let current;
 	let mounted;
 	let dispose;
 
 	function instructions_visible_binding(value) {
-		/*instructions_visible_binding*/ ctx[28](value);
+		/*instructions_visible_binding*/ ctx[29](value);
 	}
 
 	let instructions_props = {};
 
-	if (/*instructionsVisible*/ ctx[17] !== void 0) {
-		instructions_props.visible = /*instructionsVisible*/ ctx[17];
+	if (/*instructionsVisible*/ ctx[18] !== void 0) {
+		instructions_props.visible = /*instructionsVisible*/ ctx[18];
 	}
 
 	instructions = new Instructions({ props: instructions_props });
 	binding_callbacks.push(() => bind(instructions, 'visible', instructions_visible_binding));
 
 	function sizeslider_size_binding(value) {
-		/*sizeslider_size_binding*/ ctx[30](value);
+		/*sizeslider_size_binding*/ ctx[31](value);
 	}
 
 	let sizeslider_props = {};
 
-	if (/*size*/ ctx[14] !== void 0) {
-		sizeslider_props.size = /*size*/ ctx[14];
+	if (/*size*/ ctx[15] !== void 0) {
+		sizeslider_props.size = /*size*/ ctx[15];
 	}
 
 	sizeslider = new SizeSlider({ props: sizeslider_props });
 	binding_callbacks.push(() => bind(sizeslider, 'size', sizeslider_size_binding));
-	sizeslider.$on("change", /*handleStateChange*/ ctx[22]);
-	let each_value_1 = /*difficulties*/ ctx[9];
+	sizeslider.$on("change", /*handleStateChange*/ ctx[23]);
+	let each_value_1 = /*difficulties*/ ctx[10];
 	let each_blocks_1 = [];
 
 	for (let i = 0; i < each_value_1.length; i += 1) {
 		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
 	}
 
-	let each_value = /*types*/ ctx[10];
+	let each_value = /*types*/ ctx[11];
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value.length; i += 1) {
@@ -3462,50 +3508,50 @@ function create_fragment(ctx) {
 	}
 
 	function print_state_binding(value) {
-		/*print_state_binding*/ ctx[37](value);
+		/*print_state_binding*/ ctx[39](value);
 	}
 
 	let print_props = {};
 
-	if (/*state*/ ctx[15] !== void 0) {
-		print_props.state = /*state*/ ctx[15];
+	if (/*state*/ ctx[16] !== void 0) {
+		print_props.state = /*state*/ ctx[16];
 	}
 
 	print = new Print({ props: print_props });
 	binding_callbacks.push(() => bind(print, 'state', print_state_binding));
 	menu = new Menu({});
-	menu.$on("reset", /*handleReset*/ ctx[23]);
-	menu.$on("instructions", /*handleInstructions*/ ctx[25]);
+	menu.$on("reset", /*handleReset*/ ctx[24]);
+	menu.$on("instructions", /*handleInstructions*/ ctx[26]);
 
 	function grid_1_Container_binding(value) {
-		/*grid_1_Container_binding*/ ctx[39](value);
+		/*grid_1_Container_binding*/ ctx[42](value);
 	}
 
 	let grid_1_props = {
-		size: /*size*/ ctx[14],
+		size: /*size*/ ctx[15],
 		grid: /*grid*/ ctx[1]
 	};
 
-	if (/*gridComponentContainer*/ ctx[13] !== void 0) {
-		grid_1_props.Container = /*gridComponentContainer*/ ctx[13];
+	if (/*gridComponentContainer*/ ctx[14] !== void 0) {
+		grid_1_props.Container = /*gridComponentContainer*/ ctx[14];
 	}
 
 	grid_1 = new Grid({ props: grid_1_props });
-	/*grid_1_binding*/ ctx[38](grid_1);
+	/*grid_1_binding*/ ctx[41](grid_1);
 	binding_callbacks.push(() => bind(grid_1, 'Container', grid_1_Container_binding));
-	grid_1.$on("change", /*handleStateChange*/ ctx[22]);
-	grid_1.$on("move", /*handleMove*/ ctx[18]);
-	grid_1.$on("letter", /*handleLetter*/ ctx[19]);
-	grid_1.$on("backspace", /*handleBackspace*/ ctx[21]);
-	grid_1.$on("enter", /*handleEnter*/ ctx[20]);
+	grid_1.$on("change", /*handleStateChange*/ ctx[23]);
+	grid_1.$on("move", /*handleMove*/ ctx[19]);
+	grid_1.$on("letter", /*handleLetter*/ ctx[20]);
+	grid_1.$on("backspace", /*handleBackspace*/ ctx[22]);
+	grid_1.$on("enter", /*handleEnter*/ ctx[21]);
 
 	return {
 		c() {
 			main = element("main");
 			create_component(instructions.$$.fragment);
 			t0 = space();
+			div10 = element("div");
 			div7 = element("div");
-			div4 = element("div");
 			div2 = element("div");
 			input0 = element("input");
 			t1 = space();
@@ -3541,91 +3587,103 @@ function create_fragment(ctx) {
 			t11 = space();
 			input4 = element("input");
 			t12 = space();
-			div3 = element("div");
-			create_component(print.$$.fragment);
-			t13 = space();
 			div6 = element("div");
-			div5 = element("div");
-			create_component(menu.$$.fragment);
-			t14 = space();
-			create_component(grid_1.$$.fragment);
-			t15 = space();
-			label2 = element("label");
-			label2.textContent = "Upload an XD file (optional)";
-			t17 = space();
+			div3 = element("div");
 			input5 = element("input");
+			t13 = space();
+			label2 = element("label");
+			label2.textContent = "Symmetry";
+			t15 = space();
+			create_component(print.$$.fragment);
+			t16 = space();
+			div4 = element("div");
+			label3 = element("label");
+			label3.textContent = "Upload Crossword";
 			t18 = space();
-			textarea = element("textarea");
-			t19 = space();
 			input6 = element("input");
+			t19 = space();
+			div5 = element("div");
+			button = element("button");
+			button.textContent = "Download Crossword";
+			t21 = space();
+			div9 = element("div");
+			div8 = element("div");
+			create_component(menu.$$.fragment);
+			t22 = space();
+			create_component(grid_1.$$.fragment);
+			t23 = space();
+			textarea = element("textarea");
 			attr(input0, "id", "jxword-title");
-			attr(input0, "class", "jxword-title svelte-4b0cz6");
+			attr(input0, "class", "jxword-title svelte-28r245");
 			attr(input0, "name", "title");
 			attr(input0, "type", "text");
 			attr(input0, "placeholder", "Title");
 			attr(label0, "for", "difficulty");
-			attr(label0, "class", "svelte-4b0cz6");
+			attr(label0, "class", "svelte-28r245");
 			attr(select0, "id", "jxword-difficulty");
 			attr(select0, "name", "difficulty");
-			attr(select0, "class", "svelte-4b0cz6");
-			if (/*difficulty*/ ctx[7] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[31].call(select0));
+			attr(select0, "class", "svelte-28r245");
+			if (/*difficulty*/ ctx[7] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[32].call(select0));
 			attr(label1, "for", "type");
-			attr(label1, "class", "svelte-4b0cz6");
+			attr(label1, "class", "svelte-28r245");
 			attr(select1, "id", "jxword-type");
 			attr(select1, "name", "type");
-			attr(select1, "class", "svelte-4b0cz6");
-			if (/*type*/ ctx[8] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[32].call(select1));
+			attr(select1, "class", "svelte-28r245");
+			if (/*type*/ ctx[8] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[33].call(select1));
 			attr(input1, "id", "jxword-date");
 			attr(input1, "name", "date");
 			attr(input1, "type", "date");
 			attr(input1, "placeholder", "Publish Date");
-			attr(input1, "class", "svelte-4b0cz6");
+			attr(input1, "class", "svelte-28r245");
 			attr(input2, "id", "jxword-author");
 			attr(input2, "name", "author");
 			attr(input2, "type", "text");
 			attr(input2, "placeholder", "Author");
-			attr(input2, "class", "svelte-4b0cz6");
+			attr(input2, "class", "svelte-28r245");
 			attr(input3, "id", "jxword-editor");
 			attr(input3, "name", "editor");
 			attr(input3, "type", "text");
 			attr(input3, "placeholder", "Editor");
-			attr(input3, "class", "svelte-4b0cz6");
+			attr(input3, "class", "svelte-28r245");
 			attr(input4, "id", "jxword-copyright");
 			attr(input4, "name", "copyright");
 			attr(input4, "type", "text");
 			attr(input4, "placeholder", "Copyright");
-			attr(input4, "class", "svelte-4b0cz6");
+			attr(input4, "class", "svelte-28r245");
 			attr(div2, "id", "jxword-meta");
-			attr(div3, "id", "jxword-options");
-			attr(div3, "class", "svelte-4b0cz6");
-			attr(div4, "id", "jxword-top");
-			attr(div4, "class", "svelte-4b0cz6");
-			attr(div5, "class", "jxword-header");
-			attr(div6, "class", "jxword-container svelte-4b0cz6");
-			attr(label2, "for", "file");
-			attr(label2, "class", "svelte-4b0cz6");
-			attr(input5, "class", "drop_zone svelte-4b0cz6");
-			attr(input5, "type", "file");
-			attr(input5, "id", "file");
-			attr(input5, "name", "files");
-			attr(input5, "accept", ".xd");
+			attr(input5, "type", "checkbox");
+			attr(input5, "name", "symmetry");
+			attr(input5, "class", "svelte-28r245");
+			attr(label2, "for", "symmetry");
+			attr(label2, "class", "svelte-28r245");
+			attr(div3, "class", "jxword-checkbox-group svelte-28r245");
+			attr(label3, "for", "file");
+			attr(label3, "class", "svelte-28r245");
+			attr(input6, "class", "drop_zone svelte-28r245");
+			attr(input6, "type", "file");
+			attr(input6, "id", "file");
+			attr(input6, "name", "files");
+			attr(input6, "accept", ".xd");
+			attr(div6, "id", "jxword-options");
+			attr(div6, "class", "svelte-28r245");
+			attr(div7, "id", "jxword-top");
+			attr(div7, "class", "svelte-28r245");
+			attr(div8, "class", "jxword-header");
+			attr(div9, "class", "jxword-container svelte-28r245");
 			attr(textarea, "id", "xd");
 			attr(textarea, "name", "xd");
-			attr(textarea, "class", "jxword-xd-textarea svelte-4b0cz6");
-			set_style(textarea, "display", /*displayXd*/ ctx[11] ? 'block' : 'none', false);
-			attr(input6, "class", "jxword-btn svelte-4b0cz6");
-			attr(input6, "type", "submit");
-			input6.value = "Download XD";
-			attr(div7, "class", "jxword-form-container svelte-4b0cz6");
-			attr(main, "class", "svelte-4b0cz6");
+			attr(textarea, "class", "jxword-xd-textarea svelte-28r245");
+			set_style(textarea, "display", /*displayXd*/ ctx[12] ? 'block' : 'none', false);
+			attr(div10, "class", "jxword-form-container svelte-28r245");
+			attr(main, "class", "svelte-28r245");
 		},
 		m(target, anchor) {
 			insert(target, main, anchor);
 			mount_component(instructions, main, null);
 			append(main, t0);
-			append(main, div7);
-			append(div7, div4);
-			append(div4, div2);
+			append(main, div10);
+			append(div10, div7);
+			append(div7, div2);
 			append(div2, input0);
 			set_input_value(input0, /*title*/ ctx[2]);
 			append(div2, t1);
@@ -3664,46 +3722,55 @@ function create_fragment(ctx) {
 			append(div2, t11);
 			append(div2, input4);
 			set_input_value(input4, /*copyright*/ ctx[5]);
-			append(div4, t12);
-			append(div4, div3);
-			mount_component(print, div3, null);
-			append(div7, t13);
+			append(div7, t12);
 			append(div7, div6);
+			append(div6, div3);
+			append(div3, input5);
+			input5.checked = /*symmetry*/ ctx[9];
+			append(div3, t13);
+			append(div3, label2);
+			append(div6, t15);
+			mount_component(print, div6, null);
+			append(div6, t16);
+			append(div6, div4);
+			append(div4, label3);
+			append(div4, t18);
+			append(div4, input6);
+			/*input6_binding*/ ctx[40](input6);
+			append(div6, t19);
 			append(div6, div5);
-			mount_component(menu, div5, null);
-			append(div6, t14);
-			mount_component(grid_1, div6, null);
-			append(div7, t15);
-			append(div7, label2);
-			append(div7, t17);
-			append(div7, input5);
-			/*input5_binding*/ ctx[40](input5);
-			append(div7, t18);
-			append(div7, textarea);
+			append(div5, button);
+			append(div10, t21);
+			append(div10, div9);
+			append(div9, div8);
+			mount_component(menu, div8, null);
+			append(div9, t22);
+			mount_component(grid_1, div9, null);
+			append(div10, t23);
+			append(div10, textarea);
 			set_input_value(textarea, /*xd*/ ctx[0]);
-			append(div7, t19);
-			append(div7, input6);
 			current = true;
 
 			if (!mounted) {
 				dispose = [
-					listen(input0, "input", /*input0_input_handler*/ ctx[29]),
-					listen(input0, "change", /*handleStateChange*/ ctx[22]),
-					listen(select0, "change", /*select0_change_handler*/ ctx[31]),
-					listen(select0, "change", /*handleStateChange*/ ctx[22]),
-					listen(select1, "change", /*select1_change_handler*/ ctx[32]),
-					listen(select1, "change", /*handleStateChange*/ ctx[22]),
-					listen(input1, "input", /*input1_input_handler*/ ctx[33]),
-					listen(input1, "change", /*handleStateChange*/ ctx[22]),
-					listen(input2, "input", /*input2_input_handler*/ ctx[34]),
-					listen(input2, "change", /*handleStateChange*/ ctx[22]),
-					listen(input3, "input", /*input3_input_handler*/ ctx[35]),
-					listen(input3, "change", /*handleStateChange*/ ctx[22]),
-					listen(input4, "input", /*input4_input_handler*/ ctx[36]),
-					listen(input4, "change", /*handleStateChange*/ ctx[22]),
-					listen(input5, "change", /*handleFileSelect*/ ctx[24]),
-					listen(textarea, "input", /*textarea_input_handler*/ ctx[41]),
-					listen(input6, "click", /*downloadXD*/ ctx[26])
+					listen(input0, "input", /*input0_input_handler*/ ctx[30]),
+					listen(input0, "change", /*handleStateChange*/ ctx[23]),
+					listen(select0, "change", /*select0_change_handler*/ ctx[32]),
+					listen(select0, "change", /*handleStateChange*/ ctx[23]),
+					listen(select1, "change", /*select1_change_handler*/ ctx[33]),
+					listen(select1, "change", /*handleStateChange*/ ctx[23]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[34]),
+					listen(input1, "change", /*handleStateChange*/ ctx[23]),
+					listen(input2, "input", /*input2_input_handler*/ ctx[35]),
+					listen(input2, "change", /*handleStateChange*/ ctx[23]),
+					listen(input3, "input", /*input3_input_handler*/ ctx[36]),
+					listen(input3, "change", /*handleStateChange*/ ctx[23]),
+					listen(input4, "input", /*input4_input_handler*/ ctx[37]),
+					listen(input4, "change", /*handleStateChange*/ ctx[23]),
+					listen(input5, "change", /*input5_change_handler*/ ctx[38]),
+					listen(input6, "change", /*handleFileSelect*/ ctx[25]),
+					listen(button, "click", /*downloadXD*/ ctx[27]),
+					listen(textarea, "input", /*textarea_input_handler*/ ctx[43])
 				];
 
 				mounted = true;
@@ -3712,9 +3779,9 @@ function create_fragment(ctx) {
 		p(ctx, dirty) {
 			const instructions_changes = {};
 
-			if (!updating_visible && dirty[0] & /*instructionsVisible*/ 131072) {
+			if (!updating_visible && dirty[0] & /*instructionsVisible*/ 262144) {
 				updating_visible = true;
-				instructions_changes.visible = /*instructionsVisible*/ ctx[17];
+				instructions_changes.visible = /*instructionsVisible*/ ctx[18];
 				add_flush_callback(() => updating_visible = false);
 			}
 
@@ -3726,16 +3793,16 @@ function create_fragment(ctx) {
 
 			const sizeslider_changes = {};
 
-			if (!updating_size && dirty[0] & /*size*/ 16384) {
+			if (!updating_size && dirty[0] & /*size*/ 32768) {
 				updating_size = true;
-				sizeslider_changes.size = /*size*/ ctx[14];
+				sizeslider_changes.size = /*size*/ ctx[15];
 				add_flush_callback(() => updating_size = false);
 			}
 
 			sizeslider.$set(sizeslider_changes);
 
-			if (dirty[0] & /*difficulties*/ 512) {
-				each_value_1 = /*difficulties*/ ctx[9];
+			if (dirty[0] & /*difficulties*/ 1024) {
+				each_value_1 = /*difficulties*/ ctx[10];
 				let i;
 
 				for (i = 0; i < each_value_1.length; i += 1) {
@@ -3757,12 +3824,12 @@ function create_fragment(ctx) {
 				each_blocks_1.length = each_value_1.length;
 			}
 
-			if (dirty[0] & /*difficulty, difficulties*/ 640) {
+			if (dirty[0] & /*difficulty, difficulties*/ 1152) {
 				select_option(select0, /*difficulty*/ ctx[7]);
 			}
 
-			if (dirty[0] & /*types*/ 1024) {
-				each_value = /*types*/ ctx[10];
+			if (dirty[0] & /*types*/ 2048) {
+				each_value = /*types*/ ctx[11];
 				let i;
 
 				for (i = 0; i < each_value.length; i += 1) {
@@ -3784,7 +3851,7 @@ function create_fragment(ctx) {
 				each_blocks.length = each_value.length;
 			}
 
-			if (dirty[0] & /*type, types*/ 1280) {
+			if (dirty[0] & /*type, types*/ 2304) {
 				select_option(select1, /*type*/ ctx[8]);
 			}
 
@@ -3804,22 +3871,26 @@ function create_fragment(ctx) {
 				set_input_value(input4, /*copyright*/ ctx[5]);
 			}
 
+			if (dirty[0] & /*symmetry*/ 512) {
+				input5.checked = /*symmetry*/ ctx[9];
+			}
+
 			const print_changes = {};
 
-			if (!updating_state && dirty[0] & /*state*/ 32768) {
+			if (!updating_state && dirty[0] & /*state*/ 65536) {
 				updating_state = true;
-				print_changes.state = /*state*/ ctx[15];
+				print_changes.state = /*state*/ ctx[16];
 				add_flush_callback(() => updating_state = false);
 			}
 
 			print.$set(print_changes);
 			const grid_1_changes = {};
-			if (dirty[0] & /*size*/ 16384) grid_1_changes.size = /*size*/ ctx[14];
+			if (dirty[0] & /*size*/ 32768) grid_1_changes.size = /*size*/ ctx[15];
 			if (dirty[0] & /*grid*/ 2) grid_1_changes.grid = /*grid*/ ctx[1];
 
-			if (!updating_Container && dirty[0] & /*gridComponentContainer*/ 8192) {
+			if (!updating_Container && dirty[0] & /*gridComponentContainer*/ 16384) {
 				updating_Container = true;
-				grid_1_changes.Container = /*gridComponentContainer*/ ctx[13];
+				grid_1_changes.Container = /*gridComponentContainer*/ ctx[14];
 				add_flush_callback(() => updating_Container = false);
 			}
 
@@ -3829,8 +3900,8 @@ function create_fragment(ctx) {
 				set_input_value(textarea, /*xd*/ ctx[0]);
 			}
 
-			if (dirty[0] & /*displayXd*/ 2048) {
-				set_style(textarea, "display", /*displayXd*/ ctx[11] ? 'block' : 'none', false);
+			if (dirty[0] & /*displayXd*/ 4096) {
+				set_style(textarea, "display", /*displayXd*/ ctx[12] ? 'block' : 'none', false);
 			}
 		},
 		i(local) {
@@ -3857,10 +3928,10 @@ function create_fragment(ctx) {
 			destroy_each(each_blocks_1, detaching);
 			destroy_each(each_blocks, detaching);
 			destroy_component(print);
+			/*input6_binding*/ ctx[40](null);
 			destroy_component(menu);
-			/*grid_1_binding*/ ctx[38](null);
+			/*grid_1_binding*/ ctx[41](null);
 			destroy_component(grid_1);
-			/*input5_binding*/ ctx[40](null);
 			mounted = false;
 			run_all(dispose);
 		}
@@ -3871,9 +3942,9 @@ function instance($$self, $$props, $$invalidate) {
 	let $questionsDown;
 	let $questionsAcross;
 	let $currentDirection;
-	component_subscribe($$self, questionsDown, $$value => $$invalidate(42, $questionsDown = $$value));
-	component_subscribe($$self, questionsAcross, $$value => $$invalidate(43, $questionsAcross = $$value));
-	component_subscribe($$self, currentDirection, $$value => $$invalidate(44, $currentDirection = $$value));
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(44, $questionsDown = $$value));
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(45, $questionsAcross = $$value));
+	component_subscribe($$self, currentDirection, $$value => $$invalidate(46, $currentDirection = $$value));
 	let { difficulties = ["Easy", "Medium", "Hard", "Evil"] } = $$props;
 	let { types = ["Straight", "Quick", "Cryptic"] } = $$props;
 	const save_state = true;
@@ -3887,6 +3958,7 @@ function instance($$self, $$props, $$invalidate) {
 	let { difficulty } = $$props;
 	let { type } = $$props;
 	let { displayXd = true } = $$props;
+	let { symmetry = true } = $$props;
 
 	// Private properties
 	// let symmetry_id = $symmetries.findIndex(s => s.default);
@@ -3959,6 +4031,12 @@ function instance($$self, $$props, $$invalidate) {
 		let { x, y } = gridComponent.getCurrentPos();
 		$$invalidate(1, grid[y][x] = letter, grid);
 
+		if (symmetry) {
+			if (letter === "#") {
+				$$invalidate(1, grid[size - y - 1][size - x - 1] = "#", grid);
+			}
+		}
+
 		if ($currentDirection === "across") {
 			gridComponent.moveRight();
 		} else {
@@ -3994,6 +4072,12 @@ function instance($$self, $$props, $$invalidate) {
 	function handleBackspace(event) {
 		event.preventDefault();
 		let { x, y } = gridComponent.getCurrentPos();
+		const letter = grid[y][x];
+
+		if (symmetry && letter === "#") {
+			$$invalidate(1, grid[size - y - 1][size - x - 1] = "", grid);
+		}
+
 		$$invalidate(1, grid[y][x] = "", grid);
 
 		if ($currentDirection === "across") {
@@ -4013,11 +4097,11 @@ function instance($$self, $$props, $$invalidate) {
 			loadXd(xd);
 		} else {
 			{
-				$$invalidate(15, state = restoreState() || state);
+				$$invalidate(16, state = restoreState() || state);
 			}
 
 			$$invalidate(1, grid = state.grid);
-			$$invalidate(14, size = state.size);
+			$$invalidate(15, size = state.size);
 			$$invalidate(3, author = state.author);
 			$$invalidate(4, editor = state.editor);
 			$$invalidate(5, copyright = state.copyright);
@@ -4034,7 +4118,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function handleReset() {
 		clearState();
-		$$invalidate(14, size = 15);
+		$$invalidate(15, size = 15);
 		gridComponent.setDir("across");
 		gridComponent.setCurrentPos(0, 0);
 		$$invalidate(2, title = "");
@@ -4056,7 +4140,7 @@ function instance($$self, $$props, $$invalidate) {
 	async function loadXd(xd) {
 		const data = xdCrosswordParser(xd);
 		$$invalidate(1, grid = data.grid);
-		$$invalidate(14, size = data.grid.length);
+		$$invalidate(15, size = data.grid.length);
 		$$invalidate(3, author = data.meta.Author);
 		$$invalidate(4, editor = data.meta.Editor);
 		$$invalidate(5, copyright = data.meta.Copyright);
@@ -4117,7 +4201,7 @@ function instance($$self, $$props, $$invalidate) {
 	let instructionsVisible;
 
 	function handleInstructions() {
-		$$invalidate(17, instructionsVisible = true);
+		$$invalidate(18, instructionsVisible = true);
 	}
 
 	function downloadXD() {
@@ -4132,7 +4216,7 @@ function instance($$self, $$props, $$invalidate) {
 
 	function instructions_visible_binding(value) {
 		instructionsVisible = value;
-		$$invalidate(17, instructionsVisible);
+		$$invalidate(18, instructionsVisible);
 	}
 
 	function input0_input_handler() {
@@ -4142,19 +4226,19 @@ function instance($$self, $$props, $$invalidate) {
 
 	function sizeslider_size_binding(value) {
 		size = value;
-		$$invalidate(14, size);
+		$$invalidate(15, size);
 	}
 
 	function select0_change_handler() {
 		difficulty = select_value(this);
 		$$invalidate(7, difficulty);
-		$$invalidate(9, difficulties);
+		$$invalidate(10, difficulties);
 	}
 
 	function select1_change_handler() {
 		type = select_value(this);
 		$$invalidate(8, type);
-		$$invalidate(10, types);
+		$$invalidate(11, types);
 	}
 
 	function input1_input_handler() {
@@ -4177,28 +4261,33 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(5, copyright);
 	}
 
+	function input5_change_handler() {
+		symmetry = this.checked;
+		$$invalidate(9, symmetry);
+	}
+
 	function print_state_binding(value) {
 		state = value;
-		$$invalidate(15, state);
+		$$invalidate(16, state);
+	}
+
+	function input6_binding($$value) {
+		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
+			fileInput = $$value;
+			$$invalidate(17, fileInput);
+		});
 	}
 
 	function grid_1_binding($$value) {
 		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
 			gridComponent = $$value;
-			$$invalidate(12, gridComponent);
+			$$invalidate(13, gridComponent);
 		});
 	}
 
 	function grid_1_Container_binding(value) {
 		gridComponentContainer = value;
-		$$invalidate(13, gridComponentContainer);
-	}
-
-	function input5_binding($$value) {
-		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
-			fileInput = $$value;
-			$$invalidate(16, fileInput);
-		});
+		$$invalidate(14, gridComponentContainer);
 	}
 
 	function textarea_input_handler() {
@@ -4207,8 +4296,8 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$set = $$props => {
-		if ('difficulties' in $$props) $$invalidate(9, difficulties = $$props.difficulties);
-		if ('types' in $$props) $$invalidate(10, types = $$props.types);
+		if ('difficulties' in $$props) $$invalidate(10, difficulties = $$props.difficulties);
+		if ('types' in $$props) $$invalidate(11, types = $$props.types);
 		if ('xd' in $$props) $$invalidate(0, xd = $$props.xd);
 		if ('grid' in $$props) $$invalidate(1, grid = $$props.grid);
 		if ('title' in $$props) $$invalidate(2, title = $$props.title);
@@ -4218,7 +4307,8 @@ function instance($$self, $$props, $$invalidate) {
 		if ('date' in $$props) $$invalidate(6, date = $$props.date);
 		if ('difficulty' in $$props) $$invalidate(7, difficulty = $$props.difficulty);
 		if ('type' in $$props) $$invalidate(8, type = $$props.type);
-		if ('displayXd' in $$props) $$invalidate(11, displayXd = $$props.displayXd);
+		if ('displayXd' in $$props) $$invalidate(12, displayXd = $$props.displayXd);
+		if ('symmetry' in $$props) $$invalidate(9, symmetry = $$props.symmetry);
 	};
 
 	return [
@@ -4231,6 +4321,7 @@ function instance($$self, $$props, $$invalidate) {
 		date,
 		difficulty,
 		type,
+		symmetry,
 		difficulties,
 		types,
 		displayXd,
@@ -4259,10 +4350,11 @@ function instance($$self, $$props, $$invalidate) {
 		input2_input_handler,
 		input3_input_handler,
 		input4_input_handler,
+		input5_change_handler,
 		print_state_binding,
+		input6_binding,
 		grid_1_binding,
 		grid_1_Container_binding,
-		input5_binding,
 		textarea_input_handler
 	];
 }
@@ -4278,9 +4370,9 @@ class JXWordCreator extends SvelteComponent {
 			create_fragment,
 			safe_not_equal,
 			{
-				difficulties: 9,
-				types: 10,
-				save_state: 27,
+				difficulties: 10,
+				types: 11,
+				save_state: 28,
 				xd: 0,
 				grid: 1,
 				title: 2,
@@ -4290,7 +4382,8 @@ class JXWordCreator extends SvelteComponent {
 				date: 6,
 				difficulty: 7,
 				type: 8,
-				displayXd: 11
+				displayXd: 12,
+				symmetry: 9
 			},
 			null,
 			[-1, -1]
@@ -4298,7 +4391,7 @@ class JXWordCreator extends SvelteComponent {
 	}
 
 	get save_state() {
-		return this.$$.ctx[27];
+		return this.$$.ctx[28];
 	}
 }
 

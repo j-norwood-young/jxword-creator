@@ -38,6 +38,7 @@
 	export let difficulty;
 	export let type;
 	export let displayXd = true;
+	export let symmetry = true;
 
 	// Private properties
 	// let symmetry_id = $symmetries.findIndex(s => s.default);
@@ -104,6 +105,11 @@
 		}
 		let {x, y} = gridComponent.getCurrentPos();
 		grid[y][x] = letter;
+		if (symmetry) {
+			if (letter === "#") {
+				grid[size - y - 1][size - x - 1] = "#";
+			}
+		}
 		if ($currentDirection === "across") {
 			gridComponent.moveRight();
 		} else {
@@ -133,6 +139,10 @@
 	function handleBackspace(event) {
 		event.preventDefault();
 		let {x, y} = gridComponent.getCurrentPos();
+		const letter = grid[y][x];
+		if (symmetry && letter === "#") {
+			grid[size - y - 1][size - x - 1] = "";
+		}
 		grid[y][x] = "";
 		if ($currentDirection === "across") {
 			gridComponent.moveLeft();
@@ -288,7 +298,18 @@
 				<input id="jxword-copyright" name="copyright" type="text" bind:value={copyright} on:change="{handleStateChange}" placeholder="Copyright" />
 			</div>
 			<div id="jxword-options">
+				<div class="jxword-checkbox-group">
+					<input type="checkbox" name="symmetry" bind:checked={symmetry}>
+					<label for="symmetry">Symmetry</label>
+				</div>
 				<Print bind:state={state} />
+				<div>
+					<label for="file">Upload Crossword</label>
+					<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
+				</div>
+				<div>
+					<button on:click="{downloadXD}">Download Crossword</button>
+				</div>
 			</div>
 		</div>
 		<div class="jxword-container" >
@@ -297,10 +318,8 @@
 			</div>
 			<Grid size={size} grid={grid} bind:this={gridComponent} bind:Container={gridComponentContainer} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
 		</div>
-		<label for="file">Upload an XD file (optional)</label>
-		<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
+		
 		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" style:display="{displayXd ? 'block' : 'none'}" />
-		<input class="jxword-btn" type="submit" value="Download XD" on:click="{downloadXD}" />
 	</div>
 </main>
 
@@ -371,6 +390,8 @@
 		margin-left: 40px;
 		padding-left: 40px;
 		border-left: 1px solid #ccc;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.jxword-flex-col {
@@ -381,5 +402,15 @@
 	.jword-flex-row {
 		display: flex;
 		flex-direction: row;
+	}
+
+	.jxword-checkbox-group {
+		display: flex;
+		flex-direction: row;
+		align-items: left;
+		justify-content: left;
+		input {
+			margin-right: 0.5em;
+		}
 	}
 </style>

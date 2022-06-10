@@ -1,4 +1,5 @@
 <script>
+    import { questionsAcross, questionsDown } from "./stores";
     export let state;
 
     function printBlank() {
@@ -19,11 +20,22 @@
         print(svg);
     }
 
+    function formatQuestions(direction) {
+        let questions;
+        if (direction === "down") {
+            questions = $questionsDown;
+        } else {
+            questions = $questionsAcross;
+        }
+        
+        return questions.map(question => `<li>${question.num}: ${question.question}</li>`).join("");
+    }
+
     function print(svg) {
         // console.log(svg);
         const svg_text = svg.outerHTML.replace(/fill="#f7f457"/g, `fill="#ffffff"`).replace(/fill="#9ce0fb"/g, `fill="#ffffff"`);
-        const questions_across = document.querySelector(`.jxword-questions-across`).outerHTML;
-        const questions_down = document.querySelector(`.jxword-questions-down`).outerHTML;
+        const questions_across = `<h4>Across</h4><ol class="jxword-questions-list">${formatQuestions("across")}</ol>`;
+        const questions_down = `<h4>Down</h4><ol class="jxword-questions-list">${formatQuestions("down")}</ol>`;
         let printWindow = window.open();
         printWindow.document.write(`<html><head><title>${state.title}</title>`);
         printWindow.document.write(`<style>
