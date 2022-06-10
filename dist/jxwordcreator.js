@@ -644,7 +644,7 @@ function get_each_context$3(ctx, list, i) {
 	return child_ctx;
 }
 
-// (85:4) {:else}
+// (84:4) {:else}
 function create_else_block$1(ctx) {
 	let div;
 	let t0_value = /*question*/ ctx[0].num + "";
@@ -718,7 +718,7 @@ function create_else_block$1(ctx) {
 	};
 }
 
-// (74:4) {#if question.editing}
+// (73:4) {#if question.editing}
 function create_if_block$1(ctx) {
 	let div3;
 	let div0;
@@ -803,7 +803,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (87:4) {#if suggestions.length}
+// (86:4) {#if suggestions.length}
 function create_if_block_1$1(ctx) {
 	let each_1_anchor;
 	let each_value = /*suggestions*/ ctx[1];
@@ -859,7 +859,7 @@ function create_if_block_1$1(ctx) {
 	};
 }
 
-// (88:8) {#each suggestions as suggestion}
+// (87:8) {#each suggestions as suggestion}
 function create_each_block$3(ctx) {
 	let span;
 	let t_value = /*suggestion*/ ctx[16] + "";
@@ -1033,7 +1033,7 @@ function instance$6($$self, $$props, $$invalidate) {
 
 				if ($currentQuestion) {
 					$$invalidate(2, is_current_question = $currentQuestion.num === question.num && $currentDirection === question.direction);
-				} // if (is_current_question) console.log($currentQuestion, $currentDirection);
+				}
 			}
 		}
 	};
