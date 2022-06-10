@@ -644,7 +644,7 @@ function get_each_context$3(ctx, list, i) {
 	return child_ctx;
 }
 
-// (84:4) {:else}
+// (85:4) {:else}
 function create_else_block$1(ctx) {
 	let div;
 	let t0_value = /*question*/ ctx[0].num + "";
@@ -718,7 +718,7 @@ function create_else_block$1(ctx) {
 	};
 }
 
-// (73:4) {#if question.editing}
+// (74:4) {#if question.editing}
 function create_if_block$1(ctx) {
 	let div3;
 	let div0;
@@ -803,7 +803,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (86:4) {#if suggestions.length}
+// (87:4) {#if suggestions.length}
 function create_if_block_1$1(ctx) {
 	let each_1_anchor;
 	let each_value = /*suggestions*/ ctx[1];
@@ -859,7 +859,7 @@ function create_if_block_1$1(ctx) {
 	};
 }
 
-// (87:8) {#each suggestions as suggestion}
+// (88:8) {#each suggestions as suggestion}
 function create_each_block$3(ctx) {
 	let span;
 	let t_value = /*suggestion*/ ctx[16] + "";
@@ -1033,7 +1033,7 @@ function instance$6($$self, $$props, $$invalidate) {
 
 				if ($currentQuestion) {
 					$$invalidate(2, is_current_question = $currentQuestion.num === question.num && $currentDirection === question.direction);
-				}
+				} // if (is_current_question) console.log($currentQuestion, $currentDirection);
 			}
 		}
 	};
@@ -1407,7 +1407,7 @@ function get_each_context_1$1(ctx, list, i) {
 	return child_ctx;
 }
 
-// (462:28) {:else}
+// (466:28) {:else}
 function create_else_block(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1516,7 +1516,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (457:28) {#if letter=="#"}
+// (461:28) {#if letter=="#"}
 function create_if_block_1(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1683,7 +1683,7 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (466:28) {#if (number_grid[y][x] != null && letter!=="#")}
+// (470:28) {#if (number_grid[y][x] != null && letter!=="#")}
 function create_if_block(ctx) {
 	let text_1;
 	let t_value = /*number_grid*/ ctx[17][/*y*/ ctx[62]][/*x*/ ctx[65]] + "";
@@ -1735,7 +1735,7 @@ function create_if_block(ctx) {
 	};
 }
 
-// (455:20) {#each col_data as letter, x}
+// (459:20) {#each col_data as letter, x}
 function create_each_block_1$1(ctx) {
 	let g;
 	let if_block0_anchor;
@@ -1833,7 +1833,7 @@ function create_each_block_1$1(ctx) {
 	};
 }
 
-// (454:16) {#each grid as col_data, y}
+// (458:16) {#each grid as col_data, y}
 function create_each_block$1(ctx) {
 	let each_1_anchor;
 	let each_value_1 = /*col_data*/ ctx[60];
@@ -2380,6 +2380,12 @@ function instance$4($$self, $$props, $$invalidate) {
 		} else {
 			currentDirection.set("across");
 		}
+
+		// Find the current question
+		const current_question = getCurrentQuestion();
+
+		// console.log(current_question);
+		currentQuestion.set(current_question);
 
 		dispatch("change");
 		drawMarkedWordGrid();

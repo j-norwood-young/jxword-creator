@@ -348,6 +348,10 @@ export function toggleDir() {
     } else {
         currentDirection.set("across");
     }
+     // Find the current question
+     const current_question = getCurrentQuestion();
+    // console.log(current_question);
+    currentQuestion.set(current_question);
     dispatch("change");
     drawMarkedWordGrid();
 }
