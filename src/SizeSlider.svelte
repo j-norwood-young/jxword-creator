@@ -50,7 +50,7 @@
 </script>
 
 <main>
-    <input type="range" min="2" max="30" bind:value="{size}" on:change="{handleStateChange}">
+    <input name="size" type="range" min="2" max="30" bind:value="{size}" on:change="{handleStateChange}">
     <label for="size">{`${findSize(size).name} ${size}x${size}`}</label>
 </main>
 

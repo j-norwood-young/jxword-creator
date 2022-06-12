@@ -2938,6 +2938,7 @@ function create_fragment$2(ctx) {
 			t0 = space();
 			label = element("label");
 			t1 = text(t1_value);
+			attr(input, "name", "size");
 			attr(input, "type", "range");
 			attr(input, "min", "2");
 			attr(input, "max", "30");
