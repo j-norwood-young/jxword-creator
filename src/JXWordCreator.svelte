@@ -2,6 +2,7 @@
 	// Svelte stuff
 	import { onMount, tick } from "svelte";
 	import { questionsAcross, questionsDown, currentDirection } from "./stores.js";
+	import { parseCrosswordXML } from "./libs/crossword_xml_parse.js";
 	
 	// Components
 	import Menu from "./Menu.svelte";
@@ -10,6 +11,7 @@
 	import SizeSlider from "./SizeSlider.svelte";
 	// import Symmetry from "./Symmetry.svelte";
 	import Print from "./Print.svelte";
+	import FileUpload from "./FileUpload.svelte";
 	
 	// Libraries
 	import { saveState, restoreState, clearState } from './savestate';
@@ -237,22 +239,27 @@
 		handleStateChange();
 	}
 
-	let fileInput;
-	function handleFileSelect() {
-		const reader = new FileReader();
-		reader.onload = (function() {
-			return async function(e) {
-				try {
-					await loadXd(e.target.result);
-				} catch(err) {
-					console.error(err);
-					throw "Unable to parse file";
-				}
-			};
-		})(fileInput.files[0]);
-		// Read in the image file as a data URL.
-		reader.readAsText(fileInput.files[0]);
+	async function loadXML(xml) {
+		console.log("loading xml")
+		try {
+			const result = parseCrosswordXML(xml);
+			title = result.title;
+			author = result.creator;
+			editor = result.editor;
+			copyright = result.copyright;
+			size = result.width;
+			grid = result.grid;
+			console.log(result);
+			questionsAcross.set(result.questions.across);
+			questionsDown.set(result.questions.down);
+			gridComponent.setDir("across");
+			gridComponent.setCurrentPos(0, 0);
+			await tick();
+		} catch (e) {
+			console.log(e);
+		}
 	}
+
 	let instructionsVisible;
 	function handleInstructions() {
 		instructionsVisible = true;
@@ -304,8 +311,12 @@
 				</div>
 				<Print bind:state={state} />
 				<div>
-					<label for="file">Upload Crossword</label>
-					<input class="drop_zone" type="file" id="file" name="files" accept=".xd" bind:this={fileInput} on:change={handleFileSelect} />
+					<label for="file">Upload XD file</label>
+					<FileUpload on:upload="{(msg) => loadXd(msg.detail)}" />
+				</div>
+				<div>
+					<label for="file">Upload XML file</label>
+					<FileUpload file_formats=".xml" on:upload="{(msg) => loadXML(msg.detail)}" />
 				</div>
 				<div>
 					<button on:click="{downloadXD}">Download Crossword</button>
