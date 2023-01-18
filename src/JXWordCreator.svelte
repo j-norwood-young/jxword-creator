@@ -386,10 +386,6 @@
 		min-width: 1024px;
 	}
 
-	.jxword-btn {
-		margin-top: 1em;
-	}
-
 	#jxword-top {
 		display: flex;
 		flex-direction: row;
@@ -404,17 +400,7 @@
 		display: flex;
 		flex-direction: column;
 	}
-
-	.jxword-flex-col {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.jword-flex-row {
-		display: flex;
-		flex-direction: row;
-	}
-
+	
 	.jxword-checkbox-group {
 		display: flex;
 		flex-direction: row;
