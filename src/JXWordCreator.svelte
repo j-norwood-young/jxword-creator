@@ -12,6 +12,7 @@
 	// import Symmetry from "./Symmetry.svelte";
 	import Print from "./Print.svelte";
 	import FileUpload from "./FileUpload.svelte";
+	import Patterns from "./Patterns.svelte";
 	
 	// Libraries
 	import { saveState, restoreState, clearState } from './savestate';
@@ -181,6 +182,7 @@
 			gridComponent.setCurrentPos(state.current_x, state.current_y);
 			// symmetry_id = state.symmetry_id;
 		}
+		console.log(grid);
 	});
 	
 	function handleReset() {
@@ -305,6 +307,7 @@
 				<input id="jxword-copyright" name="copyright" type="text" bind:value={copyright} on:change="{handleStateChange}" placeholder="Copyright" />
 			</div>
 			<div id="jxword-options">
+				<Patterns size="{size}" bind:grid="{grid}" />
 				<div class="jxword-checkbox-group">
 					<input type="checkbox" name="symmetry" bind:checked={symmetry}>
 					<label for="symmetry">Symmetry</label>

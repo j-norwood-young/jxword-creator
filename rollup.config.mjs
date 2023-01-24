@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import preprocess from 'svelte-preprocess';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
 
 
 const production = !process.env.ROLLUP_WATCH;
@@ -56,6 +57,7 @@ export default [
 				// a separate file - better for performance
 				preprocess: preprocess({ defaults: { style: "scss" } }),
 			}),
+			json(),
 			css({ output: "dist.css" }),
 			resolve({
 				browser: true,
@@ -92,6 +94,7 @@ export default [
 				},
 				preprocess: preprocess({ defaults: { style: 'scss' } })
 			}),
+			json(),
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
 			css({ output: 'bundle.css' }),
