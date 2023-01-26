@@ -31004,9 +31004,14 @@ function create_each_block$1(ctx) {
 			append(div, t);
 
 			if (!mounted) {
-				dispose = listen(div, "click", function () {
-					if (is_function(/*usePattern*/ ctx[3](/*pattern*/ ctx[5]))) /*usePattern*/ ctx[3](/*pattern*/ ctx[5]).apply(this, arguments);
-				});
+				dispose = [
+					listen(div, "click", function () {
+						if (is_function(/*usePattern*/ ctx[3](/*pattern*/ ctx[5]))) /*usePattern*/ ctx[3](/*pattern*/ ctx[5]).apply(this, arguments);
+					}),
+					listen(div, "keypress", function () {
+						if (is_function(/*usePattern*/ ctx[3](/*pattern*/ ctx[5]))) /*usePattern*/ ctx[3](/*pattern*/ ctx[5]).apply(this, arguments);
+					})
+				];
 
 				mounted = true;
 			}
@@ -31049,7 +31054,7 @@ function create_each_block$1(ctx) {
 			if (detaching) detach(div);
 			destroy_each(each_blocks, detaching);
 			mounted = false;
-			dispose();
+			run_all(dispose);
 		}
 	};
 }

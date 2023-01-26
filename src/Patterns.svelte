@@ -35,7 +35,7 @@
     <p>Size: {size}</p>
     <div class="patterns">
         {#each patterns as pattern}
-            <div on:click={usePattern(pattern)}>
+            <div on:click={usePattern(pattern)} on:keypress={usePattern(pattern)}>
                 <svg class="pattern-preview" width={svg_width} height={svg_width}>
                     {#each pattern as row, y}
                         <g>
