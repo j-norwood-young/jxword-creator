@@ -79,7 +79,7 @@
         <div class="jxword-question-answer">
             {question.answer}
         </div>
-        <div class="btn" on:click="{saveQuestion(question)}">Save</div>
+        <div class="btn" on:click="{saveQuestion(question)}" on:keypress={saveQuestion(question)}>Save</div>
     </div>
     {:else}
     <div class="jxword-question" on:dblclick="{editQuestion(question)}">
@@ -87,7 +87,7 @@
         <div class="jxword-suggestions">
         {#if suggestions.length}
             {#each suggestions as suggestion}
-                <span class="jxword-suggestion" on:click="{useSuggestion(suggestion)}">{suggestion}</span>
+                <span class="jxword-suggestion" on:click="{useSuggestion(suggestion)}" on:keypress={useSuggestion(suggestion)}>{suggestion}</span>
             {/each}
         {/if}
         </div>

@@ -927,6 +927,9 @@ function create_if_block$1(ctx) {
 					listen(input, "keydown", /*handleKeydown*/ ctx[5]),
 					listen(div2, "click", function () {
 						if (is_function(/*saveQuestion*/ ctx[4](/*question*/ ctx[0]))) /*saveQuestion*/ ctx[4](/*question*/ ctx[0]).apply(this, arguments);
+					}),
+					listen(div2, "keypress", function () {
+						if (is_function(/*saveQuestion*/ ctx[4](/*question*/ ctx[0]))) /*saveQuestion*/ ctx[4](/*question*/ ctx[0]).apply(this, arguments);
 					})
 				];
 
@@ -1026,9 +1029,14 @@ function create_each_block$4(ctx) {
 			append(span, t);
 
 			if (!mounted) {
-				dispose = listen(span, "click", function () {
-					if (is_function(/*useSuggestion*/ ctx[6](/*suggestion*/ ctx[16]))) /*useSuggestion*/ ctx[6](/*suggestion*/ ctx[16]).apply(this, arguments);
-				});
+				dispose = [
+					listen(span, "click", function () {
+						if (is_function(/*useSuggestion*/ ctx[6](/*suggestion*/ ctx[16]))) /*useSuggestion*/ ctx[6](/*suggestion*/ ctx[16]).apply(this, arguments);
+					}),
+					listen(span, "keypress", function () {
+						if (is_function(/*useSuggestion*/ ctx[6](/*suggestion*/ ctx[16]))) /*useSuggestion*/ ctx[6](/*suggestion*/ ctx[16]).apply(this, arguments);
+					})
+				];
 
 				mounted = true;
 			}
@@ -1040,7 +1048,7 @@ function create_each_block$4(ctx) {
 		d(detaching) {
 			if (detaching) detach(span);
 			mounted = false;
-			dispose();
+			run_all(dispose);
 		}
 	};
 }
