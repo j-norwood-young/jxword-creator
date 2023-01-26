@@ -1,4 +1,4 @@
-export function getStartOfWord(grid, x: number, y: number, direction: string) {
+export function getStartOfWord(grid:string[][], x: number, y: number, direction: string) {
     if (direction === "across") {
         while(x > 0 && grid[y][x - 1] !== "#") {
             x--;
@@ -11,7 +11,7 @@ export function getStartOfWord(grid, x: number, y: number, direction: string) {
     return { x, y };
 }
 
-export function getEndOfWord(grid, x: number, y: number, direction: string) {
+export function getEndOfWord(grid:string[][], x: number, y: number, direction: string) {
     const size = grid.length;
     if (direction === "across") {
         while(x < size - 1 && grid[y][x + 1] !== "#") {
@@ -25,7 +25,7 @@ export function getEndOfWord(grid, x: number, y: number, direction: string) {
     return { x, y };
 }
 
-export function getWord(grid, x: number, y: number, direction: string) {
+export function getWord(grid:string[][], x: number, y: number, direction: string) {
     let start = getStartOfWord(grid, x, y, direction);
     let end = getEndOfWord(grid, x, y, direction);
     let word = "";
@@ -41,7 +41,7 @@ export function getWord(grid, x: number, y: number, direction: string) {
     return word;
 }
 
-export function isStartOfAcross(grid, x: number, y: number) {
+export function isStartOfAcross(grid:string[][], x: number, y: number) {
     const size = grid.length;
     if (grid[y][x] === "#") return false;
     if (x >= size) return false;
@@ -50,7 +50,7 @@ export function isStartOfAcross(grid, x: number, y: number) {
     return ((x === 0) || (grid[y][x - 1] == "#"));
 }
 
-export function isStartOfDown(grid, x: number, y: number) {
+export function isStartOfDown(grid:string[][], x: number, y: number) {
     const size = grid.length;
     if (grid[y][x] === "#") return false;
     if (y >= size) return false;
