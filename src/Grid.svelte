@@ -9,10 +9,12 @@
     // Components
     import Questions from "./Questions.svelte";
 
+    // Utils
+    import { getWord, isStartOfAcross, isStartOfDown } from "./libs/crossword_utils.ts";
+
     // Private properties
     let number_grid = [];
     let marked_word_grid = [];
-    let restoreState = false;
     let fontSize;
     let numFontSize;
     let cellWidth;
@@ -90,11 +92,11 @@ $: {
             grid[y][x] = grid[y][x] || " ";
             if (grid[y][x] === "#") continue;
             let found = false;
-            if (isStartOfAcross(x, y)) {
+            if (isStartOfAcross(grid, x, y)) {
                 questions_across.push(getQuestion(num, x, y, "across", ""));
                 found = true;
             } 
-            if (isStartOfDown(x, y)) {
+            if (isStartOfDown(grid, x, y)) {
                 questions_down.push(getQuestion(num, x, y, "down", ""));
                 found = true;
             } 
@@ -105,14 +107,10 @@ $: {
             }
         }
     }
-    // questions_across.sort();
-    // questions_down.sort();
     questionsAcross.set(questions_across);
     questionsDown.set(questions_down);
     // Find the current question
-    const current_question = getCurrentQuestion();
-    // console.log(current_question);
-    currentQuestion.set(current_question);
+    currentQuestion.set(getCurrentQuestion());
     drawMarkedWordGrid();
 }
 
@@ -123,24 +121,8 @@ export function selectCell(e) {
     dispatch("change");
 }
 
-function isStartOfAcross(x, y) {
-    if (grid[y][x] === "#") return false;
-    if (x >= size) return false;
-    let word = getWord(x, y, "across");
-    if (word.length <= 1) return false;
-    return ((x === 0) || (grid[y][x - 1] == "#"));
-}
-
-function isStartOfDown(x, y) {
-    if (grid[y][x] === "#") return false;
-    if (y >= size) return false;
-    let word = getWord(x, y, "down");
-    if (word.length <= 1) return false;
-    return ((y === 0) || (grid[y - 1][x] == "#"));
-}
-
 function getQuestion(num, x, y, direction, question) {
-    const answer = getWord(x, y, direction);
+    const answer = getWord(grid, x, y, direction);
     if (direction === "across") {
         for (let i = 0; i < $questionsAcross.length; i++) {
             if ($questionsAcross[i].answer === answer && $questionsAcross[i].direction === direction) {
@@ -175,48 +157,6 @@ function getCurrentQuestion() {
         selected_question = questions.find(q => x === q.x && y >= q.y && y <= q.y + q.answer.length - 1);
     }
     return selected_question;
-}
-
-function getStartOfWord(x, y, direction) {
-    if (direction === "across") {
-        while(x > 0 && grid[y][x - 1] !== "#") {
-            x--;
-        }
-    } else {
-        while(y > 0 && grid[y - 1][x] !== "#") {
-            y--;
-        }
-    }
-    return { x, y };
-}
-
-function getEndOfWord(x, y, direction) {
-    if (direction === "across") {
-        while(x < size - 1 && grid[y][x + 1] !== "#") {
-            x++;
-        }
-    } else {
-        while(y < size - 1 && grid[y + 1][x] !== "#") {
-            y++;
-        }
-    }
-    return { x, y };
-}
-
-function getWord(x, y, direction) {
-    let start = getStartOfWord(x, y, direction);
-    let end = getEndOfWord(x, y, direction);
-    let word = "";
-    if (direction === "across") {
-        for (let i = start.x; i <= end.x; i++) {
-            word += grid[y][i] || " ";
-        }
-    } else {
-        for (let i = start.y; i <= end.y; i++) {
-            word += grid[i][x] || " ";
-        }
-    }
-    return word;
 }
 
 function drawMarkedWordGrid() {
@@ -382,22 +322,6 @@ export function setCurrentPos(x, y) {
 
 function handleDoubleclick(x, y) {
     toggleDir();
-    // let selected_question;
-    // let questions = $currentDirection === "across" ? $questionsAcross : $questionsDown;
-    // if ($currentDirection === "across") {
-    //     selected_question = questions.find(q => y === q.y && x >= q.x && x <= q.x + q.answer.length - 1);
-    //     if (selected_question) {
-    //         selected_question.editing = true;
-    //         $questionsAcross = [...questions];
-    //     }
-    // } else {
-    //     selected_question = questions.find(q => x === q.x && y >= q.y && y <= q.y + q.answer.length - 1);
-    //     if (selected_question) {
-    //         selected_question.editing = true;
-    //         $questionsDown = [...questions];
-    //     }
-    // }
-    
 }
 
 export function handleKeydown (e) {
@@ -438,7 +362,7 @@ function handleFocus(e) {
 
 function handleUpdateQuestion(e) {
     const { question, suggestion } = e.detail;
-    console.log(question, suggestion);
+    // console.log(question, suggestion);
     if (question.direction === "across") {
         for (let i = 0; i < suggestion.length; i++) {
             grid[question.y][i + question.x] = suggestion[i];
@@ -494,7 +418,6 @@ function handleUpdateQuestion(e) {
         .jxword-svg-container {
             width: 50%;
         }
-        
     }
 
     input {
