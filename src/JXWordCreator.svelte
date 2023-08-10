@@ -42,6 +42,7 @@
 	export let type;
 	export let displayXd = true;
 	export let symmetry = true;
+	export let download_filename = "crossword.xd";
 
 	// Private properties
 	// let symmetry_id = $symmetries.findIndex(s => s.default);
@@ -272,9 +273,19 @@
 		// Download contents of xd
 		const file = new Blob([xd], {type: "text/plain;charset=utf-8"});
 		const downloadLink = document.createElement("a");
-		downloadLink.download = "crossword.xd";
+		downloadLink.download = download_filename || "crossword.xd";
 		downloadLink.href = URL.createObjectURL(file);
 		downloadLink.click();
+	}
+
+	function handleXDUpload(msg) {
+		loadXd(msg.detail.content);
+		download_filename = msg.detail.filename;
+	}
+
+	function handleXMLUpload(msg) {
+		loadXML(msg.detail.content);
+		download_filename = msg.detail.filename.replace(".xml", ".xd");
 	}
 
 </script>
@@ -316,14 +327,16 @@
 				<Print bind:state={state} />
 				<div>
 					<label for="file">Upload XD file</label>
-					<FileUpload on:upload="{(msg) => loadXd(msg.detail)}" />
+					<FileUpload on:upload="{ handleXDUpload }" />
 				</div>
 				<div>
 					<label for="file">Upload XML file</label>
-					<FileUpload file_formats=".xml" on:upload="{(msg) => loadXML(msg.detail)}" />
+					<FileUpload file_formats=".xml" on:upload="{ handleXMLUpload }" />
 				</div>
 				<div>
-					<button on:click="{downloadXD}">Download Crossword</button>
+					<label for="download">Download</label>
+					<input type="text" name="download" bind:value="{download_filename}" />
+					<button on:click="{ downloadXD }">Download Crossword</button>
 				</div>
 			</div>
 		</div>

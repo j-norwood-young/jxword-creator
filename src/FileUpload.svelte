@@ -12,7 +12,11 @@ function handleFileSelect() {
     reader.onload = (function() {
         return async function(e) {
             try {
-                dispatch("upload", e.target.result);
+                const data = {
+                    filename: fileInput.files[0].name,
+                    content: e.target.result
+                }
+                dispatch("upload", data);
             } catch(err) {
                 console.error(err);
                 throw "Unable to upload file";

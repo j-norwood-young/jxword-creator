@@ -31,8 +31,7 @@
 </script>
 
 <main>
-    <h1>Patterns</h1>
-    <p>Size: {size}</p>
+    {#if patterns.length !== 0}
     <div class="patterns">
         {#each patterns as pattern}
             <div on:click={usePattern(pattern)} on:keypress={usePattern(pattern)}>
@@ -48,6 +47,7 @@
             </div>
         {/each}
     </div>
+    {/if}
 </main>
 
 <style lang="scss">
