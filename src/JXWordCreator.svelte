@@ -158,6 +158,7 @@
 		if (!save_state) return;
 		saveState(getState());
 		xd = XDEncode(getState());
+		gridComponent.handleFocus();
 	}
 
 	onMount(() => {

@@ -332,6 +332,8 @@ export function handleKeydown (e) {
         dispatch("letter", e.key.toUpperCase());
     } else if (keycode === 51) { // #
         dispatch("letter", "#");
+    } else if (keycode === 190) { // Fullstop
+        dispatch("letter", "#");
     } else if (keycode === 8) { // Backspace
         dispatch("backspace");
     } else if (keycode == 32) { // Space
@@ -356,7 +358,7 @@ export function handleKeydown (e) {
     handleFocus(e);
 }
 
-function handleFocus(e) {
+export function handleFocus(e) {
     Input.focus();
 }
 
@@ -372,6 +374,8 @@ function handleUpdateQuestion(e) {
             grid[i + question.y][question.x] = suggestion[i];
         }
     }
+    // Set focus back on the svg
+    handleFocus();
 }
 </script>
 
