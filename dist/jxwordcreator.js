@@ -1617,25 +1617,25 @@ function isStartOfDown(grid, x, y) {
 
 function get_each_context$2(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[55] = list[i];
-	child_ctx[57] = i;
+	child_ctx[57] = list[i];
+	child_ctx[59] = i;
 	return child_ctx;
 }
 
 function get_each_context_1$2(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[58] = list[i];
-	child_ctx[60] = i;
+	child_ctx[60] = list[i];
+	child_ctx[62] = i;
 	return child_ctx;
 }
 
-// (395:28) {:else}
+// (446:28) {:else}
 function create_else_block(ctx) {
 	let rect;
 	let rect_y_value;
 	let rect_x_value;
 	let text_1;
-	let t_value = /*letter*/ ctx[58] + "";
+	let t_value = /*letter*/ ctx[60] + "";
 	let t;
 	let text_1_x_value;
 	let text_1_y_value;
@@ -1651,19 +1651,19 @@ function create_else_block(ctx) {
 			attr(rect, "role", "cell");
 			attr(rect, "tabindex", "-1");
 			attr(rect, "aria-label", "");
-			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[57] + /*margin*/ ctx[9]);
-			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[60] + /*margin*/ ctx[9]);
+			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[59] + /*margin*/ ctx[9]);
+			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[62] + /*margin*/ ctx[9]);
 			attr(rect, "width", /*cellWidth*/ ctx[19]);
 			attr(rect, "height", /*cellHeight*/ ctx[23]);
 			attr(rect, "stroke", /*innerBorderColour*/ ctx[11]);
 			attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			attr(rect, "fill", /*backgroundColour*/ ctx[13]);
-			attr(rect, "data-col", /*x*/ ctx[60]);
-			attr(rect, "data-row", /*y*/ ctx[57]);
+			attr(rect, "data-col", /*x*/ ctx[62]);
+			attr(rect, "data-row", /*y*/ ctx[59]);
 			attr(text_1, "class", "jxword-no-print-blank svelte-1013j5m");
-			attr(text_1, "id", "jxword-letter-" + /*x*/ ctx[60] + "-" + /*y*/ ctx[57]);
-			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2);
-			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*cellHeight*/ ctx[23] - /*cellHeight*/ ctx[23] * 0.1);
+			attr(text_1, "id", "jxword-letter-" + /*x*/ ctx[62] + "-" + /*y*/ ctx[59]);
+			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2);
+			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*cellHeight*/ ctx[23] - /*cellHeight*/ ctx[23] * 0.1);
 			attr(text_1, "text-anchor", "middle");
 			attr(text_1, "font-size", /*fontSize*/ ctx[21]);
 			attr(text_1, "width", /*cellWidth*/ ctx[19]);
@@ -1683,11 +1683,11 @@ function create_else_block(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*cellWidth, margin*/ 524800 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[57] + /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellWidth, margin*/ 524800 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[59] + /*margin*/ ctx[9])) {
 				attr(rect, "y", rect_y_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin*/ 8389120 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[60] + /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellHeight, margin*/ 8389120 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[62] + /*margin*/ ctx[9])) {
 				attr(rect, "x", rect_x_value);
 			}
 
@@ -1711,13 +1711,13 @@ function create_else_block(ctx) {
 				attr(rect, "fill", /*backgroundColour*/ ctx[13]);
 			}
 
-			if (dirty[0] & /*grid*/ 1 && t_value !== (t_value = /*letter*/ ctx[58] + "")) set_data(t, t_value);
+			if (dirty[0] & /*grid*/ 1 && t_value !== (t_value = /*letter*/ ctx[60] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*cellWidth, margin*/ 524800 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2)) {
+			if (dirty[0] & /*cellWidth, margin*/ 524800 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2)) {
 				attr(text_1, "x", text_1_x_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin*/ 8389120 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*cellHeight*/ ctx[23] - /*cellHeight*/ ctx[23] * 0.1)) {
+			if (dirty[0] & /*cellHeight, margin*/ 8389120 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*cellHeight*/ ctx[23] - /*cellHeight*/ ctx[23] * 0.1)) {
 				attr(text_1, "y", text_1_y_value);
 			}
 
@@ -1738,7 +1738,7 @@ function create_else_block(ctx) {
 	};
 }
 
-// (390:28) {#if letter=="#"}
+// (441:28) {#if letter=="#"}
 function create_if_block_1(ctx) {
 	let rect;
 	let rect_y_value;
@@ -1766,38 +1766,38 @@ function create_if_block_1(ctx) {
 			attr(rect, "role", "cell");
 			attr(rect, "tabindex", "-1");
 			attr(rect, "aria-label", "blank");
-			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[57] + /*margin*/ ctx[9]);
-			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[60] + /*margin*/ ctx[9]);
+			attr(rect, "y", rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[59] + /*margin*/ ctx[9]);
+			attr(rect, "x", rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[62] + /*margin*/ ctx[9]);
 			attr(rect, "width", /*cellWidth*/ ctx[19]);
 			attr(rect, "height", /*cellHeight*/ ctx[23]);
 			attr(rect, "stroke", /*innerBorderColour*/ ctx[11]);
 			attr(rect, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			attr(rect, "fill", /*fillColour*/ ctx[12]);
-			attr(rect, "data-col", /*y*/ ctx[57]);
-			attr(rect, "data-row", /*x*/ ctx[60]);
+			attr(rect, "data-col", /*y*/ ctx[59]);
+			attr(rect, "data-row", /*x*/ ctx[62]);
 			attr(line0, "class", "jxword-cell-line jxword-no-print svelte-1013j5m");
 			attr(line0, "role", "cell");
 			attr(line0, "tabindex", "-1");
-			attr(line0, "y1", line0_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
-			attr(line0, "x1", line0_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
-			attr(line0, "y2", line0_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellHeight*/ ctx[23]);
-			attr(line0, "x2", line0_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellWidth*/ ctx[19]);
+			attr(line0, "y1", line0_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line0, "x1", line0_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line0, "y2", line0_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellHeight*/ ctx[23]);
+			attr(line0, "x2", line0_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellWidth*/ ctx[19]);
 			attr(line0, "stroke", /*innerBorderColour*/ ctx[11]);
 			attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[8]);
-			attr(line0, "data-col", /*y*/ ctx[57]);
-			attr(line0, "data-row", /*x*/ ctx[60]);
+			attr(line0, "data-col", /*y*/ ctx[59]);
+			attr(line0, "data-row", /*x*/ ctx[62]);
 			attr(line1, "class", "jxword-no-print jxword-cell-line svelte-1013j5m");
 			attr(line1, "role", "cell");
 			attr(line1, "tabindex", "-1");
-			attr(line1, "y1", line1_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
-			attr(line1, "x1", line1_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
-			attr(line1, "y2", line1_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellHeight*/ ctx[23]);
-			attr(line1, "x2", line1_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellWidth*/ ctx[19]);
+			attr(line1, "y1", line1_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line1, "x1", line1_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8]);
+			attr(line1, "y2", line1_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellHeight*/ ctx[23]);
+			attr(line1, "x2", line1_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellWidth*/ ctx[19]);
 			attr(line1, "stroke", /*innerBorderColour*/ ctx[11]);
 			attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[8]);
-			attr(line1, "data-col", /*y*/ ctx[57]);
-			attr(line1, "data-row", /*x*/ ctx[60]);
-			attr(line1, "transform", line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ", " + (/*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ")");
+			attr(line1, "data-col", /*y*/ ctx[59]);
+			attr(line1, "data-row", /*x*/ ctx[62]);
+			attr(line1, "transform", line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ", " + (/*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ")");
 		},
 		m(target, anchor) {
 			insert(target, rect, anchor);
@@ -1815,11 +1815,11 @@ function create_if_block_1(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*cellWidth, margin*/ 524800 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[57] + /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellWidth, margin*/ 524800 && rect_y_value !== (rect_y_value = /*cellWidth*/ ctx[19] * /*y*/ ctx[59] + /*margin*/ ctx[9])) {
 				attr(rect, "y", rect_y_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin*/ 8389120 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[60] + /*margin*/ ctx[9])) {
+			if (dirty[0] & /*cellHeight, margin*/ 8389120 && rect_x_value !== (rect_x_value = /*cellHeight*/ ctx[23] * /*x*/ ctx[62] + /*margin*/ ctx[9])) {
 				attr(rect, "x", rect_x_value);
 			}
 
@@ -1843,19 +1843,19 @@ function create_if_block_1(ctx) {
 				attr(rect, "fill", /*fillColour*/ ctx[12]);
 			}
 
-			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 8389376 && line0_y__value !== (line0_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
+			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 8389376 && line0_y__value !== (line0_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line0, "y1", line0_y__value);
 			}
 
-			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 525056 && line0_x__value !== (line0_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
+			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 525056 && line0_x__value !== (line0_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line0, "x1", line0_x__value);
 			}
 
-			if (dirty[0] & /*cellHeight, innerBorderWidth*/ 8388864 && line0_y__value_1 !== (line0_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellHeight*/ ctx[23])) {
+			if (dirty[0] & /*cellHeight, innerBorderWidth*/ 8388864 && line0_y__value_1 !== (line0_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellHeight*/ ctx[23])) {
 				attr(line0, "y2", line0_y__value_1);
 			}
 
-			if (dirty[0] & /*cellWidth, innerBorderWidth*/ 524544 && line0_x__value_1 !== (line0_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellWidth*/ ctx[19])) {
+			if (dirty[0] & /*cellWidth, innerBorderWidth*/ 524544 && line0_x__value_1 !== (line0_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellWidth*/ ctx[19])) {
 				attr(line0, "x2", line0_x__value_1);
 			}
 
@@ -1867,19 +1867,19 @@ function create_if_block_1(ctx) {
 				attr(line0, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			}
 
-			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 8389376 && line1_y__value !== (line1_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
+			if (dirty[0] & /*cellHeight, margin, innerBorderWidth*/ 8389376 && line1_y__value !== (line1_y__value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line1, "y1", line1_y__value);
 			}
 
-			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 525056 && line1_x__value !== (line1_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
+			if (dirty[0] & /*cellWidth, margin, innerBorderWidth*/ 525056 && line1_x__value !== (line1_x__value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*innerBorderWidth*/ ctx[8])) {
 				attr(line1, "x1", line1_x__value);
 			}
 
-			if (dirty[0] & /*cellHeight, innerBorderWidth*/ 8388864 && line1_y__value_1 !== (line1_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellHeight*/ ctx[23])) {
+			if (dirty[0] & /*cellHeight, innerBorderWidth*/ 8388864 && line1_y__value_1 !== (line1_y__value_1 = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellHeight*/ ctx[23])) {
 				attr(line1, "y2", line1_y__value_1);
 			}
 
-			if (dirty[0] & /*cellWidth, innerBorderWidth*/ 524544 && line1_x__value_1 !== (line1_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[57] + /*cellWidth*/ ctx[19])) {
+			if (dirty[0] & /*cellWidth, innerBorderWidth*/ 524544 && line1_x__value_1 !== (line1_x__value_1 = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*innerBorderWidth*/ ctx[8] * /*y*/ ctx[59] + /*cellWidth*/ ctx[19])) {
 				attr(line1, "x2", line1_x__value_1);
 			}
 
@@ -1891,7 +1891,7 @@ function create_if_block_1(ctx) {
 				attr(line1, "stroke-width", /*innerBorderWidth*/ ctx[8]);
 			}
 
-			if (dirty[0] & /*cellWidth, margin, cellHeight*/ 8913408 && line1_transform_value !== (line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ", " + (/*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ")")) {
+			if (dirty[0] & /*cellWidth, margin, cellHeight*/ 8913408 && line1_transform_value !== (line1_transform_value = "rotate(90, " + (/*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ", " + (/*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*cellWidth*/ ctx[19] / 2) + ")")) {
 				attr(line1, "transform", line1_transform_value);
 			}
 		},
@@ -1905,10 +1905,10 @@ function create_if_block_1(ctx) {
 	};
 }
 
-// (399:28) {#if (number_grid[y][x] != null && letter!=="#")}
+// (450:28) {#if (number_grid[y][x] != null && letter!=="#")}
 function create_if_block$1(ctx) {
 	let text_1;
-	let t_value = /*number_grid*/ ctx[18][/*y*/ ctx[57]][/*x*/ ctx[60]] + "";
+	let t_value = /*number_grid*/ ctx[18][/*y*/ ctx[59]][/*x*/ ctx[62]] + "";
 	let t;
 	let text_1_x_value;
 	let text_1_y_value;
@@ -1919,8 +1919,8 @@ function create_if_block$1(ctx) {
 		c() {
 			text_1 = svg_element("text");
 			t = text(t_value);
-			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + 2);
-			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*numFontSize*/ ctx[22]);
+			attr(text_1, "x", text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + 2);
+			attr(text_1, "y", text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*numFontSize*/ ctx[22]);
 			attr(text_1, "text-anchor", "left");
 			attr(text_1, "font-size", /*numFontSize*/ ctx[22]);
 			attr(text_1, "class", "svelte-1013j5m");
@@ -1935,13 +1935,13 @@ function create_if_block$1(ctx) {
 			}
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*number_grid*/ 262144 && t_value !== (t_value = /*number_grid*/ ctx[18][/*y*/ ctx[57]][/*x*/ ctx[60]] + "")) set_data(t, t_value);
+			if (dirty[0] & /*number_grid*/ 262144 && t_value !== (t_value = /*number_grid*/ ctx[18][/*y*/ ctx[59]][/*x*/ ctx[62]] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*cellWidth, margin*/ 524800 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[60] + /*margin*/ ctx[9] + 2)) {
+			if (dirty[0] & /*cellWidth, margin*/ 524800 && text_1_x_value !== (text_1_x_value = /*cellWidth*/ ctx[19] * /*x*/ ctx[62] + /*margin*/ ctx[9] + 2)) {
 				attr(text_1, "x", text_1_x_value);
 			}
 
-			if (dirty[0] & /*cellHeight, margin, numFontSize*/ 12583424 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[57] + /*margin*/ ctx[9] + /*numFontSize*/ ctx[22])) {
+			if (dirty[0] & /*cellHeight, margin, numFontSize*/ 12583424 && text_1_y_value !== (text_1_y_value = /*cellHeight*/ ctx[23] * /*y*/ ctx[59] + /*margin*/ ctx[9] + /*numFontSize*/ ctx[22])) {
 				attr(text_1, "y", text_1_y_value);
 			}
 
@@ -1957,7 +1957,7 @@ function create_if_block$1(ctx) {
 	};
 }
 
-// (388:20) {#each col_data as letter, x}
+// (439:20) {#each col_data as letter, x}
 function create_each_block_1$2(ctx) {
 	let g;
 	let if_block0_anchor;
@@ -1965,20 +1965,20 @@ function create_each_block_1$2(ctx) {
 	let dispose;
 
 	function select_block_type(ctx, dirty) {
-		if (/*letter*/ ctx[58] == "#") return create_if_block_1;
+		if (/*letter*/ ctx[60] == "#") return create_if_block_1;
 		return create_else_block;
 	}
 
 	let current_block_type = select_block_type(ctx);
 	let if_block0 = current_block_type(ctx);
-	let if_block1 = /*number_grid*/ ctx[18][/*y*/ ctx[57]][/*x*/ ctx[60]] != null && /*letter*/ ctx[58] !== "#" && create_if_block$1(ctx);
+	let if_block1 = /*number_grid*/ ctx[18][/*y*/ ctx[59]][/*x*/ ctx[62]] != null && /*letter*/ ctx[60] !== "#" && create_if_block$1(ctx);
 
 	function click_handler() {
-		return /*click_handler*/ ctx[44](/*x*/ ctx[60], /*y*/ ctx[57]);
+		return /*click_handler*/ ctx[46](/*x*/ ctx[62], /*y*/ ctx[59]);
 	}
 
 	function dblclick_handler() {
-		return /*dblclick_handler*/ ctx[45](/*x*/ ctx[60], /*y*/ ctx[57]);
+		return /*dblclick_handler*/ ctx[47](/*x*/ ctx[62], /*y*/ ctx[59]);
 	}
 
 	return {
@@ -1987,11 +1987,11 @@ function create_each_block_1$2(ctx) {
 			if_block0.c();
 			if_block0_anchor = empty();
 			if (if_block1) if_block1.c();
-			attr(g, "id", "jxword-cell-" + /*x*/ ctx[60] + "-" + /*y*/ ctx[57]);
+			attr(g, "id", "jxword-cell-" + /*x*/ ctx[62] + "-" + /*y*/ ctx[59]);
 			attr(g, "class", "jxword-cell svelte-1013j5m");
 			set_style(g, "z-index", "20");
-			toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[57] && /*current_x*/ ctx[1] === /*x*/ ctx[60]);
-			toggle_class(g, "active", /*marked_word_grid*/ ctx[20][/*y*/ ctx[57]][/*x*/ ctx[60]]);
+			toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[59] && /*current_x*/ ctx[1] === /*x*/ ctx[62]);
+			toggle_class(g, "active", /*marked_word_grid*/ ctx[20][/*y*/ ctx[59]][/*x*/ ctx[62]]);
 		},
 		m(target, anchor) {
 			insert(target, g, anchor);
@@ -2024,7 +2024,7 @@ function create_each_block_1$2(ctx) {
 				}
 			}
 
-			if (/*number_grid*/ ctx[18][/*y*/ ctx[57]][/*x*/ ctx[60]] != null && /*letter*/ ctx[58] !== "#") {
+			if (/*number_grid*/ ctx[18][/*y*/ ctx[59]][/*x*/ ctx[62]] != null && /*letter*/ ctx[60] !== "#") {
 				if (if_block1) {
 					if_block1.p(ctx, dirty);
 				} else {
@@ -2038,11 +2038,11 @@ function create_each_block_1$2(ctx) {
 			}
 
 			if (dirty[0] & /*current_y, current_x*/ 6) {
-				toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[57] && /*current_x*/ ctx[1] === /*x*/ ctx[60]);
+				toggle_class(g, "selected", /*current_y*/ ctx[2] === /*y*/ ctx[59] && /*current_x*/ ctx[1] === /*x*/ ctx[62]);
 			}
 
 			if (dirty[0] & /*marked_word_grid*/ 1048576) {
-				toggle_class(g, "active", /*marked_word_grid*/ ctx[20][/*y*/ ctx[57]][/*x*/ ctx[60]]);
+				toggle_class(g, "active", /*marked_word_grid*/ ctx[20][/*y*/ ctx[59]][/*x*/ ctx[62]]);
 			}
 		},
 		d(detaching) {
@@ -2055,10 +2055,10 @@ function create_each_block_1$2(ctx) {
 	};
 }
 
-// (387:16) {#each grid as col_data, y}
+// (438:16) {#each grid as col_data, y}
 function create_each_block$2(ctx) {
 	let each_1_anchor;
-	let each_value_1 = /*col_data*/ ctx[55];
+	let each_value_1 = /*col_data*/ ctx[57];
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value_1.length; i += 1) {
@@ -2082,7 +2082,7 @@ function create_each_block$2(ctx) {
 		},
 		p(ctx, dirty) {
 			if (dirty[0] & /*current_y, current_x, marked_word_grid, setCurrentPos, handleDoubleclick, handleKeydown, cellWidth, margin, cellHeight, numFontSize, handleFocus, number_grid, grid, innerBorderWidth, innerBorderColour, fillColour, fontSize, backgroundColour*/ 83868423) {
-				each_value_1 = /*col_data*/ ctx[55];
+				each_value_1 = /*col_data*/ ctx[57];
 				let i;
 
 				for (i = 0; i < each_value_1.length; i += 1) {
@@ -2132,7 +2132,7 @@ function create_fragment$6(ctx) {
 	}
 
 	questions = new Questions({});
-	questions.$on("change", /*change_handler*/ ctx[47]);
+	questions.$on("change", /*change_handler*/ ctx[49]);
 	questions.$on("update_question", /*handleUpdateQuestion*/ ctx[27]);
 
 	return {
@@ -2174,7 +2174,7 @@ function create_fragment$6(ctx) {
 			insert(target, main, anchor);
 			append(main, div);
 			append(div, input);
-			/*input_binding*/ ctx[43](input);
+			/*input_binding*/ ctx[45](input);
 			append(div, t0);
 			append(div, svg);
 			append(svg, g);
@@ -2184,7 +2184,7 @@ function create_fragment$6(ctx) {
 			}
 
 			append(g, rect);
-			/*div_binding*/ ctx[46](div);
+			/*div_binding*/ ctx[48](div);
 			append(main, t1);
 			mount_component(questions, main, null);
 			current = true;
@@ -2193,7 +2193,7 @@ function create_fragment$6(ctx) {
 				dispose = [
 					listen(input, "keydown", /*handleKeydown*/ ctx[16]),
 					listen(rect, "focus", /*handleFocus*/ ctx[17]),
-					listen(main, "move", /*handleMove*/ ctx[14])
+					listen(main, "move", /*handleArrowkey*/ ctx[14])
 				];
 
 				mounted = true;
@@ -2266,9 +2266,9 @@ function create_fragment$6(ctx) {
 		},
 		d(detaching) {
 			if (detaching) detach(main);
-			/*input_binding*/ ctx[43](null);
+			/*input_binding*/ ctx[45](null);
 			destroy_each(each_blocks, detaching);
-			/*div_binding*/ ctx[46](null);
+			/*div_binding*/ ctx[48](null);
 			destroy_component(questions);
 			mounted = false;
 			run_all(dispose);
@@ -2280,9 +2280,9 @@ function instance$6($$self, $$props, $$invalidate) {
 	let $currentDirection;
 	let $questionsDown;
 	let $questionsAcross;
-	component_subscribe($$self, currentDirection, $$value => $$invalidate(48, $currentDirection = $$value));
-	component_subscribe($$self, questionsDown, $$value => $$invalidate(49, $questionsDown = $$value));
-	component_subscribe($$self, questionsAcross, $$value => $$invalidate(50, $questionsAcross = $$value));
+	component_subscribe($$self, currentDirection, $$value => $$invalidate(50, $currentDirection = $$value));
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(51, $questionsDown = $$value));
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(52, $questionsAcross = $$value));
 	const dispatch = createEventDispatcher();
 
 	// Private properties
@@ -2488,6 +2488,70 @@ function instance$6($$self, $$props, $$invalidate) {
 		}
 	}
 
+	function moveNextWord() {
+		let questions = $currentDirection === "across"
+		? $questionsAcross
+		: $questionsDown;
+
+		const current_question = getCurrentQuestion();
+		const current_question_index = questions.findIndex(q => q.num === current_question.num);
+
+		if (current_question_index === questions.length - 1) {
+			$$invalidate(1, current_x = 0);
+			$$invalidate(2, current_y = 0);
+
+			if ($currentDirection === "across") {
+				currentDirection.set("down");
+			} else {
+				currentDirection.set("across");
+			}
+
+			dispatch("change");
+			drawMarkedWordGrid();
+			return;
+		}
+
+		let next_question = questions[current_question_index + 1];
+		$$invalidate(1, current_x = next_question.x);
+		$$invalidate(2, current_y = next_question.y);
+		dispatch("change");
+		drawMarkedWordGrid();
+		return;
+	}
+
+	function movePrevWord() {
+		let questions = $currentDirection === "across"
+		? $questionsAcross
+		: $questionsDown;
+
+		const current_question = getCurrentQuestion();
+		const current_question_index = questions.findIndex(q => q.num === current_question.num);
+
+		if (current_question_index === 0) {
+			$$invalidate(1, current_x = 0);
+			$$invalidate(2, current_y = 0);
+
+			if ($currentDirection === "across") {
+				$$invalidate(1, current_x = size - 1);
+				currentDirection.set("down");
+			} else {
+				$$invalidate(2, current_y = size - 1);
+				currentDirection.set("across");
+			}
+
+			dispatch("change");
+			drawMarkedWordGrid();
+			return;
+		}
+
+		let prev_question = questions[current_question_index - 1];
+		$$invalidate(1, current_x = prev_question.x);
+		$$invalidate(2, current_y = prev_question.y);
+		dispatch("change");
+		drawMarkedWordGrid();
+		return;
+	}
+
 	function moveStartOfRow() {
 		$$invalidate(1, current_x = 0);
 		dispatch("change");
@@ -2512,7 +2576,7 @@ function instance$6($$self, $$props, $$invalidate) {
 		drawMarkedWordGrid();
 	}
 
-	function handleMove(dir) {
+	function handleArrowkey(dir) {
 		if (dir === "up") {
 			moveUp();
 		}
@@ -2527,10 +2591,6 @@ function instance$6($$self, $$props, $$invalidate) {
 
 		if (dir === "right") {
 			moveRight();
-		}
-
-		if (dir === "backsapce") {
-			backspace();
 		}
 	}
 
@@ -2584,11 +2644,8 @@ function instance$6($$self, $$props, $$invalidate) {
 
 		if (keycode > 64 && keycode < 91) {
 			dispatch("letter", e.key.toUpperCase());
-		} else if (keycode === 51) {
-			// #
-			dispatch("letter", "#");
-		} else if (keycode === 190) {
-			// Fullstop
+		} else if (keycode === 51 || keycode === 190) {
+			// # or .
 			dispatch("letter", "#");
 		} else if (keycode === 8) {
 			// Backspace
@@ -2597,11 +2654,11 @@ function instance$6($$self, $$props, $$invalidate) {
 			// Space
 			dispatch("letter", " ");
 		} else if (keycode === 9) {
-			// Enter
+			// Tab
 			if (e.shiftKey) {
-				dispatch("move", "prev-word");
+				dispatch("tab", "prev-word"); // Previous word
 			} else {
-				dispatch("move", "next-word");
+				dispatch("tab", "next-word"); // Next word
 			}
 		} else if (keycode === 13) {
 			// Enter
@@ -2620,7 +2677,12 @@ function instance$6($$self, $$props, $$invalidate) {
 	}
 
 	function handleFocus(e) {
-		Input.focus();
+		const x = window.scrollX;
+		const y = window.scrollY;
+		Input.focus({ preventScroll: true });
+
+		// Scroll to the previous location
+		window.scrollTo(x, y);
 	}
 
 	function handleUpdateQuestion(e) {
@@ -2790,7 +2852,7 @@ function instance$6($$self, $$props, $$invalidate) {
 		innerBorderColour,
 		fillColour,
 		backgroundColour,
-		handleMove,
+		handleArrowkey,
 		setCurrentPos,
 		handleKeydown,
 		handleFocus,
@@ -2812,6 +2874,8 @@ function instance$6($$self, $$props, $$invalidate) {
 		moveDown,
 		moveLeft,
 		moveRight,
+		moveNextWord,
+		movePrevWord,
 		moveStartOfRow,
 		moveEndOfRow,
 		moveStartOfCol,
@@ -2860,20 +2924,22 @@ class Grid extends SvelteComponent {
 				moveDown: 33,
 				moveLeft: 34,
 				moveRight: 35,
-				moveStartOfRow: 36,
-				moveEndOfRow: 37,
-				moveStartOfCol: 38,
-				moveEndOfCol: 39,
-				handleMove: 14,
-				toggleDir: 40,
-				setDir: 41,
-				getCurrentPos: 42,
+				moveNextWord: 36,
+				movePrevWord: 37,
+				moveStartOfRow: 38,
+				moveEndOfRow: 39,
+				moveStartOfCol: 40,
+				moveEndOfCol: 41,
+				handleArrowkey: 14,
+				toggleDir: 42,
+				setDir: 43,
+				getCurrentPos: 44,
 				setCurrentPos: 15,
 				handleKeydown: 16,
 				handleFocus: 17
 			},
 			null,
-			[-1, -1]
+			[-1, -1, -1]
 		);
 	}
 
@@ -2905,36 +2971,44 @@ class Grid extends SvelteComponent {
 		return this.$$.ctx[35];
 	}
 
-	get moveStartOfRow() {
+	get moveNextWord() {
 		return this.$$.ctx[36];
 	}
 
-	get moveEndOfRow() {
+	get movePrevWord() {
 		return this.$$.ctx[37];
 	}
 
-	get moveStartOfCol() {
+	get moveStartOfRow() {
 		return this.$$.ctx[38];
 	}
 
-	get moveEndOfCol() {
+	get moveEndOfRow() {
 		return this.$$.ctx[39];
 	}
 
-	get handleMove() {
+	get moveStartOfCol() {
+		return this.$$.ctx[40];
+	}
+
+	get moveEndOfCol() {
+		return this.$$.ctx[41];
+	}
+
+	get handleArrowkey() {
 		return this.$$.ctx[14];
 	}
 
 	get toggleDir() {
-		return this.$$.ctx[40];
+		return this.$$.ctx[42];
 	}
 
 	get setDir() {
-		return this.$$.ctx[41];
+		return this.$$.ctx[43];
 	}
 
 	get getCurrentPos() {
-		return this.$$.ctx[42];
+		return this.$$.ctx[44];
 	}
 
 	get setCurrentPos() {
@@ -31362,20 +31436,20 @@ var xdCrosswordParser = XDParser;
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[52] = list[i];
+	child_ctx[53] = list[i];
 	return child_ctx;
 }
 
 function get_each_context_1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[55] = list[i];
+	child_ctx[56] = list[i];
 	return child_ctx;
 }
 
-// (303:6) {#each difficulties as difficulty_option}
+// (312:6) {#each difficulties as difficulty_option}
 function create_each_block_1(ctx) {
 	let option;
-	let t_value = /*difficulty_option*/ ctx[55] + "";
+	let t_value = /*difficulty_option*/ ctx[56] + "";
 	let t;
 	let option_value_value;
 
@@ -31383,7 +31457,7 @@ function create_each_block_1(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*difficulty_option*/ ctx[55];
+			option.__value = option_value_value = /*difficulty_option*/ ctx[56];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -31391,9 +31465,9 @@ function create_each_block_1(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*difficulties*/ 2048 && t_value !== (t_value = /*difficulty_option*/ ctx[55] + "")) set_data(t, t_value);
+			if (dirty[0] & /*difficulties*/ 2048 && t_value !== (t_value = /*difficulty_option*/ ctx[56] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*difficulties*/ 2048 && option_value_value !== (option_value_value = /*difficulty_option*/ ctx[55])) {
+			if (dirty[0] & /*difficulties*/ 2048 && option_value_value !== (option_value_value = /*difficulty_option*/ ctx[56])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -31404,10 +31478,10 @@ function create_each_block_1(ctx) {
 	};
 }
 
-// (311:6) {#each types as type_option}
+// (320:6) {#each types as type_option}
 function create_each_block(ctx) {
 	let option;
-	let t_value = /*type_option*/ ctx[52] + "";
+	let t_value = /*type_option*/ ctx[53] + "";
 	let t;
 	let option_value_value;
 
@@ -31415,7 +31489,7 @@ function create_each_block(ctx) {
 		c() {
 			option = element("option");
 			t = text(t_value);
-			option.__value = option_value_value = /*type_option*/ ctx[52];
+			option.__value = option_value_value = /*type_option*/ ctx[53];
 			option.value = option.__value;
 		},
 		m(target, anchor) {
@@ -31423,9 +31497,9 @@ function create_each_block(ctx) {
 			append(option, t);
 		},
 		p(ctx, dirty) {
-			if (dirty[0] & /*types*/ 4096 && t_value !== (t_value = /*type_option*/ ctx[52] + "")) set_data(t, t_value);
+			if (dirty[0] & /*types*/ 4096 && t_value !== (t_value = /*type_option*/ ctx[53] + "")) set_data(t, t_value);
 
-			if (dirty[0] & /*types*/ 4096 && option_value_value !== (option_value_value = /*type_option*/ ctx[52])) {
+			if (dirty[0] & /*types*/ 4096 && option_value_value !== (option_value_value = /*type_option*/ ctx[53])) {
 				option.__value = option_value_value;
 				option.value = option.__value;
 			}
@@ -31509,7 +31583,7 @@ function create_fragment(ctx) {
 	let dispose;
 
 	function instructions_visible_binding(value) {
-		/*instructions_visible_binding*/ ctx[30](value);
+		/*instructions_visible_binding*/ ctx[31](value);
 	}
 
 	let instructions_props = {};
@@ -31522,7 +31596,7 @@ function create_fragment(ctx) {
 	binding_callbacks.push(() => bind(instructions, 'visible', instructions_visible_binding));
 
 	function sizeslider_size_binding(value) {
-		/*sizeslider_size_binding*/ ctx[32](value);
+		/*sizeslider_size_binding*/ ctx[33](value);
 	}
 
 	let sizeslider_props = {};
@@ -31533,7 +31607,7 @@ function create_fragment(ctx) {
 
 	sizeslider = new SizeSlider({ props: sizeslider_props });
 	binding_callbacks.push(() => bind(sizeslider, 'size', sizeslider_size_binding));
-	sizeslider.$on("change", /*handleStateChange*/ ctx[23]);
+	sizeslider.$on("change", /*handleStateChange*/ ctx[24]);
 	let each_value_1 = /*difficulties*/ ctx[11];
 	let each_blocks_1 = [];
 
@@ -31549,7 +31623,7 @@ function create_fragment(ctx) {
 	}
 
 	function patterns_grid_binding(value) {
-		/*patterns_grid_binding*/ ctx[39](value);
+		/*patterns_grid_binding*/ ctx[40](value);
 	}
 
 	let patterns_props = { size: /*size*/ ctx[16] };
@@ -31562,7 +31636,7 @@ function create_fragment(ctx) {
 	binding_callbacks.push(() => bind(patterns, 'grid', patterns_grid_binding));
 
 	function print_state_binding(value) {
-		/*print_state_binding*/ ctx[41](value);
+		/*print_state_binding*/ ctx[42](value);
 	}
 
 	let print_props = {};
@@ -31574,15 +31648,15 @@ function create_fragment(ctx) {
 	print = new Print({ props: print_props });
 	binding_callbacks.push(() => bind(print, 'state', print_state_binding));
 	fileupload0 = new FileUpload({});
-	fileupload0.$on("upload", /*handleXDUpload*/ ctx[27]);
+	fileupload0.$on("upload", /*handleXDUpload*/ ctx[28]);
 	fileupload1 = new FileUpload({ props: { file_formats: ".xml" } });
-	fileupload1.$on("upload", /*handleXMLUpload*/ ctx[28]);
+	fileupload1.$on("upload", /*handleXMLUpload*/ ctx[29]);
 	menu = new Menu({});
-	menu.$on("reset", /*handleReset*/ ctx[24]);
-	menu.$on("instructions", /*handleInstructions*/ ctx[25]);
+	menu.$on("reset", /*handleReset*/ ctx[25]);
+	menu.$on("instructions", /*handleInstructions*/ ctx[26]);
 
 	function grid_1_Container_binding(value) {
-		/*grid_1_Container_binding*/ ctx[44](value);
+		/*grid_1_Container_binding*/ ctx[45](value);
 	}
 
 	let grid_1_props = {
@@ -31595,13 +31669,14 @@ function create_fragment(ctx) {
 	}
 
 	grid_1 = new Grid({ props: grid_1_props });
-	/*grid_1_binding*/ ctx[43](grid_1);
+	/*grid_1_binding*/ ctx[44](grid_1);
 	binding_callbacks.push(() => bind(grid_1, 'Container', grid_1_Container_binding));
-	grid_1.$on("change", /*handleStateChange*/ ctx[23]);
+	grid_1.$on("change", /*handleStateChange*/ ctx[24]);
 	grid_1.$on("move", /*handleMove*/ ctx[19]);
 	grid_1.$on("letter", /*handleLetter*/ ctx[20]);
 	grid_1.$on("backspace", /*handleBackspace*/ ctx[22]);
 	grid_1.$on("enter", /*handleEnter*/ ctx[21]);
+	grid_1.$on("tab", /*handleTab*/ ctx[23]);
 
 	return {
 		c() {
@@ -31694,13 +31769,13 @@ function create_fragment(ctx) {
 			attr(select0, "id", "jxword-difficulty");
 			attr(select0, "name", "difficulty");
 			attr(select0, "class", "svelte-1ez6n1i");
-			if (/*difficulty*/ ctx[7] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[33].call(select0));
+			if (/*difficulty*/ ctx[7] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[34].call(select0));
 			attr(label1, "for", "type");
 			attr(label1, "class", "svelte-1ez6n1i");
 			attr(select1, "id", "jxword-type");
 			attr(select1, "name", "type");
 			attr(select1, "class", "svelte-1ez6n1i");
-			if (/*type*/ ctx[8] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[34].call(select1));
+			if (/*type*/ ctx[8] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[35].call(select1));
 			attr(input1, "id", "jxword-date");
 			attr(input1, "name", "date");
 			attr(input1, "type", "date");
@@ -31837,24 +31912,24 @@ function create_fragment(ctx) {
 
 			if (!mounted) {
 				dispose = [
-					listen(input0, "input", /*input0_input_handler*/ ctx[31]),
-					listen(input0, "change", /*handleStateChange*/ ctx[23]),
-					listen(select0, "change", /*select0_change_handler*/ ctx[33]),
-					listen(select0, "change", /*handleStateChange*/ ctx[23]),
-					listen(select1, "change", /*select1_change_handler*/ ctx[34]),
-					listen(select1, "change", /*handleStateChange*/ ctx[23]),
-					listen(input1, "input", /*input1_input_handler*/ ctx[35]),
-					listen(input1, "change", /*handleStateChange*/ ctx[23]),
-					listen(input2, "input", /*input2_input_handler*/ ctx[36]),
-					listen(input2, "change", /*handleStateChange*/ ctx[23]),
-					listen(input3, "input", /*input3_input_handler*/ ctx[37]),
-					listen(input3, "change", /*handleStateChange*/ ctx[23]),
-					listen(input4, "input", /*input4_input_handler*/ ctx[38]),
-					listen(input4, "change", /*handleStateChange*/ ctx[23]),
-					listen(input5, "change", /*input5_change_handler*/ ctx[40]),
-					listen(input6, "input", /*input6_input_handler*/ ctx[42]),
-					listen(button, "click", /*downloadXD*/ ctx[26]),
-					listen(textarea, "input", /*textarea_input_handler*/ ctx[45])
+					listen(input0, "input", /*input0_input_handler*/ ctx[32]),
+					listen(input0, "change", /*handleStateChange*/ ctx[24]),
+					listen(select0, "change", /*select0_change_handler*/ ctx[34]),
+					listen(select0, "change", /*handleStateChange*/ ctx[24]),
+					listen(select1, "change", /*select1_change_handler*/ ctx[35]),
+					listen(select1, "change", /*handleStateChange*/ ctx[24]),
+					listen(input1, "input", /*input1_input_handler*/ ctx[36]),
+					listen(input1, "change", /*handleStateChange*/ ctx[24]),
+					listen(input2, "input", /*input2_input_handler*/ ctx[37]),
+					listen(input2, "change", /*handleStateChange*/ ctx[24]),
+					listen(input3, "input", /*input3_input_handler*/ ctx[38]),
+					listen(input3, "change", /*handleStateChange*/ ctx[24]),
+					listen(input4, "input", /*input4_input_handler*/ ctx[39]),
+					listen(input4, "change", /*handleStateChange*/ ctx[24]),
+					listen(input5, "change", /*input5_change_handler*/ ctx[41]),
+					listen(input6, "input", /*input6_input_handler*/ ctx[43]),
+					listen(button, "click", /*downloadXD*/ ctx[27]),
+					listen(textarea, "input", /*textarea_input_handler*/ ctx[46])
 				];
 
 				mounted = true;
@@ -32038,7 +32113,7 @@ function create_fragment(ctx) {
 			destroy_component(fileupload0);
 			destroy_component(fileupload1);
 			destroy_component(menu);
-			/*grid_1_binding*/ ctx[43](null);
+			/*grid_1_binding*/ ctx[44](null);
 			destroy_component(grid_1);
 			mounted = false;
 			run_all(dispose);
@@ -32050,9 +32125,9 @@ function instance($$self, $$props, $$invalidate) {
 	let $questionsDown;
 	let $questionsAcross;
 	let $currentDirection;
-	component_subscribe($$self, questionsDown, $$value => $$invalidate(46, $questionsDown = $$value));
-	component_subscribe($$self, questionsAcross, $$value => $$invalidate(47, $questionsAcross = $$value));
-	component_subscribe($$self, currentDirection, $$value => $$invalidate(48, $currentDirection = $$value));
+	component_subscribe($$self, questionsDown, $$value => $$invalidate(47, $questionsDown = $$value));
+	component_subscribe($$self, questionsAcross, $$value => $$invalidate(48, $questionsAcross = $$value));
+	component_subscribe($$self, currentDirection, $$value => $$invalidate(49, $currentDirection = $$value));
 	let { difficulties = ["Easy", "Medium", "Hard", "Evil"] } = $$props;
 	let { types = ["Straight", "Quick", "Cryptic"] } = $$props;
 	const save_state = true;
@@ -32124,7 +32199,7 @@ function instance($$self, $$props, $$invalidate) {
 		if (newDir !== $currentDirection) {
 			gridComponent.setDir(newDir);
 		} else {
-			gridComponent.handleMove(direction);
+			gridComponent.handleArrowkey(direction);
 		}
 	}
 
@@ -32193,6 +32268,16 @@ function instance($$self, $$props, $$invalidate) {
 			gridComponent.moveLeft();
 		} else {
 			gridComponent.moveUp();
+		}
+	}
+
+	function handleTab(e) {
+		const dir = e.detail;
+
+		if (dir === "prev-word") {
+			gridComponent.movePrevWord();
+		} else if (dir === "next-word") {
+			gridComponent.moveNextWord();
 		}
 	}
 
@@ -32463,6 +32548,7 @@ function instance($$self, $$props, $$invalidate) {
 		handleLetter,
 		handleEnter,
 		handleBackspace,
+		handleTab,
 		handleStateChange,
 		handleReset,
 		handleInstructions,
@@ -32502,7 +32588,7 @@ class JXWordCreator extends SvelteComponent {
 			{
 				difficulties: 11,
 				types: 12,
-				save_state: 29,
+				save_state: 30,
 				xd: 0,
 				grid: 1,
 				title: 2,
@@ -32522,7 +32608,7 @@ class JXWordCreator extends SvelteComponent {
 	}
 
 	get save_state() {
-		return this.$$.ctx[29];
+		return this.$$.ctx[30];
 	}
 }
 

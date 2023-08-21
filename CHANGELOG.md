@@ -1,5 +1,10 @@
 # JXWord Creator Changelog
 
+## 0.2.5
+
+- Nagivate between words with tab and shift-tab
+- Fix bug causing puzzle to jump on focus
+
 ## 0.2.4
 
 - Allow customisation of download filename

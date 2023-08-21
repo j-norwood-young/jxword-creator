@@ -96,7 +96,7 @@
 		if (newDir !== $currentDirection) {
 			gridComponent.setDir(newDir);
 		} else {
-			gridComponent.handleMove(direction);
+			gridComponent.handleArrowkey(direction);
 		}
 	}
 
@@ -152,6 +152,15 @@
 			gridComponent.moveLeft();
 		} else {
 			gridComponent.moveUp();
+		}
+	}
+
+	function handleTab(e) {
+		const dir = e.detail;
+		if (dir === "prev-word") {
+			gridComponent.movePrevWord();
+		} else if (dir === "next-word") {
+			gridComponent.moveNextWord();
 		}
 	}
 
@@ -344,7 +353,7 @@
 			<div class="jxword-header">
 				<Menu on:reset="{ handleReset }" on:instructions="{ handleInstructions }" />
 			</div>
-			<Grid size={size} grid={grid} bind:this={gridComponent} bind:Container={gridComponentContainer} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} />
+			<Grid size={size} grid={grid} bind:this={gridComponent} bind:Container={gridComponentContainer} on:change={handleStateChange} on:move={handleMove} on:letter={handleLetter} on:backspace={handleBackspace} on:enter={handleEnter} on:tab={handleTab} />
 		</div>
 		
 		<textarea id="xd" name="xd" class="jxword-xd-textarea" bind:value="{xd}" style:display="{displayXd ? 'block' : 'none'}" />

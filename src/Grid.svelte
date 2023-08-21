@@ -240,6 +240,56 @@ export function moveRight() {
     }
 }
 
+export function moveNextWord() {
+    let questions = $currentDirection === "across" ? $questionsAcross : $questionsDown;
+    const current_question = getCurrentQuestion();
+    const current_question_index = questions.findIndex(q => q.num === current_question.num);
+    if (current_question_index === questions.length - 1) {
+        current_x = 0;
+        current_y = 0;
+        if ($currentDirection === "across") {
+            currentDirection.set("down");
+        } else {
+            currentDirection.set("across");
+        }
+        dispatch("change");
+        drawMarkedWordGrid();
+        return;
+    }
+    let next_question = questions[current_question_index + 1];
+    current_x = next_question.x;
+    current_y = next_question.y;
+    dispatch("change");
+    drawMarkedWordGrid();
+    return;
+}
+
+export function movePrevWord() {
+    let questions = $currentDirection === "across" ? $questionsAcross : $questionsDown;
+    const current_question = getCurrentQuestion();
+    const current_question_index = questions.findIndex(q => q.num === current_question.num);
+    if (current_question_index === 0) {
+        current_x = 0;
+        current_y = 0;
+        if ($currentDirection === "across") {
+            current_x = size - 1;
+            currentDirection.set("down");
+        } else {
+            current_y = size - 1;
+            currentDirection.set("across");
+        }
+        dispatch("change");
+        drawMarkedWordGrid();
+        return;
+    }
+    let prev_question = questions[current_question_index - 1];
+    current_x = prev_question.x;
+    current_y = prev_question.y;
+    dispatch("change");
+    drawMarkedWordGrid();
+    return;
+}
+
 export function moveStartOfRow() {
     current_x = 0;
     dispatch("change");
@@ -264,7 +314,7 @@ export function moveEndOfCol() {
     drawMarkedWordGrid();
 }
 
-export function handleMove(dir) {
+export function handleArrowkey(dir) {
     if (dir === "up") {
         moveUp();
     }
@@ -276,9 +326,6 @@ export function handleMove(dir) {
     }
     if (dir === "right") {
         moveRight();
-    }
-    if (dir === "backsapce") {
-        backspace();
     }
 }
 
@@ -330,19 +377,17 @@ export function handleKeydown (e) {
     if (e.metaKey) return;
     if ((keycode > 64 && keycode < 91)) {
         dispatch("letter", e.key.toUpperCase());
-    } else if (keycode === 51) { // #
-        dispatch("letter", "#");
-    } else if (keycode === 190) { // Fullstop
+    } else if (keycode === 51 || keycode === 190) { // # or .
         dispatch("letter", "#");
     } else if (keycode === 8) { // Backspace
         dispatch("backspace");
     } else if (keycode == 32) { // Space
         dispatch("letter", " ");
-    } else if ((keycode === 9)) { // Enter
+    } else if ((keycode === 9)) { // Tab
         if (e.shiftKey) {
-            dispatch("move", "prev-word");
+            dispatch("tab", "prev-word"); // Previous word
         } else {
-            dispatch("move", "next-word");
+            dispatch("tab", "next-word"); // Next word
         }
     } else if (keycode === 13) { // Enter
         dispatch("enter");
@@ -359,7 +404,13 @@ export function handleKeydown (e) {
 }
 
 export function handleFocus(e) {
-    Input.focus();
+    const x = window.scrollX;
+    const y = window.scrollY;
+    Input.focus({
+        preventScroll: true,
+    });
+    // Scroll to the previous location
+    window.scrollTo(x, y);
 }
 
 function handleUpdateQuestion(e) {
@@ -379,7 +430,7 @@ function handleUpdateQuestion(e) {
 }
 </script>
 
-<main on:move={handleMove}>
+<main on:move={handleArrowkey}>
     <div class="jxword-svg-container" bind:this={Container}>
         <input bind:this={Input} type="text" on:keydown={handleKeydown} />
         <svg class='jxword-svg' min-x="0" min-y="0" width={viewbox_width} height={viewbox_height}>
